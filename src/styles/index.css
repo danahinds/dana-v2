@@ -108,6 +108,7 @@ a:hover {
 
 .btn-primary:hover {
   background: var(--gold);
+  color: var(--olive-dark);
   border-color: var(--gold);
 }
 
