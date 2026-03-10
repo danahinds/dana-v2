@@ -113,11 +113,8 @@ a:hover {
 }
 
 main {
-  padding-block: 2rem;
-}
-
-main > section {
-  padding-inline: 2rem;
+  padding: 0;
+  margin: 0;
 }
 
 header > section > p {
