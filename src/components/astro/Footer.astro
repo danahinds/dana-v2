@@ -1,23 +1,38 @@
 ---
-const platform = "github";
-const username = "shawn-sandy";
-import Social from "./Social.astro";
 const today = new Date();
 ---
 
 <footer>
-  <div>
-    <p>
-      Learn more about my projects on
-
-      <Social platform="twitter" username="shawnsandy" />{" "}
-
-      <Social platform="github" username="shawn-sandy" />{" "}
-
-      <Social platform="youtube" username="astrodotbuild" />
-    </p>
-    <p>
-      &copy; {today.getFullYear()} Your name here. All rights reserved.
-    </p>
+  <div class="footer-content">
+    <p>&copy; {today.getFullYear()} Dana Sandy. All rights reserved.</p>
+    <p>Florida, USA &bull; <a href="mailto:hello@danasandy.com">hello@danasandy.com</a></p>
   </div>
 </footer>
+
+<style>
+  footer {
+    background-color: var(--olive-dark);
+    padding: 3rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-content {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .footer-content p {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-content a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .footer-content a:hover {
+    color: var(--gold);
+  }
+</style>

@@ -1,17 +1,132 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ContentList from "../components/astro/ContentList.astro";
+import BotanicalLayer from "../components/astro/BotanicalLayer.astro";
 ---
 
-<Layout pageTitle="Astro Kit">
-  <h2 data-ui="display">Welcome!</h2>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse harum
-    dignissimos debitis beatae omnis accusantium doloremque sed facilis maiores
-    consequatur earum cum voluptatem ipsum aut, excepturi perspiciatis aperiam
-    illum vel?
-  </p>
-  <section>
-    <ContentList pageSize={2} />
+<Layout pageTitle="Dana Sandy | Product Manager & AI Innovator">
+  <section class="hero">
+    <BotanicalLayer variant="hero" />
+    <div class="hero-inner">
+      <span class="label">Product Manager & AI Innovator</span>
+      <h1>Building the future of product development through AI collaboration</h1>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature-card">
+      <h3>Product Strategy</h3>
+      <p>Transforming complex challenges into elegant solutions through strategic product thinking and user-centered design.</p>
+      <a href="/about">Learn more</a>
+    </div>
+
+    <div class="feature-card">
+      <h3>AI Experimentation</h3>
+      <p>Exploring the boundaries of AI capabilities through real-world experiments and innovative applications.</p>
+      <a href="/posts/1">Learn more</a>
+    </div>
+
+    <div class="feature-card">
+      <h3>Team Leadership</h3>
+      <p>Leading cross-functional teams to deliver impactful products that solve meaningful problems.</p>
+      <a href="/about">Learn more</a>
+    </div>
+  </section>
+
+  <section class="series-section">
+    <BotanicalLayer variant="series" />
+    <span class="label">Featured Series</span>
+    <h2>SKAI is the Limit?</h2>
+    <p>We gave AI a development team and one mission — to build a real app from scratch. Does SKAI have a limit?</p>
+    <a href="/posts/1" class="btn">Explore the series</a>
   </section>
 </Layout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 8rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    margin-bottom: 0;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    padding: 4rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+  }
+
+  .feature-card {
+    text-align: center;
+  }
+
+  .feature-card h3 {
+    margin-bottom: 1rem;
+  }
+
+  .feature-card p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-card a {
+    color: var(--gold);
+    text-decoration: underline;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+  }
+
+  .series-section {
+    background-color: var(--olive-dark);
+    padding: 5rem 3rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .series-section > *:not(.botanical-layer) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .series-section h2 {
+    margin-bottom: 1rem;
+  }
+
+  .series-section p {
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    font-size: 1.125rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 4rem 1.5rem;
+    }
+
+    .features {
+      grid-template-columns: 1fr;
+      padding: 3rem 1.5rem;
+    }
+
+    .series-section {
+      padding: 3rem 1.5rem;
+    }
+  }
+</style>

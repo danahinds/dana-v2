@@ -1,14 +1,115 @@
 <nav>
-  <ul>
-    <li>
-      <a href="/">Home</a>
-    </li>
-    <li>
-      <a href="/posts/1">Blog</a>
-    </li>
-    <li>
-      <a href="/about">About</a>
-    </li>
+  <div class="nav-left">
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/danasandy" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+        <span class="social-icon">in</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="nav-center">
+    <a href="/">Dana Sandy</a>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/posts/1">SKAI Series</a></li>
   </ul>
-  <slot />
+
+  <div class="nav-right">
+    <a href="/contact" class="btn btn-primary">Work with me</a>
+  </div>
 </nav>
+
+<style>
+  nav {
+    background-color: var(--olive-dark);
+    padding: 1.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .nav-left {
+    flex: 0 0 auto;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-icon {
+    font-size: 0.75rem;
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  .nav-center {
+    flex: 0 0 auto;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .nav-center a {
+    color: var(--cream);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .nav-links a {
+    font-size: 0.95rem;
+  }
+
+  .nav-right {
+    flex: 0 0 auto;
+  }
+
+  @media (max-width: 1024px) {
+    nav {
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .nav-left {
+      order: 1;
+      flex: 0 0 100%;
+      justify-content: center;
+      display: flex;
+    }
+
+    .nav-center {
+      order: 2;
+      flex: 0 0 100%;
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .nav-links {
+      order: 3;
+      flex: 0 0 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .nav-right {
+      order: 4;
+      flex: 0 0 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+  }
+</style>

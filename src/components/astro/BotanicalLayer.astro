@@ -1,0 +1,186 @@
+---
+// Botanical decorative SVG layer component
+// Optimized for cross-browser compatibility
+const { variant = "hero" } = Astro.props;
+---
+
+<svg
+  class={`botanical-layer botanical-${variant}`}
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1400 700"
+  preserveAspectRatio="xMidYMid slice"
+  aria-hidden="true"
+  role="presentation"
+>
+  {variant === "hero" && (
+    <>
+      <!-- Chaconia bottom-left -->
+      <g class="botanical-element drift-a" transform="translate(20,640) rotate(-30) scale(2.2)">
+        <path d="M0,0 C25,-35 70,-90 115,-138 C148,-170 182,-188 228,-198" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" opacity="0.35"/>
+        <ellipse cx="46" cy="-58" rx="8" ry="4.5" transform="rotate(-32,46,-58)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.35"/>
+        <ellipse cx="60" cy="-50" rx="8" ry="4.5" transform="rotate(-10,60,-50)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.35"/>
+        <ellipse cx="38" cy="-70" rx="7" ry="4" transform="rotate(-54,38,-70)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.35"/>
+        <ellipse cx="96" cy="-108" rx="8" ry="4.5" transform="rotate(-38,96,-108)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.35"/>
+        <ellipse cx="111" cy="-100" rx="8" ry="4.5" transform="rotate(-14,111,-100)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.35"/>
+        <ellipse cx="88" cy="-120" rx="7" ry="4" transform="rotate(-60,88,-120)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.35"/>
+        <ellipse cx="152" cy="-152" rx="8" ry="4.5" transform="rotate(-44,152,-152)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.35"/>
+        <ellipse cx="168" cy="-144" rx="8" ry="4.5" transform="rotate(-18,168,-144)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.35"/>
+        <ellipse cx="200" cy="-183" rx="7" ry="4" transform="rotate(-48,200,-183)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.35"/>
+        <ellipse cx="214" cy="-177" rx="7" ry="4" transform="rotate(-22,214,-177)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.35"/>
+      </g>
+
+      <!-- Chaconia top-right -->
+      <g class="botanical-element drift-b" transform="translate(1390,60) rotate(152) scale(1.9)">
+        <path d="M0,0 C25,-35 70,-90 115,-138 C148,-170 182,-188 228,-198" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" opacity="0.28"/>
+        <ellipse cx="46" cy="-58" rx="8" ry="4.5" transform="rotate(-32,46,-58)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.28"/>
+        <ellipse cx="60" cy="-50" rx="8" ry="4.5" transform="rotate(-10,60,-50)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.28"/>
+        <ellipse cx="96" cy="-108" rx="8" ry="4.5" transform="rotate(-38,96,-108)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.28"/>
+        <ellipse cx="111" cy="-100" rx="8" ry="4.5" transform="rotate(-14,111,-100)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.28"/>
+        <ellipse cx="152" cy="-152" rx="8" ry="4.5" transform="rotate(-44,152,-152)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.28"/>
+        <ellipse cx="168" cy="-144" rx="8" ry="4.5" transform="rotate(-18,168,-144)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.28"/>
+      </g>
+
+      <!-- Fig leaf top-left -->
+      <g class="botanical-element drift-c" transform="translate(80,80) rotate(15) scale(3.6)">
+        <path d="M0,0 C-6,-18 -20,-26 -24,-44 C-28,-58 -17,-72 -9,-78 C-4,-66 2,-60 0,-46 C9,-60 22,-66 24,-78 C34,-72 42,-58 38,-44 C34,-26 20,-18 16,-6 C11,9 5,20 0,26 C-5,20 -11,9 0,0Z" fill="none" stroke="var(--cream)" stroke-width="1.2" opacity="0.22"/>
+        <line x1="0" y1="0" x2="0" y2="26" stroke="var(--cream)" stroke-width="0.6" opacity="0.15"/>
+        <line x1="0" y1="6" x2="-16" y2="-14" stroke="var(--cream)" stroke-width="0.5" opacity="0.13"/>
+        <line x1="0" y1="6" x2="16" y2="-14" stroke="var(--cream)" stroke-width="0.5" opacity="0.13"/>
+        <line x1="-5" y1="-12" x2="-22" y2="-43" stroke="var(--cream)" stroke-width="0.4" opacity="0.11"/>
+        <line x1="5" y1="-12" x2="22" y2="-43" stroke="var(--cream)" stroke-width="0.4" opacity="0.11"/>
+      </g>
+
+      <!-- Fig leaf bottom-right -->
+      <g class="botanical-element drift-a" transform="translate(1330,640) rotate(-18) scale(4)">
+        <path d="M0,0 C-6,-18 -20,-26 -24,-44 C-28,-58 -17,-72 -9,-78 C-4,-66 2,-60 0,-46 C9,-60 22,-66 24,-78 C34,-72 42,-58 38,-44 C34,-26 20,-18 16,-6 C11,9 5,20 0,26 C-5,20 -11,9 0,0Z" fill="none" stroke="var(--cream)" stroke-width="1.2" opacity="0.20"/>
+        <line x1="0" y1="0" x2="0" y2="26" stroke="var(--cream)" stroke-width="0.6" opacity="0.14"/>
+        <line x1="0" y1="6" x2="-16" y2="-14" stroke="var(--cream)" stroke-width="0.5" opacity="0.12"/>
+        <line x1="0" y1="6" x2="16" y2="-14" stroke="var(--cream)" stroke-width="0.5" opacity="0.12"/>
+        <line x1="-5" y1="-12" x2="-22" y2="-43" stroke="var(--cream)" stroke-width="0.4" opacity="0.10"/>
+        <line x1="5" y1="-12" x2="22" y2="-43" stroke="var(--cream)" stroke-width="0.4" opacity="0.10"/>
+      </g>
+
+      <!-- Chaconia mid-right -->
+      <g class="botanical-element drift-c" transform="translate(1380,360) rotate(200) scale(1.3)">
+        <path d="M0,0 C25,-35 70,-90 115,-138 C148,-170 182,-188 228,-198" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" opacity="0.22"/>
+        <ellipse cx="46" cy="-58" rx="8" ry="4.5" transform="rotate(-32,46,-58)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.22"/>
+        <ellipse cx="96" cy="-108" rx="8" ry="4.5" transform="rotate(-38,96,-108)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.22"/>
+        <ellipse cx="152" cy="-152" rx="8" ry="4.5" transform="rotate(-44,152,-152)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.22"/>
+      </g>
+
+      <!-- Fig leaf mid-left -->
+      <g class="botanical-element drift-b" transform="translate(40,360) rotate(-10) scale(2.2)">
+        <path d="M0,0 C-6,-18 -20,-26 -24,-44 C-28,-58 -17,-72 -9,-78 C-4,-66 2,-60 0,-46 C9,-60 22,-66 24,-78 C34,-72 42,-58 38,-44 C34,-26 20,-18 16,-6 C11,9 5,20 0,26 C-5,20 -11,9 0,0Z" fill="none" stroke="var(--gold)" stroke-width="1.2" opacity="0.25"/>
+        <line x1="0" y1="0" x2="0" y2="26" stroke="var(--gold)" stroke-width="0.6" opacity="0.18"/>
+        <line x1="0" y1="6" x2="-16" y2="-14" stroke="var(--gold)" stroke-width="0.5" opacity="0.15"/>
+        <line x1="0" y1="6" x2="16" y2="-14" stroke="var(--gold)" stroke-width="0.5" opacity="0.15"/>
+      </g>
+    </>
+  )}
+
+  {variant === "series" && (
+    <>
+      <!-- Chaconia left -->
+      <g class="botanical-element drift-b" transform="translate(10,420) rotate(-25) scale(1.8)">
+        <path d="M0,0 C25,-35 70,-90 115,-138 C148,-170 182,-188 228,-198" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" opacity="0.32"/>
+        <ellipse cx="46" cy="-58" rx="8" ry="4.5" transform="rotate(-32,46,-58)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.32"/>
+        <ellipse cx="60" cy="-50" rx="8" ry="4.5" transform="rotate(-10,60,-50)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.32"/>
+        <ellipse cx="96" cy="-108" rx="8" ry="4.5" transform="rotate(-38,96,-108)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.32"/>
+        <ellipse cx="111" cy="-100" rx="8" ry="4.5" transform="rotate(-14,111,-100)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.32"/>
+        <ellipse cx="152" cy="-152" rx="8" ry="4.5" transform="rotate(-44,152,-152)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.32"/>
+      </g>
+
+      <!-- Chaconia right -->
+      <g class="botanical-element drift-c" transform="translate(1400,30) rotate(158) scale(1.6)">
+        <path d="M0,0 C25,-35 70,-90 115,-138 C148,-170 182,-188 228,-198" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" opacity="0.28"/>
+        <ellipse cx="46" cy="-58" rx="8" ry="4.5" transform="rotate(-32,46,-58)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.28"/>
+        <ellipse cx="96" cy="-108" rx="8" ry="4.5" transform="rotate(-38,96,-108)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.28"/>
+        <ellipse cx="152" cy="-152" rx="8" ry="4.5" transform="rotate(-44,152,-152)" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.28"/>
+      </g>
+
+      <!-- Fig leaf bottom-right -->
+      <g class="botanical-element drift-a" transform="translate(1340,430) rotate(-28) scale(3.4)">
+        <path d="M0,0 C-6,-18 -20,-26 -24,-44 C-28,-58 -17,-72 -9,-78 C-4,-66 2,-60 0,-46 C9,-60 22,-66 24,-78 C34,-72 42,-58 38,-44 C34,-26 20,-18 16,-6 C11,9 5,20 0,26 C-5,20 -11,9 0,0Z" fill="none" stroke="var(--cream)" stroke-width="1.2" opacity="0.20"/>
+        <line x1="0" y1="0" x2="0" y2="26" stroke="var(--cream)" stroke-width="0.6" opacity="0.14"/>
+        <line x1="0" y1="6" x2="-16" y2="-14" stroke="var(--cream)" stroke-width="0.5" opacity="0.12"/>
+        <line x1="0" y1="6" x2="16" y2="-14" stroke="var(--cream)" stroke-width="0.5" opacity="0.12"/>
+      </g>
+
+      <!-- Fig leaf top-left -->
+      <g class="botanical-element drift-c" transform="translate(50,20) rotate(12) scale(2.8)">
+        <path d="M0,0 C-6,-18 -20,-26 -24,-44 C-28,-58 -17,-72 -9,-78 C-4,-66 2,-60 0,-46 C9,-60 22,-66 24,-78 C34,-72 42,-58 38,-44 C34,-26 20,-18 16,-6 C11,9 5,20 0,26 C-5,20 -11,9 0,0Z" fill="none" stroke="var(--cream)" stroke-width="1.2" opacity="0.18"/>
+        <line x1="0" y1="0" x2="0" y2="26" stroke="var(--cream)" stroke-width="0.6" opacity="0.13"/>
+        <line x1="0" y1="6" x2="-16" y2="-14" stroke="var(--cream)" stroke-width="0.5" opacity="0.11"/>
+        <line x1="0" y1="6" x2="16" y2="-14" stroke="var(--cream)" stroke-width="0.5" opacity="0.11"/>
+      </g>
+    </>
+  )}
+</svg>
+
+<style>
+  .botanical-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .botanical-series {
+    viewBox: 0 0 1400 450;
+  }
+
+  /* Cross-browser compatible animations */
+  @keyframes drift-a {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-8px) rotate(1deg);
+    }
+  }
+
+  @keyframes drift-b {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(6px) rotate(-1.2deg);
+    }
+  }
+
+  @keyframes drift-c {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-5px) rotate(1.8deg);
+    }
+  }
+
+  .drift-a {
+    animation: drift-a 11s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .drift-b {
+    animation: drift-b 14s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .drift-c {
+    animation: drift-c 9s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .drift-a,
+    .drift-b,
+    .drift-c {
+      animation: none;
+    }
+  }
+</style>

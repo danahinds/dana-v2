@@ -1,5 +1,114 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap');
+
+/* CSS Variables - Design System */
+:root {
+  --olive: #4a5240;
+  --olive-dark: #363c2e;
+  --olive-light: #5c6450;
+  --cream: #f5f0e8;
+  --gold: #c9a84c;
+  --text-muted: rgba(245, 240, 232, 0.65);
+  --border: rgba(245, 240, 232, 0.15);
+
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Jost', sans-serif;
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   min-width: 20.3125rem;
+  background-color: var(--olive);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 400;
+}
+
+p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+a {
+  color: var(--cream);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--gold);
+}
+
+/* Labels */
+.label {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--cream);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.btn-primary {
+  background: var(--cream);
+  color: var(--olive-dark);
+  border-color: var(--cream);
+}
+
+.btn-primary:hover {
+  background: var(--gold);
+  border-color: var(--gold);
 }
 
 main {
@@ -11,17 +120,19 @@ main > section {
 }
 
 header > section > p {
-  font-size: 2rem;
+  font-size: 1.125rem;
+  color: var(--text-muted);
 }
 
 h2 a[href] {
   font-size: var(--h2);
-  /* color: currentColor; */
 }
 
 pre {
   padding: 1rem;
   border-radius: 0.5rem;
+  background: var(--olive-dark);
+  border: 1px solid var(--border);
 }
 
 footer > div {
@@ -34,4 +145,10 @@ nav > div {
   height: 100%;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 768px) {
+  main > section {
+    padding-inline: 1rem;
+  }
 }

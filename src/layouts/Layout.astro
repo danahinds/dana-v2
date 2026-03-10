@@ -2,10 +2,8 @@
 import ViewTransitions from "astro/components/ViewTransitions.astro";
 import Navigation from "../components/astro/Navigation.astro";
 import Footer from "../components/astro/Footer.astro";
-import Header from "../components/astro/Header.astro";
-import Sidebar from "../components/astro/Sidebar.astro";
 import "@fpkit/react/styles";
-const { pageTitle, pageDescription } = Astro.props;
+const { pageTitle, pageDescription = "Product Manager & AI Innovator" } = Astro.props;
 import "../styles/index.css";
 ---
 
@@ -14,21 +12,16 @@ import "../styles/index.css";
     <meta charset="utf-8" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="description" content="A brief description of the page" />
+    <meta name="description" content={pageDescription} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <ViewTransitions />
   </head>
   <body>
     <Navigation />
-    <Header headerTitle={pageTitle} headerDescription={pageDescription} />
     <main>
-      <section arai-label="main-content">
-        <article><slot /></article>
-        <Sidebar />
-      </section>
+      <slot />
     </main>
     <Footer />
   </body>
