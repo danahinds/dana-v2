@@ -1,10 +1,8 @@
 <nav>
   <div class="nav-left">
-    <div class="social-icons">
-      <a href="https://www.linkedin.com/in/danasandy" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-        <span class="social-icon">in</span>
-      </a>
-    </div>
+    <a href="/" aria-label="Dana Sandy Home">
+      <img src="/ds-monogram.png" alt="Dana Sandy Monogram" class="logo" />
+    </a>
   </div>
 
   <div class="nav-center">
@@ -41,15 +39,15 @@
     flex: 0 0 auto;
   }
 
-  .social-icons {
-    display: flex;
-    gap: 1rem;
+  .logo {
+    height: 50px;
+    width: auto;
+    display: block;
+    transition: transform 0.3s ease;
   }
 
-  .social-icon {
-    font-size: 0.75rem;
-    color: var(--cream);
-    font-weight: 600;
+  .logo:hover {
+    transform: scale(1.05);
   }
 
   .nav-center {
@@ -111,7 +109,11 @@
       flex: 0 0 100%;
       justify-content: center;
       display: flex;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .logo {
+      height: 45px;
     }
 
     .nav-center {
