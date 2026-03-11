@@ -6,6 +6,13 @@ import BotanicalLayer from "../components/astro/BotanicalLayer.astro";
 <Layout pageTitle="Dana Sandy | Product Manager & Entrepreneur">
   <section class="hero">
     <BotanicalLayer variant="hero" />
+    <div class="lights-layer">
+      <div class="orb"></div><div class="orb"></div><div class="orb"></div>
+      <div class="orb"></div><div class="orb"></div><div class="orb"></div>
+      <div class="orb"></div><div class="orb"></div><div class="orb"></div>
+      <div class="orb"></div><div class="orb"></div><div class="orb"></div>
+      <div class="orb"></div><div class="orb"></div><div class="orb"></div>
+    </div>
     <div class="hero-inner">
       <span class="label">Product Manager | Entrepreneur</span>
       <h1>Dana <em>Sandy</em></h1>
@@ -53,11 +60,43 @@ import BotanicalLayer from "../components/astro/BotanicalLayer.astro";
     overflow: hidden;
   }
 
+  .lights-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,169,110,0.55) 0%, rgba(201,169,110,0.1) 50%, transparent 70%);
+    animation: orbDrift linear infinite;
+    filter: blur(1px);
+  }
+
+  .orb:nth-child(1)  { width:6px; height:6px; left:8%;  top:72%; animation-duration:14s; animation-delay:0s;     opacity:0.7; }
+  .orb:nth-child(2)  { width:4px; height:4px; left:18%; top:55%; animation-duration:18s; animation-delay:-3s;    opacity:0.5; }
+  .orb:nth-child(3)  { width:8px; height:8px; left:28%; top:80%; animation-duration:12s; animation-delay:-6s;    opacity:0.6; }
+  .orb:nth-child(4)  { width:3px; height:3px; left:38%; top:65%; animation-duration:20s; animation-delay:-1s;    opacity:0.4; }
+  .orb:nth-child(5)  { width:5px; height:5px; left:50%; top:85%; animation-duration:16s; animation-delay:-8s;    opacity:0.65; }
+  .orb:nth-child(6)  { width:7px; height:7px; left:62%; top:60%; animation-duration:11s; animation-delay:-4s;    opacity:0.5; }
+  .orb:nth-child(7)  { width:4px; height:4px; left:72%; top:75%; animation-duration:19s; animation-delay:-9s;    opacity:0.45; }
+  .orb:nth-child(8)  { width:6px; height:6px; left:82%; top:50%; animation-duration:13s; animation-delay:-2s;    opacity:0.6; }
+  .orb:nth-child(9)  { width:3px; height:3px; left:90%; top:88%; animation-duration:17s; animation-delay:-7s;    opacity:0.4; }
+  .orb:nth-child(10) { width:5px; height:5px; left:14%; top:30%; animation-duration:15s; animation-delay:-5s;    opacity:0.5; }
+  .orb:nth-child(11) { width:9px; height:9px; left:45%; top:20%; animation-duration:22s; animation-delay:-11s;   opacity:0.35; }
+  .orb:nth-child(12) { width:4px; height:4px; left:70%; top:35%; animation-duration:10s; animation-delay:-3.5s;  opacity:0.55; }
+  .orb:nth-child(13) { width:6px; height:6px; left:55%; top:45%; animation-duration:14s; animation-delay:-6.5s;  opacity:0.45; }
+  .orb:nth-child(14) { width:3px; height:3px; left:25%; top:15%; animation-duration:25s; animation-delay:-12s;   opacity:0.3; }
+  .orb:nth-child(15) { width:5px; height:5px; left:88%; top:22%; animation-duration:16s; animation-delay:-0.5s;  opacity:0.5; }
+
   .hero-inner {
     max-width: 1000px;
     margin: 0 auto;
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
 
   .hero-inner > * {
@@ -227,6 +266,14 @@ import BotanicalLayer from "../components/astro/BotanicalLayer.astro";
     }
   }
 
+  @keyframes orbDrift {
+    0%   { transform: translateY(0px)    translateX(0px)   scale(1);    opacity: 0; }
+    10%  { opacity: 1; }
+    50%  { transform: translateY(-80px)  translateX(18px)  scale(1.15); }
+    80%  { opacity: 0.6; }
+    100% { transform: translateY(-160px) translateX(-12px) scale(0.8);  opacity: 0; }
+  }
+
   @keyframes expandLine {
     from {
       opacity: 1;
@@ -245,6 +292,10 @@ import BotanicalLayer from "../components/astro/BotanicalLayer.astro";
     }
     .hero-rule {
       width: 60px;
+    }
+    .orb {
+      animation: none;
+      opacity: 0.3;
     }
   }
 </style>
