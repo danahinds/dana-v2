@@ -1,8 +1,6 @@
 <nav>
   <div class="nav-left">
-    <a href="/" aria-label="Dana Sandy Home">
-      <img src="/ds-monogram.png" alt="Dana Sandy Monogram" class="logo" />
-    </a>
+    <a href="/" class="logo-text">DS</a>
   </div>
 
   <div class="nav-center">
@@ -39,15 +37,18 @@
     flex: 0 0 auto;
   }
 
-  .logo {
-    height: 50px;
-    width: auto;
-    display: block;
-    transition: transform 0.3s ease;
+  .logo-text {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: color 0.3s ease;
   }
 
-  .logo:hover {
-    transform: scale(1.05);
+  .logo-text:hover {
+    color: var(--cream);
   }
 
   .nav-center {
@@ -112,8 +113,8 @@
       margin-bottom: 1.5rem;
     }
 
-    .logo {
-      height: 45px;
+    .logo-text {
+      font-size: 1.3rem;
     }
 
     .nav-center {
