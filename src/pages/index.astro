@@ -22,6 +22,10 @@ import BotanicalLayer from "../components/astro/BotanicalLayer.astro";
     </div>
   </section>
 
+  <section class="hero-image">
+    <img src="/Danainoffice.jpeg" alt="Dana Sandy in office" />
+  </section>
+
   <section class="features">
     <div class="feature-card">
       <h3>Product Strategy</h3>
@@ -146,6 +150,20 @@ import BotanicalLayer from "../components/astro/BotanicalLayer.astro";
   .tagline em {
     font-style: italic;
     color: var(--gold);
+  }
+
+  .hero-image {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-bottom: 1px solid var(--border);
   }
 
   .features {
