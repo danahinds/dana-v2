@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dana Sandy - Design Preview</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Variables - Design System */
+        :root {
+            --olive: #4a5240;
+            --olive-dark: #363c2e;
+            --olive-light: #5c6450;
+            --cream: #f5f0e8;
+            --gold: #c9a84c;
+            --text-muted: rgba(245, 240, 232, 0.65);
+            --border: rgba(245, 240, 232, 0.15);
+
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Jost', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--olive);
+            color: var(--cream);
+            font-family: var(--font-body);
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--olive-dark);
+            padding: 1.5rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-left {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-center {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--cream);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--cream);
+            color: var(--olive-dark);
+            border-color: var(--cream);
+        }
+
+        .btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 8rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        /* Feature Cards */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            padding: 4rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border);
+        }
+
+        .feature-card {
+            text-align: center;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card a {
+            color: var(--gold);
+            text-decoration: underline;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Series Section */
+        .series-section {
+            background-color: var(--olive-dark);
+            padding: 5rem 3rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .series-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .series-section p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.125rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--olive-dark);
+            padding: 3rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Social Icons Placeholder */
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--cream);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 4rem 1.5rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-left">
+            <span class="social-icon"></span>
+            <span class="social-icon"></span>
+            <span class="social-icon"></span>
+        </div>
+
+        <div class="nav-center">
+            Dana Sandy
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">SKAI Series</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <a href="#" class="btn btn-primary">Work with me</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <span class="label">Product Manager & AI Innovator</span>
+        <h1>Building the future of product development through AI collaboration</h1>
+    </section>
+
+    <!-- Feature Cards -->
+    <section class="features">
+        <div class="feature-card">
+            <h3>Product Strategy</h3>
+            <p>Transforming complex challenges into elegant solutions through strategic product thinking and user-centered design.</p>
+            <a href="#">Learn more</a>
+        </div>
+
+        <div class="feature-card">
+            <h3>AI Experimentation</h3>
+            <p>Exploring the boundaries of AI capabilities through real-world experiments and innovative applications.</p>
+            <a href="#">Learn more</a>
+        </div>
+
+        <div class="feature-card">
+            <h3>Team Leadership</h3>
+            <p>Leading cross-functional teams to deliver impactful products that solve meaningful problems.</p>
+            <a href="#">Learn more</a>
+        </div>
+    </section>
+
+    <!-- Series Promotion -->
+    <section class="series-section">
+        <span class="label">Featured Series</span>
+        <h2>SKAI is the Limit?</h2>
+        <p>We gave AI a development team and one mission — to build a real app from scratch. Does SKAI have a limit?</p>
+        <a href="#" class="btn">Explore the series</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Dana Sandy. All rights reserved.</p>
+        <p>Florida, USA • hello@danasandy.com</p>
+    </footer>
+</body>
+</html>
+
+
