@@ -16,10 +16,14 @@
 }
 
 /* Reset and Base Styles */
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -29,6 +33,7 @@ body {
   font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 /* Typography */
@@ -135,14 +140,6 @@ pre {
 
 footer > div {
   flex-direction: column;
-}
-
-nav > div {
-  margin-block-start: 0;
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
 }
 
 @media (max-width: 768px) {

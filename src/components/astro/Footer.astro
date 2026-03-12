@@ -3,36 +3,90 @@ const today = new Date();
 ---
 
 <footer>
-  <div class="footer-content">
-    <p>&copy; {today.getFullYear()} Dana Sandy. All rights reserved.</p>
-    <p>Florida, USA &bull; <a href="mailto:hello@danasandy.com">hello@danasandy.com</a></p>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span>Dana <em>Sandy</em></span>
+    </div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/posts/1">SKAI Series</a>
+      <a href="/contact">Work With Me</a>
+    </div>
+    <div class="footer-copy">
+      <span>&copy; {today.getFullYear()} Dana Sandy</span>
+    </div>
   </div>
 </footer>
 
 <style>
   footer {
     background-color: var(--olive-dark);
-    padding: 3rem;
-    text-align: center;
+    padding: 52px;
     border-top: 1px solid var(--border);
   }
 
-  .footer-content {
-    color: var(--text-muted);
-    font-size: 0.9rem;
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  .footer-content p {
-    margin-bottom: 0.5rem;
+  .footer-brand {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 28px;
+    color: var(--cream);
+    opacity: 0.6;
   }
 
-  .footer-content a {
+  .footer-brand em {
+    font-style: italic;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+  }
+
+  .footer-links a {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
     color: var(--text-muted);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s;
   }
 
-  .footer-content a:hover {
+  .footer-links a:hover {
     color: var(--gold);
+  }
+
+  .footer-copy {
+    font-family: var(--font-body);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: rgba(245, 240, 232, 0.5);
+  }
+
+  @media (max-width: 900px) {
+    footer {
+      padding: 40px 24px;
+    }
+
+    .footer-inner {
+      flex-direction: column;
+      gap: 24px;
+      text-align: center;
+    }
+
+    .footer-links {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
   }
 </style>
