@@ -47,11 +47,12 @@ Always follow this design system. Do not deviate unless I explicitly ask.
 
 ### Colors
 ```css
---olive:        #4a5240;   /* Primary background */
---olive-dark:   #363c2e;   /* Dark sections, nav, footer */
---olive-light:  #5c6450;   /* Hover states */
+--olive:        #2c3a22;   /* Primary background (Forest) */
+--olive-dark:   #1a2214;   /* Footer, nav (Ink) */
+--olive-light:  #3a4a2e;   /* Sections, cards (Forest 2) */
 --cream:        #f5f0e8;   /* Primary text */
---gold:         #c9a84c;   /* Accent — labels, highlights, links */
+--gold:         #c8a45a;   /* Accents, rules */
+--gold-light:   #e2c07a;   /* Italic, highlights */
 --text-muted:   rgba(245, 240, 232, 0.65);  /* Secondary text */
 --border:       rgba(245, 240, 232, 0.15);  /* Borders and dividers */
 ```

@@ -3,11 +3,12 @@
 
 /* CSS Variables - Design System */
 :root {
-  --olive: #4a5240;
-  --olive-dark: #363c2e;
-  --olive-light: #5c6450;
+  --olive: #2c3a22;
+  --olive-dark: #1a2214;
+  --olive-light: #3a4a2e;
   --cream: #f5f0e8;
-  --gold: #C5B358;
+  --gold: #c8a45a;
+  --gold-light: #e2c07a;
   --text-muted: rgba(245, 240, 232, 0.65);
   --border: rgba(245, 240, 232, 0.15);
 
