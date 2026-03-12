@@ -21,6 +21,7 @@ import Layout from "../layouts/Layout.astro";
         <p class="hero-label">The Story Behind the Work</p>
         <h1 class="hero-name">Hello,<br>I'm <em>Dana.</em></h1>
         <p class="hero-sub">A Product Manager who builds practical solutions that help organizations serve people better.</p>
+        <a href="/contact" class="hero-cta">Let's Build Something Together</a>
       </div>
       <div class="hero-illustration">
         <img src="/dana-illustration.png" alt="Dana Sandy illustration" />
@@ -297,6 +298,28 @@ import Layout from "../layouts/Layout.astro";
     max-width: 560px;
     opacity: 0;
     animation: fadeUp 0.9s ease 0.5s forwards;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    margin-top: 36px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--olive-dark);
+    background: var(--cream);
+    text-decoration: none;
+    padding: 14px 36px;
+    transition: background 0.3s, letter-spacing 0.3s;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.7s forwards;
+  }
+
+  .hero-cta:hover {
+    background: white;
+    letter-spacing: 0.32em;
   }
 
   .hero-ghost {
