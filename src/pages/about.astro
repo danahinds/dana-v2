@@ -107,6 +107,7 @@ import Layout from "../layouts/Layout.astro";
         <p class="stat-label">Background</p>
         <p class="stat-value">Tech Founder<br>Healthcare Ops<br>Product Management</p>
       </div>
+      <a href="/contact" class="bio-cta">Let's Create Something Great</a>
     </div>
 
     <div class="bio-body">
@@ -509,6 +510,26 @@ import Layout from "../layouts/Layout.astro";
   .stat-value em {
     font-style: italic;
     color: var(--gold-light);
+  }
+
+  .bio-cta {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--olive-dark);
+    background: var(--gold);
+    text-decoration: none;
+    padding: 14px 32px;
+    transition: background 0.3s, letter-spacing 0.3s;
+  }
+
+  .bio-cta:hover {
+    background: var(--gold-light);
+    letter-spacing: 0.32em;
   }
 
   .bio-body p {
