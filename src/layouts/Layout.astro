@@ -20,9 +20,35 @@ import "../styles/index.css";
   </head>
   <body>
     <Navigation />
+    <div class="mobile-name-banner">
+      <a href="/">DANA SANDY</a>
+    </div>
     <main>
       <slot />
     </main>
     <Footer />
   </body>
+<style>
+  .mobile-name-banner {
+    display: none;
+    text-align: center;
+    padding: 1.25rem 1rem 1rem;
+    background-color: var(--olive-dark);
+  }
+
+  .mobile-name-banner a {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-name-banner {
+      display: block;
+    }
+  }
+</style>
 </html>
