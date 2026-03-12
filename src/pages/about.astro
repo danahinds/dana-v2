@@ -16,9 +16,16 @@ import Layout from "../layouts/Layout.astro";
   <!-- HERO -->
   <section class="hero">
     <div class="hero-ghost">About</div>
-    <p class="hero-label">The Story Behind the Work</p>
-    <h1 class="hero-name">Hello,<br>I'm <em>Dana.</em></h1>
-    <p class="hero-sub">A Product Manager who builds practical solutions that help organizations serve people better.</p>
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-label">The Story Behind the Work</p>
+        <h1 class="hero-name">Hello,<br>I'm <em>Dana.</em></h1>
+        <p class="hero-sub">A Product Manager who builds practical solutions that help organizations serve people better.</p>
+      </div>
+      <div class="hero-illustration">
+        <img src="/dana-illustration.png" alt="Dana Sandy illustration" />
+      </div>
+    </div>
   </section>
 
   <!-- GOLD DIVIDER 1 -->
@@ -238,6 +245,36 @@ import Layout from "../layouts/Layout.astro";
     padding: 160px 72px 80px;
     position: relative;
     z-index: 1;
+  }
+
+  .hero-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .hero-text {
+    flex: 1;
+  }
+
+  .hero-illustration {
+    flex-shrink: 0;
+    width: 380px;
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 0 60px rgba(200,164,90,0.5))
+            drop-shadow(0 0 160px rgba(226,192,122,0.25));
+    animation: illuFloat 6s ease-in-out infinite;
+  }
+
+  .hero-illustration img {
+    width: 100%;
+    display: block;
+  }
+
+  @keyframes illuFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
   }
 
   .hero-label {
@@ -638,6 +675,15 @@ import Layout from "../layouts/Layout.astro";
       color: rgba(245, 240, 232, 0.65);
     }
 
+    .hero-content {
+      flex-direction: column;
+    }
+
+    .hero-illustration {
+      width: 260px;
+      align-self: center;
+    }
+
     .bio {
       grid-template-columns: 1fr;
       gap: 48px;
@@ -657,7 +703,8 @@ import Layout from "../layouts/Layout.astro";
       animation: none;
     }
 
-    .orb {
+    .orb,
+    .hero-illustration {
       animation: none;
     }
 
