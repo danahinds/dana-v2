@@ -52,6 +52,10 @@
 </script>
 
 <style>
+  nav, nav * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   nav {
     position: fixed;
     top: 0;
@@ -230,14 +234,18 @@
       font-style: italic;
       font-weight: 400;
       font-size: 32px;
-      color: var(--cream);
-      text-decoration: none;
+      color: var(--gold);
+      text-decoration: underline;
+      text-decoration-color: rgba(200, 164, 90, 0.3);
+      text-underline-offset: 6px;
       letter-spacing: 0.04em;
-      transition: color 0.3s;
+      transition: color 0.3s, text-decoration-color 0.3s;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .mobile-menu-inner a:hover {
-      color: var(--gold);
+      color: var(--gold-light);
+      text-decoration-color: var(--gold-light);
     }
 
     .mobile-menu-inner .mobile-cta {
