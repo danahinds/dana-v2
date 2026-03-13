@@ -1,0 +1,459 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout pageTitle="My Work — Dana Sandy">
+
+  <!-- ORB LAYER -->
+  <div class="orb-layer">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+    <div class="orb orb-d"></div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-ghost">Work</div>
+    <p class="hero-label">Purpose-Driven Product Work</p>
+    <h1 class="hero-name">My <em>Work</em></h1>
+    <p class="hero-sub">Building products and partnerships that serve communities, strengthen organizations, and create lasting impact.</p>
+  </section>
+
+  <!-- GOLD DIVIDER -->
+  <svg class="gold-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 24 Q180 4 360 24 T720 24 T1080 24 T1440 24" fill="none" stroke="rgba(200,164,90,0.35)" stroke-width="1"/>
+    <path d="M0 32 Q240 48 480 28 T960 32 T1440 28" fill="none" stroke="rgba(226,192,122,0.15)" stroke-width="0.75"/>
+    <circle cx="360" cy="24" r="3" fill="rgba(200,164,90,0.5)"/>
+    <circle cx="720" cy="24" r="2" fill="rgba(200,164,90,0.4)"/>
+    <circle cx="1080" cy="24" r="3" fill="rgba(200,164,90,0.5)"/>
+  </svg>
+
+  <!-- NOT-FOR-PROFIT SECTION -->
+  <section class="work-section reveal">
+    <p class="section-eyebrow">Not-for-Profit</p>
+    <h2 class="section-heading">Say Hello <em>Neighbor</em></h2>
+    <div class="work-grid">
+      <div class="work-detail">
+        <div class="work-stats">
+          <div>
+            <p class="stat-label">Role</p>
+            <p class="stat-value">Founder &amp; Product Lead</p>
+          </div>
+          <div>
+            <p class="stat-label">Focus</p>
+            <p class="stat-value"><em>Community Outreach</em></p>
+          </div>
+          <div>
+            <p class="stat-label">Status</p>
+            <p class="stat-value">Active</p>
+          </div>
+        </div>
+      </div>
+      <div class="work-body">
+        <p>
+          <strong>Say Hello Neighbor</strong> is a not-for-profit initiative focused on
+          bridging the gap between communities and the resources they need. The mission is simple —
+          <span class="hl">meet people where they are and connect them to what matters.</span>
+        </p>
+        <p>
+          From coordinating outreach events to building systems that help volunteers and organizations
+          work together more effectively, Say Hello Neighbor is built on the belief that
+          <strong>showing up is the first step to making change.</strong>
+        </p>
+        <p>
+          The work spans resource coordination, volunteer management, and community engagement —
+          all driven by <span class="hl">empathy, intentional design, and a commitment to serving
+          those who are often overlooked.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOLD DIVIDER -->
+  <svg class="gold-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="72" y1="24" x2="400" y2="24" stroke="rgba(200,164,90,0.4)" stroke-width="0.75"/>
+    <circle cx="400" cy="24" r="2.5" fill="none" stroke="rgba(200,164,90,0.5)" stroke-width="1"/>
+    <line x1="406" y1="24" x2="700" y2="24" stroke="rgba(200,164,90,0.2)" stroke-width="0.5" stroke-dasharray="4 6"/>
+    <circle cx="700" cy="24" r="1.5" fill="rgba(200,164,90,0.4)"/>
+    <line x1="706" y1="24" x2="1040" y2="24" stroke="rgba(200,164,90,0.2)" stroke-width="0.5" stroke-dasharray="4 6"/>
+    <circle cx="1040" cy="24" r="2.5" fill="none" stroke="rgba(200,164,90,0.5)" stroke-width="1"/>
+    <line x1="1046" y1="24" x2="1370" y2="24" stroke="rgba(200,164,90,0.4)" stroke-width="0.75"/>
+  </svg>
+
+  <!-- CONSULTING SECTION -->
+  <section class="work-section reveal">
+    <p class="section-eyebrow">Consulting</p>
+    <h2 class="section-heading">SALT TPA <em>Outpost</em></h2>
+    <div class="work-grid">
+      <div class="work-detail">
+        <div class="work-stats">
+          <div>
+            <p class="stat-label">Role</p>
+            <p class="stat-value">Product Consultant</p>
+          </div>
+          <div>
+            <p class="stat-label">Focus</p>
+            <p class="stat-value"><em>Strategy &amp; Operations</em></p>
+          </div>
+          <div>
+            <p class="stat-label">Status</p>
+            <p class="stat-value">Active</p>
+          </div>
+        </div>
+      </div>
+      <div class="work-body">
+        <p>
+          <strong>SALT TPA Outpost</strong> is a consulting engagement where product thinking meets
+          real-world operational challenges. Working closely with the team to
+          <span class="hl">define strategy, streamline processes, and build systems that scale.</span>
+        </p>
+        <p>
+          The work focuses on translating complex business needs into clear, actionable roadmaps —
+          aligning stakeholders, identifying opportunities, and ensuring that
+          <strong>every decision is rooted in purpose and impact.</strong>
+        </p>
+        <p>
+          From discovery and requirements gathering to delivery and iteration,
+          this partnership is about <span class="hl">bringing clarity to complexity
+          and helping organizations move forward with confidence.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="work-cta-section reveal">
+    <p class="cta-label">Interested in Working Together?</p>
+    <h2 class="cta-heading">Let's Build Something <em>Meaningful</em></h2>
+    <a href="/contact" class="work-cta">Get in Touch</a>
+  </section>
+
+</Layout>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<style>
+  /* ─── ORB LAYER ─── */
+  .orb-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .orb-a {
+    width: 280px; height: 280px; top: 12vh; left: 6vw;
+    background: radial-gradient(circle, rgba(200,164,90,0.14) 0%, transparent 70%);
+    animation: floatOrb 9s ease-in-out infinite;
+  }
+
+  .orb-b {
+    width: 180px; height: 180px; top: 40vh; right: 8vw;
+    background: radial-gradient(circle, rgba(226,192,122,0.16) 0%, transparent 70%);
+    animation: floatOrb 11s ease-in-out 2s infinite;
+  }
+
+  .orb-c {
+    width: 120px; height: 120px; top: 65vh; left: 22vw;
+    background: radial-gradient(circle, rgba(200,164,90,0.18) 0%, transparent 70%);
+    animation: floatOrb 8s ease-in-out 1s infinite;
+  }
+
+  .orb-d {
+    width: 200px; height: 200px; bottom: 15vh; right: 12vw;
+    background: radial-gradient(circle, rgba(226,192,122,0.12) 0%, transparent 70%);
+    animation: floatOrb 13s ease-in-out 3s infinite;
+  }
+
+  @keyframes floatOrb {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.06); }
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding: 160px 72px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-label {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 9px;
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.1s forwards;
+  }
+
+  .hero-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(72px, 12vw, 150px);
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.25s forwards;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .hero-sub {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(17px, 2vw, 26px);
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-top: 36px;
+    max-width: 600px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.5s forwards;
+  }
+
+  .hero-ghost {
+    position: absolute;
+    right: 40px;
+    top: 110px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-style: italic;
+    font-size: clamp(100px, 18vw, 200px);
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(200,164,90,0.10);
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+    animation: fadeIn 1.4s ease 0.9s forwards;
+  }
+
+  /* ─── GOLD DIVIDER ─── */
+  .gold-divider {
+    width: 100%;
+    overflow: visible;
+    display: block;
+    margin: 0;
+    height: 48px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── WORK SECTIONS ─── */
+  .work-section {
+    padding: 80px 72px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-eyebrow {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 9px;
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 0.92;
+    color: var(--cream);
+    margin-bottom: 48px;
+  }
+
+  .section-heading em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 72px;
+  }
+
+  .work-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .stat-label {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 9px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: 17px;
+    color: var(--cream);
+    line-height: 1.55;
+  }
+
+  .stat-value em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .work-body p {
+    font-family: var(--font-display);
+    font-size: 19px;
+    line-height: 1.95;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+
+  .work-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .work-body strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  .work-body .hl {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  /* ─── CTA SECTION ─── */
+  .work-cta-section {
+    padding: 80px 72px 100px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+  }
+
+  .cta-label {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 9px;
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .cta-heading {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 48px);
+    color: var(--cream);
+    margin-bottom: 40px;
+  }
+
+  .cta-heading em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .work-cta {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--olive-dark);
+    background: var(--cream);
+    text-decoration: none;
+    padding: 14px 40px;
+    transition: background 0.3s, letter-spacing 0.3s;
+  }
+
+  .work-cta:hover {
+    background: white;
+    letter-spacing: 0.32em;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.85s ease, transform 0.85s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero,
+    .work-section,
+    .work-cta-section {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .work-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-label,
+    .hero-name,
+    .hero-sub,
+    .hero-ghost {
+      opacity: 1;
+      animation: none;
+    }
+
+    .orb {
+      animation: none;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
