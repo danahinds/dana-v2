@@ -1,0 +1,828 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout pageTitle="SERVE513 — Case Study — Dana Sandy" pageDescription="A service coordination platform helping volunteers deliver essential services to unhoused communities.">
+
+  <!-- ORB LAYER -->
+  <div class="orb-layer">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+  </div>
+
+  <div class="cs-body">
+
+    <!-- HERO -->
+    <section class="cs-hero">
+      <a href="/work" class="back-link">← My Work</a>
+      <p class="eyebrow">Case Study · Community Tech · HMIS Application</p>
+      <h1 class="cs-title">SERVE<em>513</em></h1>
+      <p class="cs-intro">I built SERVE513 after seeing a consistent problem during outreach events: teams were working hard, but the systems around them made it harder to serve people well.</p>
+      <p class="cs-desc">SERVE513 is a service coordination platform that helps volunteers manage clothing distribution, showers, food, and barber services in real time — reducing wait times and improving how events run from start to finish. What began as a solution for one organization is now evolving into a deployable SaaS platform for any organization serving unhoused communities.</p>
+
+      <div class="meta-strip">
+        <div class="meta-cell">
+          <p class="meta-label">Role</p>
+          <p class="meta-value">Founder & Product Lead</p>
+        </div>
+        <div class="meta-cell">
+          <p class="meta-label">Focus</p>
+          <p class="meta-value">Service Coordination</p>
+        </div>
+        <div class="meta-cell">
+          <p class="meta-label">Status</p>
+          <p class="meta-value">Active</p>
+        </div>
+        <div class="meta-cell">
+          <p class="meta-label">Stage</p>
+          <p class="meta-value">Evolving to SaaS</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- METRICS -->
+    <section class="metrics-banner reveal">
+      <div class="m-cell">
+        <p class="m-val">90%</p>
+        <p class="m-lbl">Reduction in clothing wait times</p>
+      </div>
+      <div class="m-cell">
+        <p class="m-val">22%</p>
+        <p class="m-lbl">Increase in shower capacity</p>
+      </div>
+      <div class="m-cell">
+        <p class="m-val">95%</p>
+        <p class="m-lbl">Volunteer adoption rate</p>
+      </div>
+      <div class="m-cell">
+        <p class="m-val">85%</p>
+        <p class="m-lbl">Volunteer satisfaction</p>
+      </div>
+    </section>
+    <p class="m-note">Results from testing in live environments — where timing, stress, and unpredictability are real.</p>
+
+    <!-- THE PROBLEM -->
+    <section class="cs-section reveal">
+      <p class="eyebrow">Overview</p>
+      <h2 class="section-title">The <em>Problem</em></h2>
+      <p class="prose">Outreach events were operating with paper systems and disconnected workflows. The issue wasn't a single broken step — it was how the entire system worked together.</p>
+      <p class="prose-sub">Service delivery was hindered by:</p>
+      <ul class="cs-list">
+        <li>Reliance on manual, paper-based systems made tracking slow and error-prone</li>
+        <li>Donation and resource needs were unclear, leading to mismatches between supply and demand</li>
+        <li>Volunteers experienced high stress due to disorganized workflows and lack of visibility</li>
+      </ul>
+      <p class="prose-sub">As a result:</p>
+      <ul class="cs-list">
+        <li>Clients faced long wait times for essential services</li>
+        <li>Many were forced to choose between critical needs</li>
+        <li>Volunteer burnout reduced long-term engagement</li>
+      </ul>
+    </section>
+
+    <!-- GOAL -->
+    <section class="cs-section reveal">
+      <p class="eyebrow">Goal</p>
+      <h2 class="section-title">Who we designed <em>for</em></h2>
+      <p class="prose">Design a system that improves operations, supports volunteers, and enhances the client experience.</p>
+      <div class="goal-cols">
+        <div>
+          <p class="goal-col-head">Operational Teams</p>
+          <ul class="goal-col-list">
+            <li>Centralize data for visibility</li>
+            <li>Identify demand patterns</li>
+            <li>Enable better planning</li>
+          </ul>
+        </div>
+        <div>
+          <p class="goal-col-head">Volunteers</p>
+          <ul class="goal-col-list">
+            <li>Simplify workflows</li>
+            <li>Reduce on-shift stress</li>
+            <li>Focus on client interaction</li>
+          </ul>
+        </div>
+        <div>
+          <p class="goal-col-head">Clients</p>
+          <ul class="goal-col-list">
+            <li>Reduce wait times</li>
+            <li>Multiple services per visit</li>
+            <li>No more tradeoffs</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- MY ROLE -->
+    <section class="cs-section reveal">
+      <p class="eyebrow">My Role</p>
+      <h2 class="section-title">What I <em>led</em></h2>
+      <p class="prose">Led design and development from concept to deployment — driving product direction, prioritization, and iteration throughout.</p>
+      <ul class="cs-list">
+        <li>Defined workflows based on real-world service operations</li>
+        <li>Prioritized high-impact features under constraints</li>
+        <li>Translated operational challenges into scalable product solutions</li>
+        <li>Used live data to guide iteration and decision-making</li>
+        <li>Drove evolution from single-use system to SaaS-ready product</li>
+      </ul>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="cs-section reveal">
+      <p class="eyebrow">Approach</p>
+      <h2 class="section-title">How I <em>thought</em> about it</h2>
+      <p class="prose">Instead of building tools for individual tasks, I focused on service flow across the entire event. That meant:</p>
+      <ul class="cs-list">
+        <li>Capturing demand at intake, not just tracking inventory</li>
+        <li>Designing for volunteers under pressure, not ideal conditions</li>
+        <li>Creating real-time visibility across stations</li>
+        <li>Shifting work earlier through prefill to reduce bottlenecks later</li>
+      </ul>
+    </section>
+
+    <!-- KEY DECISIONS -->
+    <section class="cs-section reveal">
+      <p class="eyebrow">Key Product Decisions</p>
+      <h2 class="section-title">How I <em>decided</em></h2>
+
+      <div class="decision-block">
+        <p class="decision-title">Build vs. Buy</p>
+        <p class="decision-body">Built a custom solution to support coordination of multiple simultaneous services — something existing tools could not handle.</p>
+        <div class="decision-row"><span class="decision-key">Tradeoff</span> Increased development time</div>
+        <div class="decision-row"><span class="decision-key">Outcome</span> Tailored system aligned with real operational complexity</div>
+      </div>
+
+      <div class="decision-block">
+        <p class="decision-title">MVP-First Approach</p>
+        <p class="decision-body">Launched a working prototype and tested in live events. Real environments revealed constraints faster than planning ever could.</p>
+        <div class="decision-row"><span class="decision-key">Tradeoff</span> Limited initial features</div>
+        <div class="decision-row"><span class="decision-key">Outcome</span> High-quality insights from real users, faster</div>
+      </div>
+
+      <div class="decision-block">
+        <p class="decision-title">Demand-Driven System Design</p>
+        <p class="decision-body">Prioritized capturing client needs over traditional inventory tracking to understand demand more accurately.</p>
+        <div class="decision-row"><span class="decision-key">Tradeoff</span> Limited early inventory visibility</div>
+        <div class="decision-row"><span class="decision-key">Outcome</span> More accurate understanding of demand and better resource planning</div>
+      </div>
+    </section>
+
+    <!-- THE SOLUTION -->
+    <section class="cs-section reveal">
+      <p class="eyebrow">The Solution</p>
+      <h2 class="section-title">What we <em>built</em></h2>
+      <p class="prose">A system designed around real-world workflows, not theoretical ones.</p>
+      <div class="solution-grid">
+        <div class="sol-card">
+          <p class="sol-name">Client Intake System</p>
+          <p class="sol-desc">Captures and structures client needs at entry</p>
+        </div>
+        <div class="sol-card">
+          <p class="sol-name">Queue Management</p>
+          <p class="sol-desc">Organizes service flow and reduces wait times</p>
+        </div>
+        <div class="sol-card">
+          <p class="sol-name">Service Tracking Dashboard</p>
+          <p class="sol-desc">Real-time visibility into operations across all services</p>
+        </div>
+        <div class="sol-card">
+          <p class="sol-name">Prefill System</p>
+          <p class="sol-desc">Prepares clothing items in advance to increase throughput</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATA IN ACTION -->
+    <section class="cs-section reveal">
+      <p class="eyebrow">Data in Action</p>
+      <h2 class="section-title">How data is already <em>driving impact</em></h2>
+      <p class="prose">The system doesn't just track services — it directly informs how we prepare. Intake data from previous events now shapes how we stock the mobile clothing trailer. Instead of guessing what to bring, we can see patterns in clothing sizes, item types, and demand by location. This allows us to reduce waste, bring the right items to each event, and prepare clothing orders in advance.</p>
+      <p class="prose">The same data identifies where additional resources are needed most — whether that's expanding shower capacity, adding haircut stations, or adjusting staffing in specific areas. The product doesn't just improve event-day operations — it changes how we prepare before the event even begins.</p>
+    </section>
+
+    <!-- WHAT I LEARNED -->
+    <section class="cs-section reveal">
+      <p class="eyebrow">Reflection</p>
+      <h2 class="section-title">What I <em>learned</em></h2>
+
+      <div class="learn-block">
+        <p class="learn-num">01</p>
+        <p class="learn-head">User adoption matters more than theoretical efficiency</p>
+        <p class="learn-body">A/B testing on the intake UI revealed that a dropdown would have been objectively faster than the tap-to-select design — but the tap design showed higher volunteer adoption. The best interface isn't always the most efficient one, it's the one people actually use consistently.</p>
+      </div>
+      <div class="learn-block">
+        <p class="learn-num">02</p>
+        <p class="learn-head">Low-fidelity testing is the best answer to feature pressure</p>
+        <p class="learn-body">Volunteers occasionally requested features that weren't clearly valuable. Rather than dismissing the request or building it outright, I introduced low-fidelity prototypes as a first step. Volunteers could test the idea themselves and often reached their own conclusions — reducing friction and keeping the product focused.</p>
+      </div>
+      <div class="learn-block">
+        <p class="learn-num">03</p>
+        <p class="learn-head">Flexible systems create room for unexpected scale</p>
+        <p class="learn-body">When we implemented the welcome desk workflow, the goal was to enforce sequential client intake. What we discovered was that the underlying code was flexible enough to support two intake specialists running simultaneously — a capability we hadn't explicitly designed for, but that expanded throughput without any rework.</p>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section class="cs-section reveal">
+      <p class="eyebrow">What's Next</p>
+      <h2 class="section-title">The <em>roadmap</em></h2>
+      <p class="prose">SERVE513 is evolving from a single-use tool into a platform that can support multiple organizations.</p>
+
+      <div class="next-block">
+        <p class="next-num">01</p>
+        <div>
+          <p class="next-head">Standardize workflows for multi-organization use</p>
+          <p class="next-body">Adapt core workflows into a flexible, repeatable structure deployable across organizations — without custom development for each.</p>
+        </div>
+      </div>
+      <div class="next-block">
+        <p class="next-num">02</p>
+        <div>
+          <p class="next-head">Configurable onboarding</p>
+          <p class="next-body">Allow any organization serving unhoused communities to configure the platform around their specific service model, lowering the barrier to adoption.</p>
+        </div>
+      </div>
+      <div class="next-block">
+        <p class="next-num">03</p>
+        <div>
+          <p class="next-head">Predictive analytics for resource planning</p>
+          <p class="next-body">Expand data-driven planning for donations, inventory, and service demand across locations.</p>
+        </div>
+      </div>
+      <div class="next-block">
+        <p class="next-num">04</p>
+        <div>
+          <p class="next-head">AI-powered volunteer support and training</p>
+          <p class="next-body">Intake is one of the most sensitive volunteer roles. As SERVE513 scales, an AI-powered system will help volunteers get up to speed quickly — providing in-the-moment guidance to help them phrase questions with sensitivity and confidence, protecting the dignity of every client interaction.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY IT MATTERS -->
+    <section class="why-block reveal">
+      <p class="eyebrow">Why It Matters</p>
+      <p class="why-text">This work started with one goal: make it easier for people to serve others well.</p>
+      <p class="why-text">Now it's becoming something bigger — a system that helps communities operate with more clarity, dignity, and consistency.</p>
+    </section>
+
+    <!-- BACK LINK -->
+    <div class="cs-footer">
+      <a href="/work" class="back-link">← Back to My Work</a>
+    </div>
+
+  </div>
+
+</Layout>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  });
+</script>
+
+<style>
+  /* ─── ORB LAYER ─── */
+  .orb-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .orb-a {
+    width: 280px; height: 280px; top: 12vh; left: 6vw;
+    background: radial-gradient(circle, rgba(200,164,90,0.14) 0%, transparent 70%);
+    animation: floatOrb 9s ease-in-out infinite;
+  }
+
+  .orb-b {
+    width: 180px; height: 180px; top: 40vh; right: 8vw;
+    background: radial-gradient(circle, rgba(226,192,122,0.16) 0%, transparent 70%);
+    animation: floatOrb 11s ease-in-out 2s infinite;
+  }
+
+  .orb-c {
+    width: 120px; height: 120px; top: 65vh; left: 22vw;
+    background: radial-gradient(circle, rgba(200,164,90,0.18) 0%, transparent 70%);
+    animation: floatOrb 8s ease-in-out 1s infinite;
+  }
+
+  @keyframes floatOrb {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.06); }
+  }
+
+  /* ─── BODY ─── */
+  .cs-body {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 72px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── HERO ─── */
+  .cs-hero {
+    padding: 140px 0 60px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 60px;
+  }
+
+  .back-link {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 32px;
+    transition: color 0.3s;
+  }
+
+  .back-link:hover {
+    color: var(--gold-light);
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 9px;
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .cs-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(56px, 10vw, 100px);
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    margin-bottom: 32px;
+  }
+
+  .cs-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .cs-intro {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(16px, 2vw, 20px);
+    line-height: 1.8;
+    color: var(--cream);
+    max-width: 600px;
+    margin-bottom: 16px;
+  }
+
+  .cs-desc {
+    font-family: var(--font-display);
+    font-size: clamp(15px, 1.8vw, 17px);
+    line-height: 1.85;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-bottom: 40px;
+  }
+
+  /* ─── META STRIP ─── */
+  .meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .meta-cell {
+    flex: 1;
+    min-width: 120px;
+    padding: 18px 0 16px;
+    border-right: 1px solid var(--border);
+  }
+
+  .meta-cell:last-child {
+    border-right: none;
+  }
+
+  .meta-label {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 9px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .meta-value {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--cream);
+    line-height: 1.5;
+  }
+
+  /* ─── METRICS BANNER ─── */
+  .metrics-banner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .m-cell {
+    padding: 28px 20px;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .m-cell:last-child {
+    border-right: none;
+  }
+
+  .m-val {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(26px, 3vw, 34px);
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .m-lbl {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-top: 8px;
+  }
+
+  .m-note {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  /* ─── SECTIONS ─── */
+  .cs-section {
+    margin-bottom: 64px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(24px, 3.5vw, 36px);
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .prose {
+    font-family: var(--font-display);
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .prose-sub {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--cream);
+    margin: 24px 0 8px;
+  }
+
+  /* ─── LISTS ─── */
+  .cs-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 16px;
+  }
+
+  .cs-list li {
+    font-family: var(--font-display);
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-muted);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .cs-list li:last-child {
+    border-bottom: none;
+  }
+
+  .cs-list li::before {
+    content: "—";
+    color: var(--gold);
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  /* ─── GOAL COLUMNS ─── */
+  .goal-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 20px;
+  }
+
+  .goal-col-head {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .goal-col-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .goal-col-list li {
+    font-family: var(--font-display);
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text-muted);
+    padding: 4px 0;
+  }
+
+  /* ─── DECISION BLOCKS ─── */
+  .decision-block {
+    border: 1px solid var(--border);
+    padding: 28px 30px;
+    margin-bottom: 16px;
+  }
+
+  .decision-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+
+  .decision-body {
+    font-family: var(--font-display);
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .decision-row {
+    display: flex;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 4px;
+  }
+
+  .decision-key {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    min-width: 72px;
+    padding-top: 2px;
+  }
+
+  /* ─── SOLUTION GRID ─── */
+  .solution-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+  }
+
+  .sol-card {
+    border: 1px solid var(--border);
+    padding: 22px 24px;
+  }
+
+  .sol-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .sol-desc {
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ─── LEARN BLOCKS ─── */
+  .learn-block {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .learn-block:first-of-type {
+    border-top: 1px solid var(--border);
+  }
+
+  .learn-num {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .learn-head {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--cream);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .learn-body {
+    font-family: var(--font-display);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--text-muted);
+  }
+
+  /* ─── NEXT / ROADMAP ─── */
+  .next-block {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px 20px;
+    align-items: start;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .next-block:first-of-type {
+    border-top: 1px solid var(--border);
+  }
+
+  .next-num {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    padding-top: 3px;
+  }
+
+  .next-head {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--cream);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .next-body {
+    font-family: var(--font-display);
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-muted);
+  }
+
+  /* ─── WHY BLOCK ─── */
+  .why-block {
+    background: var(--olive-light);
+    padding: 40px 44px;
+    margin-bottom: 64px;
+  }
+
+  .why-block .eyebrow {
+    margin-bottom: 20px;
+  }
+
+  .why-text {
+    font-family: var(--font-display);
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .why-text:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ─── FOOTER ─── */
+  .cs-footer {
+    padding: 40px 0 100px;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.85s ease, transform 0.85s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 700px) {
+    .cs-body {
+      padding: 0 24px;
+    }
+
+    .cs-hero {
+      padding-top: 100px;
+    }
+
+    .metrics-banner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .m-cell:nth-child(2) {
+      border-right: none;
+    }
+
+    .goal-cols {
+      grid-template-columns: 1fr;
+    }
+
+    .solution-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .meta-strip {
+      flex-direction: column;
+    }
+
+    .meta-cell {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .meta-cell:last-child {
+      border-bottom: none;
+    }
+
+    .why-block {
+      padding: 28px 24px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .orb {
+      animation: none;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

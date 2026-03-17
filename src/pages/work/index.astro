@@ -1,5 +1,5 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout pageTitle="My Work — Dana Sandy">
@@ -29,50 +29,29 @@ import Layout from "../layouts/Layout.astro";
     <circle cx="1080" cy="24" r="3" fill="rgba(200,164,90,0.5)"/>
   </svg>
 
-  <!-- CASE STUDY SECTION -->
-  <section class="work-section reveal">
-    <p class="section-eyebrow">Case Study · Community Tech</p>
-    <h2 class="section-heading">SERVE<em>513</em></h2>
-    <div class="work-grid">
-      <div class="work-detail">
-        <div class="work-stats">
-          <div>
-            <p class="stat-label">Role</p>
-            <p class="stat-value">Founder &amp; Product Lead</p>
-          </div>
-          <div>
-            <p class="stat-label">Focus</p>
-            <p class="stat-value"><em>Service Coordination</em></p>
-          </div>
-          <div>
-            <p class="stat-label">Status</p>
-            <p class="stat-value">Active</p>
-          </div>
-          <div>
-            <p class="stat-label">Stage</p>
-            <p class="stat-value"><em>Evolving to SaaS</em></p>
-          </div>
+  <!-- CASE STUDY CARD -->
+  <a href="/work/serve513" class="cs-card reveal">
+    <div class="cs-card-inner">
+      <p class="section-eyebrow">Case Study</p>
+      <h2 class="cs-card-title">SERVE<em>513</em></h2>
+      <p class="cs-hook">Volunteers were burning out. Clients were waiting too long. The systems meant to help were getting in the way — so I built something better.</p>
+      <div class="cs-metrics">
+        <div class="cs-metric">
+          <span class="cs-metric-val">90%</span>
+          <span class="cs-metric-lbl">Reduction in wait times</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric-val">95%</span>
+          <span class="cs-metric-lbl">Volunteer adoption</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric-val">22%</span>
+          <span class="cs-metric-lbl">More shower capacity</span>
         </div>
       </div>
-      <div class="work-body">
-        <p>
-          <strong>SERVE513</strong> is a service coordination platform that helps volunteers manage
-          clothing distribution, showers, food, and barber services in real time —
-          <span class="hl">reducing wait times and improving how outreach events run from start to finish.</span>
-        </p>
-        <p>
-          Built after seeing a consistent problem during outreach events: teams were working hard,
-          but the systems around them made it harder to serve people well. Paper-based tracking,
-          disconnected workflows, and no visibility across stations meant
-          <strong>clients faced long waits and volunteers burned out.</strong>
-        </p>
-        <p>
-          What began as a solution for one organization is now evolving into
-          <span class="hl">a deployable SaaS platform for any organization serving unhoused communities.</span>
-        </p>
-      </div>
+      <span class="cs-read">Read the Case Study →</span>
     </div>
-  </section>
+  </a>
 
   <!-- GOLD DIVIDER -->
   <svg class="gold-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -406,6 +385,97 @@ import Layout from "../layouts/Layout.astro";
     color: var(--gold-light);
   }
 
+  /* ─── CASE STUDY CARD ─── */
+  .cs-card {
+    display: block;
+    text-decoration: none;
+    padding: 0 72px;
+    margin: 40px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cs-card-inner {
+    border: 1px solid var(--border);
+    padding: 56px 60px;
+    transition: border-color 0.4s ease, background 0.4s ease;
+  }
+
+  .cs-card:hover .cs-card-inner {
+    border-color: rgba(200,164,90,0.4);
+    background: rgba(200,164,90,0.04);
+  }
+
+  .cs-card-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 0.92;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+
+  .cs-card-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .cs-hook {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(17px, 2vw, 22px);
+    line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 620px;
+    margin-bottom: 40px;
+  }
+
+  .cs-metrics {
+    display: flex;
+    gap: 48px;
+    margin-bottom: 40px;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+  }
+
+  .cs-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .cs-metric-val {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(28px, 3.5vw, 40px);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .cs-metric-lbl {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .cs-read {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--cream);
+    transition: letter-spacing 0.3s, color 0.3s;
+  }
+
+  .cs-card:hover .cs-read {
+    letter-spacing: 0.32em;
+    color: var(--gold-light);
+  }
+
   /* ─── CTA SECTION ─── */
   .work-cta-section {
     padding: 80px 72px 100px;
@@ -491,6 +561,20 @@ import Layout from "../layouts/Layout.astro";
     .work-grid {
       grid-template-columns: 1fr;
       gap: 40px;
+    }
+
+    .cs-card {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .cs-card-inner {
+      padding: 36px 28px;
+    }
+
+    .cs-metrics {
+      flex-direction: column;
+      gap: 24px;
     }
   }
 
