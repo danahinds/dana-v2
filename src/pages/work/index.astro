@@ -30,28 +30,94 @@ import Layout from "../../layouts/Layout.astro";
   </svg>
 
   <!-- CASE STUDY CARD -->
-  <a href="/work/serve513" class="cs-card reveal">
-    <div class="cs-card-inner">
-      <p class="section-eyebrow">Case Study</p>
-      <h2 class="cs-card-title">SERVE<em>513</em></h2>
-      <p class="cs-hook">Volunteers were burning out. Clients were waiting too long. The systems meant to help were getting in the way — so I built something better.</p>
-      <div class="cs-metrics">
-        <div class="cs-metric">
-          <span class="cs-metric-val">90%</span>
-          <span class="cs-metric-lbl">Reduction in wait times</span>
+  <div class="cs-outer reveal">
+    <div class="cs-glow-a"></div>
+    <div class="cs-glow-b"></div>
+
+    <svg class="cs-leaf-bg" viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <g opacity="0.2" stroke="#c8a45a" fill="none">
+        <path d="M-30,30 C80,0 200,50 320,20" stroke-width="1.2"/>
+        <path d="M-30,30 C60,55 140,80 200,72" stroke-width="0.5"/>
+        <path d="M10,32 C50,22 100,38 150,28" stroke-width="0.4"/>
+        <path d="M60,28 C100,18 160,34 210,24" stroke-width="0.4"/>
+        <path d="M120,26 C160,14 220,30 275,18" stroke-width="0.4"/>
+        <path d="M180,24 C220,12 280,28 330,16" stroke-width="0.35"/>
+        <path d="M240,22 C280,10 340,24 390,12" stroke-width="0.35"/>
+      </g>
+      <g opacity="0.17" stroke="#e2c07a" fill="none">
+        <path d="M520,-20 C540,80 570,180 600,260" stroke-width="1.1"/>
+        <path d="M520,-20 C530,80 535,180 540,260" stroke-width="0.5"/>
+        <path d="M522,20 C548,30 566,50 578,75" stroke-width="0.38"/>
+        <path d="M524,65 C550,76 568,96 580,122" stroke-width="0.38"/>
+        <path d="M526,110 C552,122 570,142 582,168" stroke-width="0.38"/>
+        <path d="M528,155 C554,168 572,188 584,214" stroke-width="0.35"/>
+        <path d="M530,200 C556,214 574,234 586,260" stroke-width="0.35"/>
+      </g>
+      <g opacity="0.15" stroke="#c8a45a" fill="none">
+        <path d="M-20,420 C100,385 240,405 380,370" stroke-width="1.1"/>
+        <path d="M-20,420 C80,435 180,445 280,440" stroke-width="0.5"/>
+        <path d="M20,418 C70,404 130,414 180,400" stroke-width="0.38"/>
+        <path d="M80,414 C130,400 190,410 240,396" stroke-width="0.38"/>
+        <path d="M150,410 C200,396 260,406 310,392" stroke-width="0.35"/>
+        <path d="M220,406 C270,392 330,402 380,388" stroke-width="0.35"/>
+      </g>
+      <g opacity="0.11" stroke="#e2c07a" fill="none">
+        <path d="M600,220 C480,245 340,225 180,260" stroke-width="1"/>
+        <path d="M600,220 C480,265 340,268 180,300" stroke-width="0.5"/>
+        <path d="M560,222 C520,236 470,230 420,244" stroke-width="0.35"/>
+        <path d="M500,228 C460,242 410,236 360,250" stroke-width="0.35"/>
+        <path d="M430,234 C390,248 340,242 290,256" stroke-width="0.32"/>
+        <path d="M360,240 C320,254 270,248 220,262" stroke-width="0.32"/>
+      </g>
+      <g opacity="0.13" stroke="#c8a45a" fill="none">
+        <path d="M600,360 C520,330 420,350 320,320" stroke-width="1"/>
+        <path d="M600,360 C520,375 440,380 360,375" stroke-width="0.5"/>
+        <path d="M570,358 C540,344 500,352 460,338" stroke-width="0.36"/>
+        <path d="M520,354 C490,340 450,348 410,334" stroke-width="0.36"/>
+        <path d="M460,350 C430,336 390,344 350,330" stroke-width="0.32"/>
+      </g>
+    </svg>
+
+    <div class="cs-card-wrap">
+      <a href="/work/serve513" class="cs-card">
+        <div class="cs-card-inner">
+          <p class="section-eyebrow">Case Study</p>
+          <h2 class="cs-card-title">SERVE<em>513</em></h2>
+          <p class="cs-hook">Volunteers were burning out. Clients were waiting too long. The systems meant to help were getting in the way — so I built something better.</p>
+          <hr class="cs-divider">
+          <div class="cs-metrics">
+            <div class="cs-metric cs-stat" id="s1">
+              <span class="cs-metric-val cs-num" id="n1">0%</span>
+              <div class="cs-before-after">
+                <span class="cs-ba-val cs-ba-old">45 min</span>
+                <span class="cs-ba-arrow">&rarr;</span>
+                <span class="cs-ba-val cs-ba-new">under 10 min</span>
+              </div>
+              <span class="cs-metric-lbl">Clothing wait time reduction</span>
+              <span class="cs-stat-context">Waitlists at shelters can last all day — every minute saved matters</span>
+            </div>
+            <div class="cs-metric cs-stat" id="s2">
+              <span class="cs-metric-val cs-num" id="n2">0%</span>
+              <div class="cs-before-after cs-spacer-ba" style="visibility:hidden;height:18px;"></div>
+              <span class="cs-metric-lbl">Volunteer adoption rate</span>
+              <span class="cs-stat-context">No training overhead — volunteers used it under real event pressure</span>
+            </div>
+            <div class="cs-metric cs-stat" id="s3">
+              <span class="cs-metric-val cs-num" id="n3">0%</span>
+              <div class="cs-before-after">
+                <span class="cs-ba-val cs-ba-old">23</span>
+                <span class="cs-ba-arrow">&rarr;</span>
+                <span class="cs-ba-val cs-ba-new">27 showers</span>
+              </div>
+              <span class="cs-metric-lbl">More shower capacity</span>
+              <span class="cs-stat-context">Hygiene access is a direct barrier to employment and housing stability</span>
+            </div>
+          </div>
+          <span class="cs-read">Read the Case Study &rarr;</span>
         </div>
-        <div class="cs-metric">
-          <span class="cs-metric-val">95%</span>
-          <span class="cs-metric-lbl">Volunteer adoption</span>
-        </div>
-        <div class="cs-metric">
-          <span class="cs-metric-val">22%</span>
-          <span class="cs-metric-lbl">More shower capacity</span>
-        </div>
-      </div>
-      <span class="cs-read">Read the Case Study →</span>
+      </a>
     </div>
-  </a>
+  </div>
 
   <!-- GOLD DIVIDER -->
   <svg class="gold-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -165,12 +231,40 @@ import Layout from "../../layouts/Layout.astro";
 </Layout>
 
 <script>
+  function countUp(el, target, delay, decimals) {
+    setTimeout(() => {
+      el.closest('.cs-stat').classList.add('cs-stat-visible');
+      let val = 0;
+      const inc = target / (950 / 16);
+      const t = setInterval(() => {
+        val = Math.min(val + inc, target);
+        el.textContent = (decimals ? val.toFixed(1) : Math.round(val)) + '%';
+        if (val >= target) {
+          el.textContent = target.toFixed(decimals ? 1 : 0) + '%';
+          clearInterval(t);
+        }
+      }, 16);
+    }, delay);
+  }
+
   document.addEventListener('astro:page-load', () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
           observer.unobserve(entry.target);
+
+          // Trigger count-up when the case study card becomes visible
+          if (entry.target.classList.contains('cs-outer')) {
+            const n1 = document.getElementById('n1');
+            const n2 = document.getElementById('n2');
+            const n3 = document.getElementById('n3');
+            if (n1 && n2 && n3) {
+              countUp(n1, 90, 100, false);
+              countUp(n2, 95, 320, false);
+              countUp(n3, 17.4, 540, true);
+            }
+          }
         }
       });
     }, { threshold: 0.15 });
@@ -386,38 +480,81 @@ import Layout from "../../layouts/Layout.astro";
   }
 
   /* ─── CASE STUDY CARD ─── */
-  .cs-card {
-    display: block;
-    text-decoration: none;
-    padding: 0 72px;
-    margin: 40px 0;
+  .cs-outer {
+    background: #2a2218;
+    border-radius: 16px;
     position: relative;
+    overflow: hidden;
+    padding: 28px;
+    margin: 40px 72px;
     z-index: 1;
   }
 
+  .cs-glow-a {
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(200,164,90,0.16) 0%, rgba(200,164,90,0.05) 50%, transparent 70%);
+    pointer-events: none;
+    border-radius: 50%;
+  }
+
+  .cs-glow-b {
+    position: absolute;
+    bottom: -100px; left: -60px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(200,164,90,0.08) 0%, transparent 65%);
+    pointer-events: none;
+    border-radius: 50%;
+  }
+
+  .cs-leaf-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+
+  .cs-card-wrap {
+    position: relative;
+    z-index: 2;
+  }
+
+  .cs-card {
+    display: block;
+    text-decoration: none;
+  }
+
   .cs-card-inner {
-    border: 1px solid rgba(200,164,90,0.3);
-    border-left: 3px solid var(--gold);
-    padding: 56px 60px;
-    background: linear-gradient(135deg, rgba(200,164,90,0.07) 0%, rgba(44,58,34,0.6) 50%, rgba(200,164,90,0.04) 100%);
-    box-shadow: 0 4px 40px rgba(200,164,90,0.08), inset 0 1px 0 rgba(200,164,90,0.1);
-    transition: border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+    background: #342b1e;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .cs-card-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
   }
 
   .cs-card:hover .cs-card-inner {
-    border-color: rgba(200,164,90,0.5);
-    border-left-color: var(--gold-light);
-    background: linear-gradient(135deg, rgba(200,164,90,0.11) 0%, rgba(44,58,34,0.7) 50%, rgba(200,164,90,0.07) 100%);
-    box-shadow: 0 8px 60px rgba(200,164,90,0.12), inset 0 1px 0 rgba(200,164,90,0.15);
+    border-color: rgba(200,164,90,0.35);
+    box-shadow: 0 8px 60px rgba(200,164,90,0.1);
   }
 
   .cs-card-title {
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: clamp(36px, 5vw, 64px);
-    line-height: 0.92;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.1;
     color: var(--cream);
-    margin-bottom: 24px;
+    margin-bottom: 14px;
   }
 
   .cs-card-title em {
@@ -426,59 +563,107 @@ import Layout from "../../layouts/Layout.astro";
   }
 
   .cs-hook {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(17px, 2vw, 22px);
-    line-height: 1.7;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.75;
     color: var(--text-muted);
-    max-width: 620px;
-    margin-bottom: 40px;
+    margin-bottom: 28px;
+  }
+
+  .cs-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 0 24px;
   }
 
   .cs-metrics {
-    display: flex;
-    gap: 48px;
-    margin-bottom: 40px;
-    border-top: 1px solid var(--border);
-    padding-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-bottom: 24px;
   }
 
   .cs-metric {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    padding-right: 20px;
+  }
+
+  .cs-stat {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .cs-stat.cs-stat-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cs-metric + .cs-metric {
+    padding-left: 20px;
+    padding-right: 0;
+    border-left: 1px solid var(--border);
   }
 
   .cs-metric-val {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: clamp(28px, 3.5vw, 40px);
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 28px;
     color: var(--gold);
+    display: block;
     line-height: 1;
+    margin-bottom: 5px;
+    font-variant-numeric: tabular-nums;
   }
+
+  .cs-before-after {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+
+  .cs-ba-val { font-size: 11px; font-weight: 500; }
+  .cs-ba-old { text-decoration: line-through; color: rgba(245,240,232,0.3); }
+  .cs-ba-arrow { font-size: 10px; color: var(--gold); }
+  .cs-ba-new { color: var(--gold-light); }
 
   .cs-metric-lbl {
     font-family: var(--font-body);
     font-weight: 300;
     font-size: 11px;
-    letter-spacing: 0.03em;
+    line-height: 1.5;
     color: var(--text-muted);
-    line-height: 1.4;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .cs-stat-context {
+    font-size: 10px;
+    line-height: 1.5;
+    color: rgba(245,240,232,0.35);
+    font-style: italic;
+    display: block;
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
   }
 
   .cs-read {
     font-family: var(--font-body);
-    font-weight: 400;
-    font-size: 12px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--cream);
-    transition: letter-spacing 0.3s, color 0.3s;
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--gold-light);
+    letter-spacing: 0.03em;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid rgba(226,192,122,0.35);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
   }
 
   .cs-card:hover .cs-read {
-    letter-spacing: 0.32em;
-    color: var(--gold-light);
+    color: var(--cream);
+    border-color: rgba(245,240,232,0.4);
   }
 
   /* ─── CTA SECTION ─── */
@@ -568,19 +753,49 @@ import Layout from "../../layouts/Layout.astro";
       gap: 40px;
     }
 
-    .cs-card {
-      padding-left: 24px;
-      padding-right: 24px;
+    .cs-outer {
+      margin-left: 24px;
+      margin-right: 24px;
+      padding: 20px;
     }
 
     .cs-card-inner {
-      padding: 36px 28px;
+      padding: 24px 18px;
     }
 
     .cs-metrics {
-      flex-direction: column;
-      gap: 24px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .cs-metric:nth-child(3) {
+      grid-column: 1 / -1;
+      border-left: none;
+      border-top: 1px solid var(--border);
+      padding: 16px 0 0;
+      margin-top: 16px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .cs-outer { padding: 20px 16px; }
+    .cs-card-inner { padding: 24px 18px; }
+    .cs-card-title { font-size: 24px; }
+    .cs-metrics { grid-template-columns: 1fr; }
+    .cs-metric {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      column-gap: 14px;
+      padding: 14px 0 !important;
+      border-left: none !important;
+      border-top: 1px solid var(--border) !important;
+      margin-top: 0 !important;
+    }
+    .cs-metric:first-child { border-top: none !important; padding-top: 0 !important; }
+    .cs-metric-val { grid-column: 1; grid-row: 1; font-size: 32px; align-self: center; }
+    .cs-before-after { grid-column: 2; grid-row: 1; align-self: flex-end; }
+    .cs-metric-lbl { grid-column: 2; grid-row: 2; }
+    .cs-stat-context { grid-column: 1 / -1; grid-row: 3; border-top: none; padding-top: 6px; }
+    .cs-spacer-ba { display: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {
