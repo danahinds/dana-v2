@@ -49,8 +49,9 @@ import Layout from "../../layouts/Layout.astro";
         <p class="m-lbl">Reduction in clothing wait times</p>
       </div>
       <div class="m-cell">
-        <p class="m-val" data-target="22" data-decimals="0">0%</p>
-        <p class="m-lbl">Increase in shower capacity</p>
+        <p class="m-val" data-target="17.4" data-decimals="1">0%</p>
+        <p class="m-sub">23 → 27 showers</p>
+        <p class="m-lbl">More shower capacity</p>
       </div>
       <div class="m-cell">
         <p class="m-val" data-target="95" data-decimals="0">0%</p>
@@ -263,6 +264,15 @@ import Layout from "../../layouts/Layout.astro";
         <p class="learn-body">When we implemented the welcome desk workflow, the goal was to enforce sequential client intake. What we discovered was that the underlying code was flexible enough to support two intake specialists running simultaneously — a capability we hadn't explicitly designed for, but that expanded throughput without any rework.</p>
       </div>
     </section>
+
+    <!-- GOLD DIVIDER -->
+    <svg class="gold-divider" viewBox="0 0 820 32" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="72" y1="16" x2="340" y2="16" stroke="rgba(200,164,90,0.35)" stroke-width="0.75"/>
+      <circle cx="350" cy="16" r="2" fill="rgba(200,164,90,0.45)"/>
+      <line x1="360" y1="16" x2="460" y2="16" stroke="rgba(200,164,90,0.2)" stroke-width="0.5" stroke-dasharray="4 6"/>
+      <circle cx="470" cy="16" r="2" fill="rgba(200,164,90,0.45)"/>
+      <line x1="480" y1="16" x2="748" y2="16" stroke="rgba(200,164,90,0.35)" stroke-width="0.75"/>
+    </svg>
 
     <!-- ROADMAP -->
     <section class="cs-section reveal stagger-children">
@@ -572,6 +582,15 @@ import Layout from "../../layouts/Layout.astro";
     font-variant-numeric: tabular-nums;
   }
 
+  .m-sub {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gold-light);
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+
   .m-lbl {
     font-family: var(--font-body);
     font-weight: 400;
@@ -815,6 +834,7 @@ import Layout from "../../layouts/Layout.astro";
 
   .sol-card {
     border: 1px solid var(--border);
+    border-top: 2px solid var(--gold);
     padding: 26px 28px;
     border-radius: 6px;
     opacity: 0;
@@ -861,7 +881,7 @@ import Layout from "../../layouts/Layout.astro";
 
   /* ─── LEARN BLOCKS ─── */
   .learn-block {
-    padding: 28px 0;
+    padding: 34px 0;
     border-bottom: 1px solid var(--border);
   }
 
@@ -1014,6 +1034,7 @@ import Layout from "../../layouts/Layout.astro";
 
     .goal-cols {
       grid-template-columns: 1fr;
+      gap: 16px;
     }
 
     .solution-grid {
