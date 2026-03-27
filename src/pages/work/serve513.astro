@@ -284,43 +284,64 @@ import Layout from "../../layouts/Layout.astro";
     </svg>
 
     <!-- ROADMAP -->
-    <section class="cs-section reveal stagger-children">
+    <section class="cs-section reveal">
       <p class="eyebrow">What's Next</p>
       <h2 class="section-title">The <em>roadmap</em></h2>
       <p class="prose">SERVE513 is evolving from a single-use tool into a platform that can support multiple organizations.</p>
 
-      <div class="next-block stagger-card">
-        <p class="next-num">01</p>
-        <div>
-          <p class="next-phase">Now</p>
-          <p class="next-head">Standardize workflows for multi-organization use</p>
-          <p class="next-body">Adapt core workflows into a flexible, repeatable structure deployable across organizations — without custom development for each.</p>
+      <div class="timeline-scroll">
+        <div class="timeline">
+          <div class="timeline-line"></div>
+
+          <div class="tl-node" data-index="0">
+            <div class="tl-dot active"></div>
+            <p class="tl-phase">Now</p>
+            <p class="tl-title">Standardize workflows</p>
+          </div>
+
+          <div class="tl-node" data-index="1">
+            <div class="tl-dot active"></div>
+            <p class="tl-phase">Now</p>
+            <p class="tl-title">Configurable onboarding</p>
+          </div>
+
+          <div class="tl-node" data-index="2">
+            <div class="tl-dot"></div>
+            <p class="tl-phase">Next</p>
+            <p class="tl-title">Predictive analytics</p>
+          </div>
+
+          <div class="tl-node" data-index="3">
+            <div class="tl-dot"></div>
+            <p class="tl-phase">Future</p>
+            <p class="tl-title">AI volunteer support</p>
+          </div>
         </div>
       </div>
-      <div class="next-block stagger-card">
-        <p class="next-num">02</p>
-        <div>
-          <p class="next-phase">Now</p>
-          <p class="next-head">Configurable onboarding</p>
-          <p class="next-body">Allow any organization serving unhoused communities to configure the platform around their specific service model, lowering the barrier to adoption.</p>
+
+      <div class="tl-detail" id="tl-detail">
+        <div class="tl-detail-panel" data-panel="0">
+          <p class="tl-detail-phase">Now</p>
+          <p class="tl-detail-head">Standardize workflows for multi-organization use</p>
+          <p class="tl-detail-body">Adapt core workflows into a flexible, repeatable structure deployable across organizations — without custom development for each.</p>
+        </div>
+        <div class="tl-detail-panel" data-panel="1">
+          <p class="tl-detail-phase">Now</p>
+          <p class="tl-detail-head">Configurable onboarding</p>
+          <p class="tl-detail-body">Allow any organization serving unhoused communities to configure the platform around their specific service model, lowering the barrier to adoption.</p>
+        </div>
+        <div class="tl-detail-panel" data-panel="2">
+          <p class="tl-detail-phase">Next</p>
+          <p class="tl-detail-head">Predictive analytics for resource planning</p>
+          <p class="tl-detail-body">Expand data-driven planning for donations, inventory, and service demand across locations.</p>
+        </div>
+        <div class="tl-detail-panel" data-panel="3">
+          <p class="tl-detail-phase">Future</p>
+          <p class="tl-detail-head">AI-powered volunteer support and training</p>
+          <p class="tl-detail-body">Intake is one of the most sensitive volunteer roles. As SERVE513 scales, an AI-powered system will help volunteers get up to speed quickly — providing in-the-moment guidance to help them phrase questions with sensitivity and confidence, protecting the dignity of every client interaction.</p>
         </div>
       </div>
-      <div class="next-block stagger-card">
-        <p class="next-num">03</p>
-        <div>
-          <p class="next-phase">Next</p>
-          <p class="next-head">Predictive analytics for resource planning</p>
-          <p class="next-body">Expand data-driven planning for donations, inventory, and service demand across locations.</p>
-        </div>
-      </div>
-      <div class="next-block stagger-card">
-        <p class="next-num">04</p>
-        <div>
-          <p class="next-phase">Future</p>
-          <p class="next-head">AI-powered volunteer support and training</p>
-          <p class="next-body">Intake is one of the most sensitive volunteer roles. As SERVE513 scales, an AI-powered system will help volunteers get up to speed quickly — providing in-the-moment guidance to help them phrase questions with sensitivity and confidence, protecting the dignity of every client interaction.</p>
-        </div>
-      </div>
+      <p class="tl-hint">Tap a node to explore</p>
     </section>
 
     <!-- WHY IT MATTERS — FINALE -->
@@ -389,6 +410,28 @@ import Layout from "../../layouts/Layout.astro";
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Timeline interaction
+    const nodes = document.querySelectorAll('.tl-node');
+    const panels = document.querySelectorAll('.tl-detail-panel');
+    const detail = document.getElementById('tl-detail');
+
+    function activateNode(index) {
+      nodes.forEach(n => n.classList.remove('tl-selected'));
+      panels.forEach(p => p.classList.remove('tl-panel-active'));
+      nodes[index].classList.add('tl-selected');
+      panels[index].classList.add('tl-panel-active');
+      if (detail) detail.classList.add('tl-detail-open');
+    }
+
+    nodes.forEach(node => {
+      node.addEventListener('click', () => {
+        activateNode(parseInt(node.dataset.index));
+      });
+    });
+
+    // Auto-open first node
+    if (nodes.length > 0) activateNode(0);
   });
 </script>
 
@@ -927,30 +970,134 @@ import Layout from "../../layouts/Layout.astro";
     color: var(--text-muted);
   }
 
-  /* ─── NEXT / ROADMAP ─── */
-  .next-block {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 14px 20px;
-    align-items: start;
-    padding: 24px 0;
-    border-bottom: 1px solid var(--border);
+  /* ─── TIMELINE / ROADMAP ─── */
+  .timeline-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 32px 0 24px;
+    padding-bottom: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) transparent;
   }
 
-  .next-block:first-of-type {
-    border-top: 1px solid var(--border);
+  .timeline {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    min-width: 580px;
+    padding: 0 20px;
   }
 
-  .next-num {
+  .timeline-line {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), rgba(200,164,90,0.3));
+  }
+
+  .tl-node {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    padding-top: 32px;
+    transition: transform 0.2s;
+  }
+
+  .tl-node:hover {
+    transform: translateY(-2px);
+  }
+
+  .tl-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: var(--olive);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+
+  .tl-dot.active {
+    background: var(--gold);
+  }
+
+  .tl-node.tl-selected .tl-dot {
+    box-shadow: 0 0 0 5px rgba(200,164,90,0.25);
+    transform: translateX(-50%) scale(1.2);
+  }
+
+  .tl-phase {
     font-family: var(--font-body);
     font-weight: 500;
-    font-size: 12px;
-    letter-spacing: 0.12em;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
     color: var(--gold);
-    padding-top: 3px;
+    margin-top: 10px;
+    margin-bottom: 6px;
   }
 
-  .next-phase {
+  .tl-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    padding: 0 8px;
+    transition: color 0.3s;
+  }
+
+  .tl-node.tl-selected .tl-title {
+    color: var(--cream);
+  }
+
+  .tl-hint {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: rgba(245,240,232,0.3);
+    text-align: center;
+    font-style: italic;
+    margin-top: 8px;
+  }
+
+  /* Detail panel */
+  .tl-detail {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0 32px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+    margin-top: 16px;
+    background: rgba(42, 33, 24, 0.3);
+  }
+
+  .tl-detail.tl-detail-open {
+    max-height: 320px;
+    padding: 28px 32px;
+  }
+
+  .tl-detail-panel {
+    display: none;
+  }
+
+  .tl-detail-panel.tl-panel-active {
+    display: block;
+    animation: panelFade 0.4s ease;
+  }
+
+  @keyframes panelFade {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .tl-detail-phase {
     display: inline-block;
     font-family: var(--font-body);
     font-weight: 500;
@@ -961,19 +1108,19 @@ import Layout from "../../layouts/Layout.astro";
     background: var(--gold);
     padding: 2px 10px;
     border-radius: 3px;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
 
-  .next-head {
+  .tl-detail-head {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 17px;
+    font-size: 18px;
     color: var(--cream);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     line-height: 1.4;
   }
 
-  .next-body {
+  .tl-detail-body {
     font-family: var(--font-display);
     font-size: 16px;
     line-height: 1.8;
