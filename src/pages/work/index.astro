@@ -499,12 +499,13 @@ import Layout from "../../layouts/Layout.astro";
   /* ─── CASE STUDY CARD ─── */
   .cs-outer {
     background: #2a2218;
-    border-radius: 16px;
     position: relative;
     overflow: hidden;
-    padding: 28px;
-    margin: 40px 72px;
+    padding: 48px 72px;
+    margin: 40px 0;
     z-index: 1;
+    border-top: 1px solid rgba(200,164,90,0.1);
+    border-bottom: 1px solid rgba(200,164,90,0.1);
   }
 
   .cs-glow-a {
@@ -546,7 +547,7 @@ import Layout from "../../layouts/Layout.astro";
     background: #342b1e;
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 40px 44px;
+    padding: 44px 48px;
     position: relative;
     overflow: hidden;
     transition: border-color 0.4s ease, box-shadow 0.4s ease;
@@ -581,7 +582,7 @@ import Layout from "../../layouts/Layout.astro";
 
   .cs-hook {
     font-family: var(--font-body);
-    font-size: 17px;
+    font-size: 19px;
     line-height: 1.75;
     color: var(--text-muted);
     margin-bottom: 28px;
@@ -655,9 +656,9 @@ import Layout from "../../layouts/Layout.astro";
   }
 
   .cs-stat-context {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.6;
-    color: rgba(245,240,232,0.55);
+    color: rgba(245,240,232,0.6);
     font-style: italic;
     display: block;
     border-top: 1px solid var(--border);
@@ -694,8 +695,8 @@ import Layout from "../../layouts/Layout.astro";
 
   .cta-label {
     font-family: var(--font-body);
-    font-weight: 200;
-    font-size: 9px;
+    font-weight: 400;
+    font-size: 11px;
     letter-spacing: 0.55em;
     text-transform: uppercase;
     color: var(--gold);
@@ -771,9 +772,9 @@ import Layout from "../../layouts/Layout.astro";
     }
 
     .cs-outer {
-      margin-left: 24px;
-      margin-right: 24px;
-      padding: 20px;
+      margin-left: 0;
+      margin-right: 0;
+      padding: 32px 24px;
     }
 
     .cs-card-inner {
