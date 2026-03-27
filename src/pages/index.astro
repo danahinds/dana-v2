@@ -79,7 +79,7 @@ import BotanicalLayer from "../components/astro/BotanicalLayer.astro";
 </Layout>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  function initHomePage() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -87,10 +87,21 @@ import BotanicalLayer from "../components/astro/BotanicalLayer.astro";
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.05 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  });
+
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
+    }, 3000);
+  }
+
+  document.addEventListener('astro:page-load', initHomePage);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHomePage);
+  } else {
+    initHomePage();
+  }
 </script>
 
 <style>

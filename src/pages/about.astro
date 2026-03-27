@@ -161,7 +161,7 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  function initAboutPage() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -169,10 +169,21 @@ import Layout from "../layouts/Layout.astro";
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.05 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  });
+
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
+    }, 3000);
+  }
+
+  document.addEventListener('astro:page-load', initAboutPage);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAboutPage);
+  } else {
+    initAboutPage();
+  }
 </script>
 
 <style>

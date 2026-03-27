@@ -247,7 +247,7 @@ import Layout from "../../layouts/Layout.astro";
     }, delay);
   }
 
-  document.addEventListener('astro:page-load', () => {
+  function initWorkPage() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -267,10 +267,27 @@ import Layout from "../../layouts/Layout.astro";
           }
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.05 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  });
+
+    // Safety net — force all reveals visible after 3s
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        el.classList.add('visible');
+      });
+      document.querySelectorAll('.cs-stat:not(.cs-stat-visible)').forEach(el => {
+        el.classList.add('cs-stat-visible');
+      });
+    }, 3000);
+  }
+
+  document.addEventListener('astro:page-load', initWorkPage);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWorkPage);
+  } else {
+    initWorkPage();
+  }
 </script>
 
 <style>

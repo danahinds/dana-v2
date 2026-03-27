@@ -375,7 +375,12 @@ import Layout from "../../layouts/Layout.astro";
     }, delay);
   }
 
-  document.addEventListener('astro:page-load', () => {
+  function initPage() {
+    // Force hero visible immediately — no waiting for observer
+    document.querySelectorAll('.hero-fade').forEach(el => {
+      el.classList.add('hero-ready');
+    });
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -407,9 +412,20 @@ import Layout from "../../layouts/Layout.astro";
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Safety net — force all reveals visible after 3s in case observer fails
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        el.classList.add('visible');
+      });
+      document.querySelectorAll('.cascade li, .stagger-card, .sol-card, .goal-col-card').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+    }, 3000);
 
     // Timeline interaction
     const nodes = document.querySelectorAll('.tl-node');
@@ -432,7 +448,15 @@ import Layout from "../../layouts/Layout.astro";
 
     // Auto-open first node
     if (nodes.length > 0) activateNode(0);
-  });
+  }
+
+  // Fire on both events to cover cold loads AND SPA navigation
+  document.addEventListener('astro:page-load', initPage);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPage);
+  } else {
+    initPage();
+  }
 </script>
 
 <style>
@@ -492,12 +516,27 @@ import Layout from "../../layouts/Layout.astro";
   .hero-fade {
     opacity: 0;
     transform: translateY(18px);
+  }
+
+  .hero-fade.hero-ready {
     animation: fadeUp 0.8s ease forwards;
     animation-delay: var(--delay);
   }
 
   @keyframes fadeUp {
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* If JS never fires, show content after 2s via CSS fallback */
+  @keyframes forceShow {
+    to { opacity: 1; transform: none; }
+  }
+  .hero-fade {
+    animation: forceShow 0s 2.5s forwards;
+  }
+  .hero-fade.hero-ready {
+    animation: fadeUp 0.8s ease forwards;
+    animation-delay: var(--delay);
   }
 
   .back-link {
