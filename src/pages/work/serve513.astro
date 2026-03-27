@@ -43,7 +43,7 @@ import Layout from "../../layouts/Layout.astro";
     </section>
 
     <!-- METRICS -->
-    <section class="metrics-banner reveal" id="metrics-section">
+    <section class="metrics-banner metrics-full reveal" id="metrics-section">
       <div class="m-cell">
         <p class="m-val" data-target="90" data-decimals="0">0%</p>
         <p class="m-sub">45 min → under 10 min</p>
@@ -101,7 +101,7 @@ import Layout from "../../layouts/Layout.astro";
       <h2 class="section-title">Who we designed <em>for</em></h2>
       <p class="prose">Design a system that improves operations, supports volunteers, and enhances the client experience.</p>
       <div class="goal-cols stagger-cards">
-        <div class="goal-col-card">
+        <div class="goal-col-card gold-top">
           <p class="goal-col-head">Operational Teams</p>
           <ul class="goal-col-list">
             <li>Centralize data for visibility</li>
@@ -109,7 +109,7 @@ import Layout from "../../layouts/Layout.astro";
             <li>Enable better planning</li>
           </ul>
         </div>
-        <div class="goal-col-card">
+        <div class="goal-col-card gold-top">
           <p class="goal-col-head">Volunteers</p>
           <ul class="goal-col-list">
             <li>Simplify workflows</li>
@@ -117,7 +117,7 @@ import Layout from "../../layouts/Layout.astro";
             <li>Focus on client interaction</li>
           </ul>
         </div>
-        <div class="goal-col-card">
+        <div class="goal-col-card gold-top">
           <p class="goal-col-head">Clients</p>
           <ul class="goal-col-list">
             <li>Reduce wait times</li>
@@ -127,6 +127,13 @@ import Layout from "../../layouts/Layout.astro";
         </div>
       </div>
     </section>
+
+    <!-- GOLD DIVIDER -->
+    <svg class="gold-divider" viewBox="0 0 820 32" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="16" x2="380" y2="16" stroke="rgba(200,164,90,0.3)" stroke-width="0.75"/>
+      <circle cx="410" cy="16" r="2" fill="rgba(200,164,90,0.4)"/>
+      <line x1="440" y1="16" x2="820" y2="16" stroke="rgba(200,164,90,0.3)" stroke-width="0.75"/>
+    </svg>
 
     <!-- MY ROLE -->
     <section class="cs-section reveal stagger-children">
@@ -204,7 +211,7 @@ import Layout from "../../layouts/Layout.astro";
       <p class="eyebrow">The Solution</p>
       <h2 class="section-title">What we <em>built</em></h2>
       <p class="prose">A system designed around real-world workflows, not theoretical ones.</p>
-      <div class="solution-grid stagger-cards">
+      <div class="solution-grid solution-single stagger-cards">
         <div class="sol-card">
           <p class="sol-name">Client Intake System</p>
           <p class="sol-desc">Captures and structures client needs at entry</p>
@@ -237,11 +244,6 @@ import Layout from "../../layouts/Layout.astro";
 
       <p class="prose">The same data identifies where additional resources are needed most — whether that's expanding shower capacity, adding haircut stations, or adjusting staffing in specific areas.</p>
     </section>
-
-    <!-- TRANSITION -->
-    <blockquote class="callout reveal">
-      <p>Building in live environments taught me things planning never could.</p>
-    </blockquote>
 
     <!-- GOLD DIVIDER -->
     <svg class="gold-divider" viewBox="0 0 820 32" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -345,7 +347,7 @@ import Layout from "../../layouts/Layout.astro";
     </section>
 
     <!-- WHY IT MATTERS — FINALE -->
-    <section class="why-block reveal">
+    <section class="why-block why-full reveal">
       <p class="eyebrow">Why It Matters</p>
       <p class="why-headline">Make it easier for people to serve others <em>well.</em></p>
       <p class="why-text">This work started with one goal — and now it's becoming something bigger. A system that helps communities operate with more clarity, dignity, and consistency.</p>
@@ -651,14 +653,22 @@ import Layout from "../../layouts/Layout.astro";
   .metrics-banner {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    border: 1px solid var(--border);
     overflow: hidden;
     margin-bottom: 16px;
   }
 
+  .metrics-full {
+    background: rgba(42, 33, 24, 0.7);
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 0;
+    border-top: 1px solid rgba(200,164,90,0.12);
+    border-bottom: 1px solid rgba(200,164,90,0.12);
+  }
+
   .m-cell {
-    padding: 32px 20px;
-    border-right: 1px solid var(--border);
+    padding: 36px 24px;
+    border-right: 1px solid rgba(200,164,90,0.08);
     text-align: center;
   }
 
@@ -708,7 +718,7 @@ import Layout from "../../layouts/Layout.astro";
     width: 100%;
     overflow: visible;
     display: block;
-    margin: 8px 0 48px;
+    margin: 24px 0 48px;
     height: 32px;
   }
 
@@ -828,10 +838,13 @@ import Layout from "../../layouts/Layout.astro";
     border: 1px solid var(--border);
     padding: 24px;
     border-radius: 6px;
-    transition: border-color 0.3s, background 0.3s;
     opacity: 0;
     transform: translateY(12px);
     transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, background 0.3s;
+  }
+
+  .gold-top {
+    border-top: 2px solid var(--gold);
   }
 
   .visible .goal-col-card {
@@ -871,15 +884,17 @@ import Layout from "../../layouts/Layout.astro";
 
   /* ─── DECISION BLOCKS ─── */
   .decision-block {
-    border: 1px solid var(--border);
-    padding: 28px 30px;
-    margin-bottom: 16px;
-    border-radius: 6px;
-    transition: border-color 0.3s;
+    border: none;
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    background: rgba(200,164,90,0.04);
+    transition: background 0.3s, border-color 0.3s;
   }
 
   .decision-block:hover {
-    border-color: rgba(200,164,90,0.3);
+    background: rgba(200,164,90,0.08);
+    border-left-color: var(--gold-light);
   }
 
   .decision-title {
@@ -927,10 +942,15 @@ import Layout from "../../layouts/Layout.astro";
     margin-top: 24px;
   }
 
+  .solution-single {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
   .sol-card {
     border: 1px solid var(--border);
     border-top: 2px solid var(--gold);
-    padding: 26px 28px;
+    padding: 28px 32px;
     border-radius: 6px;
     opacity: 0;
     transform: translateY(12px);
@@ -976,12 +996,15 @@ import Layout from "../../layouts/Layout.astro";
 
   /* ─── LEARN BLOCKS ─── */
   .learn-block {
-    padding: 34px 0;
-    border-bottom: 1px solid var(--border);
+    padding: 28px 30px;
+    margin-bottom: 16px;
+    background: rgba(42, 33, 24, 0.35);
+    border: 1px solid rgba(200,164,90,0.08);
+    border-radius: 8px;
   }
 
   .learn-block:first-of-type {
-    border-top: 1px solid var(--border);
+    border-top: 1px solid rgba(200,164,90,0.08);
   }
 
   .learn-num {
@@ -1176,6 +1199,17 @@ import Layout from "../../layouts/Layout.astro";
     border: 1px solid rgba(200,164,90,0.15);
   }
 
+  .why-full {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    border-radius: 0;
+    padding: 80px 48px;
+    border: none;
+    border-top: 1px solid rgba(200,164,90,0.15);
+    border-bottom: 1px solid rgba(200,164,90,0.15);
+    margin-bottom: 0;
+  }
+
   .why-block .eyebrow {
     margin-bottom: 24px;
   }
@@ -1314,6 +1348,14 @@ import Layout from "../../layouts/Layout.astro";
 
     .why-block {
       padding: 40px 24px;
+    }
+
+    .why-full {
+      padding: 52px 24px;
+    }
+
+    .learn-block {
+      padding: 24px 20px;
     }
 
     .callout {
