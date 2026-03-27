@@ -46,7 +46,8 @@ import Layout from "../../layouts/Layout.astro";
     <section class="metrics-banner reveal" id="metrics-section">
       <div class="m-cell">
         <p class="m-val" data-target="90" data-decimals="0">0%</p>
-        <p class="m-lbl">Reduction in clothing wait times</p>
+        <p class="m-sub">45 min → under 10 min</p>
+        <p class="m-lbl">Clothing wait time reduction</p>
       </div>
       <div class="m-cell">
         <p class="m-val" data-target="17.4" data-decimals="1">0%</p>
@@ -55,10 +56,12 @@ import Layout from "../../layouts/Layout.astro";
       </div>
       <div class="m-cell">
         <p class="m-val" data-target="95" data-decimals="0">0%</p>
+        <p class="m-sub">Zero training required</p>
         <p class="m-lbl">Volunteer adoption rate</p>
       </div>
       <div class="m-cell">
         <p class="m-val" data-target="85" data-decimals="0">0%</p>
+        <p class="m-sub">Post-event survey</p>
         <p class="m-lbl">Volunteer satisfaction</p>
       </div>
     </section>
@@ -235,6 +238,11 @@ import Layout from "../../layouts/Layout.astro";
       <p class="prose">The same data identifies where additional resources are needed most — whether that's expanding shower capacity, adding haircut stations, or adjusting staffing in specific areas.</p>
     </section>
 
+    <!-- TRANSITION -->
+    <blockquote class="callout reveal">
+      <p>Building in live environments taught me things planning never could.</p>
+    </blockquote>
+
     <!-- GOLD DIVIDER -->
     <svg class="gold-divider" viewBox="0 0 820 32" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 16 Q205 4 410 16 T820 16" fill="none" stroke="rgba(200,164,90,0.3)" stroke-width="0.75"/>
@@ -247,6 +255,7 @@ import Layout from "../../layouts/Layout.astro";
     <section class="cs-section cs-section-alt reveal stagger-children">
       <p class="eyebrow">Reflection</p>
       <h2 class="section-title">What I <em>learned</em></h2>
+      <p class="prose">Each of these insights came from prototype sessions with real volunteers during live events — not from theory or planning.</p>
 
       <div class="learn-block stagger-card">
         <p class="learn-num">01</p>
@@ -283,6 +292,7 @@ import Layout from "../../layouts/Layout.astro";
       <div class="next-block stagger-card">
         <p class="next-num">01</p>
         <div>
+          <p class="next-phase">Now</p>
           <p class="next-head">Standardize workflows for multi-organization use</p>
           <p class="next-body">Adapt core workflows into a flexible, repeatable structure deployable across organizations — without custom development for each.</p>
         </div>
@@ -290,6 +300,7 @@ import Layout from "../../layouts/Layout.astro";
       <div class="next-block stagger-card">
         <p class="next-num">02</p>
         <div>
+          <p class="next-phase">Now</p>
           <p class="next-head">Configurable onboarding</p>
           <p class="next-body">Allow any organization serving unhoused communities to configure the platform around their specific service model, lowering the barrier to adoption.</p>
         </div>
@@ -297,6 +308,7 @@ import Layout from "../../layouts/Layout.astro";
       <div class="next-block stagger-card">
         <p class="next-num">03</p>
         <div>
+          <p class="next-phase">Next</p>
           <p class="next-head">Predictive analytics for resource planning</p>
           <p class="next-body">Expand data-driven planning for donations, inventory, and service demand across locations.</p>
         </div>
@@ -304,6 +316,7 @@ import Layout from "../../layouts/Layout.astro";
       <div class="next-block stagger-card">
         <p class="next-num">04</p>
         <div>
+          <p class="next-phase">Future</p>
           <p class="next-head">AI-powered volunteer support and training</p>
           <p class="next-body">Intake is one of the most sensitive volunteer roles. As SERVE513 scales, an AI-powered system will help volunteers get up to speed quickly — providing in-the-moment guidance to help them phrase questions with sensitivity and confidence, protecting the dignity of every client interaction.</p>
         </div>
@@ -315,12 +328,11 @@ import Layout from "../../layouts/Layout.astro";
       <p class="eyebrow">Why It Matters</p>
       <p class="why-headline">Make it easier for people to serve others <em>well.</em></p>
       <p class="why-text">This work started with one goal — and now it's becoming something bigger. A system that helps communities operate with more clarity, dignity, and consistency.</p>
+      <div class="why-cta-row">
+        <a href="/contact" class="why-cta">Get in Touch</a>
+        <a href="/work" class="why-cta-secondary">See More Work</a>
+      </div>
     </section>
-
-    <!-- BACK LINK -->
-    <div class="cs-footer">
-      <a href="/work" class="back-link">← Back to My Work</a>
-    </div>
 
   </div>
 
@@ -938,6 +950,20 @@ import Layout from "../../layouts/Layout.astro";
     padding-top: 3px;
   }
 
+  .next-phase {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--olive-dark);
+    background: var(--gold);
+    padding: 2px 10px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+
   .next-head {
     font-family: var(--font-display);
     font-weight: 600;
@@ -988,7 +1014,53 @@ import Layout from "../../layouts/Layout.astro";
     line-height: 1.85;
     color: var(--text-muted);
     max-width: 540px;
-    margin: 0 auto;
+    margin: 0 auto 32px;
+  }
+
+  .why-cta-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .why-cta {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--olive-dark);
+    background: var(--cream);
+    text-decoration: none;
+    padding: 14px 36px;
+    transition: background 0.3s, letter-spacing 0.3s;
+  }
+
+  .why-cta:hover {
+    background: white;
+    letter-spacing: 0.28em;
+  }
+
+  .why-cta-secondary {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-decoration: none;
+    padding: 14px 36px;
+    border: 1px solid var(--border);
+    transition: border-color 0.3s, color 0.3s, letter-spacing 0.3s;
+  }
+
+  .why-cta-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    letter-spacing: 0.28em;
   }
 
   /* ─── FOOTER ─── */
