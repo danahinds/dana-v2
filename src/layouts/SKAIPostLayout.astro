@@ -75,11 +75,11 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
 
     <!-- GOLD DIVIDER -->
     <svg class="gold-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 24 Q180 4 360 24 T720 24 T1080 24 T1440 24" fill="none" stroke="rgba(156,122,62,0.45)" stroke-width="1"/>
-      <path d="M0 32 Q240 48 480 28 T960 32 T1440 28" fill="none" stroke="rgba(156,122,62,0.2)" stroke-width="0.75"/>
-      <circle cx="360" cy="24" r="3" fill="rgba(156,122,62,0.55)"/>
-      <circle cx="720" cy="24" r="2" fill="rgba(156,122,62,0.45)"/>
-      <circle cx="1080" cy="24" r="3" fill="rgba(156,122,62,0.55)"/>
+      <path d="M0 24 Q180 4 360 24 T720 24 T1080 24 T1440 24" fill="none" stroke="rgba(90,109,46,0.45)" stroke-width="1"/>
+      <path d="M0 32 Q240 48 480 28 T960 32 T1440 28" fill="none" stroke="rgba(90,109,46,0.2)" stroke-width="0.75"/>
+      <circle cx="360" cy="24" r="3" fill="rgba(90,109,46,0.55)"/>
+      <circle cx="720" cy="24" r="2" fill="rgba(90,109,46,0.45)"/>
+      <circle cx="1080" cy="24" r="3" fill="rgba(90,109,46,0.55)"/>
     </svg>
 
     <!-- POST BODY -->
@@ -91,13 +91,13 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
 
     <!-- GOLD DIVIDER -->
     <svg class="gold-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="72" y1="24" x2="400" y2="24" stroke="rgba(156,122,62,0.5)" stroke-width="0.75"/>
-      <circle cx="400" cy="24" r="2.5" fill="none" stroke="rgba(156,122,62,0.55)" stroke-width="1"/>
-      <line x1="406" y1="24" x2="700" y2="24" stroke="rgba(156,122,62,0.25)" stroke-width="0.5" stroke-dasharray="4 6"/>
-      <circle cx="700" cy="24" r="1.5" fill="rgba(156,122,62,0.45)"/>
-      <line x1="706" y1="24" x2="1040" y2="24" stroke="rgba(156,122,62,0.25)" stroke-width="0.5" stroke-dasharray="4 6"/>
-      <circle cx="1040" cy="24" r="2.5" fill="none" stroke="rgba(156,122,62,0.55)" stroke-width="1"/>
-      <line x1="1046" y1="24" x2="1370" y2="24" stroke="rgba(156,122,62,0.5)" stroke-width="0.75"/>
+      <line x1="72" y1="24" x2="400" y2="24" stroke="rgba(90,109,46,0.5)" stroke-width="0.75"/>
+      <circle cx="400" cy="24" r="2.5" fill="none" stroke="rgba(90,109,46,0.55)" stroke-width="1"/>
+      <line x1="406" y1="24" x2="700" y2="24" stroke="rgba(90,109,46,0.25)" stroke-width="0.5" stroke-dasharray="4 6"/>
+      <circle cx="700" cy="24" r="1.5" fill="rgba(90,109,46,0.45)"/>
+      <line x1="706" y1="24" x2="1040" y2="24" stroke="rgba(90,109,46,0.25)" stroke-width="0.5" stroke-dasharray="4 6"/>
+      <circle cx="1040" cy="24" r="2.5" fill="none" stroke="rgba(90,109,46,0.55)" stroke-width="1"/>
+      <line x1="1046" y1="24" x2="1370" y2="24" stroke="rgba(90,109,46,0.5)" stroke-width="0.75"/>
     </svg>
 
     <!-- NEXT POST -->
@@ -147,9 +147,9 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     --ink-muted: rgba(44, 58, 34, 0.68);
     --ink-subtle: rgba(44, 58, 34, 0.5);
     --ink-whisper: rgba(44, 58, 34, 0.35);
-    --brown-gold: #9c7a3e;
+    --blog-accent: #5a6d2e;
     --border-soft: rgba(44, 58, 34, 0.15);
-    --border-whisper: rgba(156, 122, 62, 0.25);
+    --border-whisper: rgba(90, 109, 46, 0.25);
     background: var(--cream-bg);
     position: relative;
     z-index: 1;
@@ -177,7 +177,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   }
   .orb-b {
     width: 200px; height: 200px; top: 30vh; right: 5vw;
-    background: radial-gradient(circle, rgba(156, 122, 62, 0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(90, 109, 46, 0.12) 0%, transparent 70%);
     animation: floatOrb 12s ease-in-out 1.5s infinite;
   }
   .orb-c {
@@ -187,7 +187,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   }
   .orb-d {
     width: 90px; height: 90px; top: 72vh; right: 22vw;
-    background: radial-gradient(circle, rgba(156, 122, 62, 0.14) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(90, 109, 46, 0.14) 0%, transparent 70%);
     animation: floatOrb 10s ease-in-out 0.8s infinite;
   }
   .orb-e {
@@ -246,7 +246,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     font-size: 11px;
     letter-spacing: 0.5em;
     text-transform: uppercase;
-    color: #9c7a3e;
+    color: #5a6d2e;
     margin-bottom: 28px;
     opacity: 0;
     animation: fadeUp 0.9s ease 0.1s forwards;
@@ -269,7 +269,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   }
   .hero-title :global(em) {
     font-style: italic;
-    color: #9c7a3e;
+    color: #5a6d2e;
   }
 
   .hero-byline {
@@ -383,7 +383,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   .next-post-inner {
     max-width: 720px;
     margin: 0 auto;
-    border: 1px solid rgba(156, 122, 62, 0.25);
+    border: 1px solid rgba(90, 109, 46, 0.25);
     padding: 40px 44px;
     background: rgba(44, 58, 34, 0.03);
     transition: background 0.3s, border-color 0.3s;
@@ -399,7 +399,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   }
   .next-post-inner:hover {
     background: rgba(44, 58, 34, 0.05);
-    border-color: rgba(156, 122, 62, 0.45);
+    border-color: rgba(90, 109, 46, 0.45);
   }
   .next-post-label {
     font-family: var(--font-body);
@@ -407,7 +407,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     font-size: 10px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: #9c7a3e;
+    color: #5a6d2e;
     margin: 0 0 12px 0;
   }
   .next-post-link {
@@ -421,10 +421,10 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     transition: color 0.2s;
   }
   .next-post-link:hover {
-    color: #9c7a3e;
+    color: #5a6d2e;
   }
   .next-post-link .arrow {
-    color: #9c7a3e;
+    color: #5a6d2e;
     margin-left: 8px;
     transition: margin-left 0.2s;
   }
@@ -515,7 +515,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   }
   .skai-post .prose h2 em {
     font-style: italic;
-    color: #9c7a3e;
+    color: #5a6d2e;
     font-weight: 600;
   }
   .skai-post .prose h3 {
@@ -540,18 +540,18 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   }
   .skai-post .prose em {
     font-style: italic;
-    color: #9c7a3e;
+    color: #5a6d2e;
   }
   .skai-post .prose a {
     color: #2c3a22;
     text-decoration: underline;
-    text-decoration-color: rgba(156, 122, 62, 0.5);
+    text-decoration-color: rgba(90, 109, 46, 0.5);
     text-underline-offset: 3px;
     transition: text-decoration-color 0.2s, color 0.2s;
   }
   .skai-post .prose a:hover {
-    color: #9c7a3e;
-    text-decoration-color: #9c7a3e;
+    color: #5a6d2e;
+    text-decoration-color: #5a6d2e;
   }
 
   /* EYEBROW (above H2) */
@@ -559,7 +559,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     font-family: var(--font-body);
     font-weight: 400;
     font-style: normal;
-    color: #9c7a3e;
+    color: #5a6d2e;
     font-size: 11px;
     letter-spacing: 0.5em;
     text-transform: uppercase;
@@ -576,7 +576,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
 
   /* PULL-QUOTE */
   .skai-post .prose blockquote {
-    border-left: 2px solid #9c7a3e;
+    border-left: 2px solid #5a6d2e;
     padding: 0.75rem 0 0.75rem 1.75rem;
     margin: 1.25rem 0 2rem 0;
     border-radius: 0;
@@ -593,7 +593,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   }
   .skai-post .prose blockquote p strong {
     font-weight: 500;
-    color: #9c7a3e;
+    color: #5a6d2e;
     font-style: italic;
   }
 
@@ -610,7 +610,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   .skai-post .prose .metric-number {
     font-family: var(--font-display);
     font-weight: 600;
-    color: #9c7a3e;
+    color: #5a6d2e;
     font-size: clamp(36px, 4vw, 48px);
     line-height: 1;
     margin-bottom: 0.5rem;
