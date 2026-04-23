@@ -1,0 +1,5 @@
+# Netlify redirects
+# https://docs.netlify.com/routing/redirects/
+
+# Old paginated posts index → new SKAI series landing
+/posts/1    /series/skai    301

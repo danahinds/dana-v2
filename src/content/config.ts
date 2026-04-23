@@ -14,6 +14,23 @@ const postsCollection = defineCollection({
       .optional(),
     tags: z.array(z.string()),
     isDraft: z.boolean().default(false),
+    // SKAI series fields (optional, apply when a post is part of a series)
+    series: z.string().optional(),
+    part: z.number().optional(),
+    readTime: z.string().optional(),
+    heroIllustration: z
+      .object({
+        url: z.string(),
+        alt: z.string(),
+        caption: z.string().optional(),
+      })
+      .optional(),
+    nextPart: z
+      .object({
+        slug: z.string(),
+        label: z.string(),
+      })
+      .optional(),
   }),
 });
 

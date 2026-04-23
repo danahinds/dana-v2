@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import MarkdownPostLayout from "../../layouts/MarkdownPostLayout.astro";
+import SKAIPostLayout from "../../layouts/SKAIPostLayout.astro";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("posts");
@@ -12,8 +13,16 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+const isSKAI = entry.data.series === "SKAI Is the Limit?";
 ---
 
-<MarkdownPostLayout frontmatter={entry.data}>
-  <Content />
-</MarkdownPostLayout>
+{isSKAI ? (
+  <SKAIPostLayout frontmatter={entry.data}>
+    <Content />
+  </SKAIPostLayout>
+) : (
+  <MarkdownPostLayout frontmatter={entry.data}>
+    <Content />
+  </MarkdownPostLayout>
+)}

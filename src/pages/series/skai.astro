@@ -1,0 +1,477 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const episodes = [
+  {
+    part: 1,
+    title: "The problem that led to The Playground",
+    description: "A volunteer project took on a life of its own, and scaling it into SaaS required solving a UX testing problem that didn't have an off-the-shelf answer.",
+    status: "published",
+    href: "/posts/playground-part-1",
+  },
+  {
+    part: 2,
+    title: null,
+    description: null,
+    status: "coming-soon",
+    href: null,
+  },
+  {
+    part: 3,
+    title: null,
+    description: null,
+    status: "coming-soon",
+    href: null,
+  },
+  {
+    part: 4,
+    title: null,
+    description: null,
+    status: "coming-soon",
+    href: null,
+  },
+  {
+    part: 5,
+    title: null,
+    description: null,
+    status: "coming-soon",
+    href: null,
+  },
+];
+---
+
+<Layout pageTitle="SKAI is the Limit? — A Series by Dana Sandy" pageDescription="We gave AI a development team and one mission — to build a real app from scratch. Does SKAI have a limit?">
+
+  <!-- ORB LAYER -->
+  <div class="orb-layer">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+  </div>
+
+  <div class="series-body">
+
+    <!-- HERO -->
+    <section class="series-hero">
+      <p class="eyebrow">A Series <span class="diamond">⋄</span> Five Parts</p>
+      <h1 class="series-title">SKAI is the <em>Limit?</em></h1>
+      <p class="series-pullquote">We gave AI a development team and one mission — to build a real app from scratch.</p>
+      <p class="series-intro">A five-part series about scaling a volunteer project into SaaS, the testing problem that didn't have an off-the-shelf answer, and what happens when you give yourself four days to build something that does.</p>
+
+      <div class="meta-strip">
+        <div class="meta-cell">
+          <p class="meta-label">Parts</p>
+          <p class="meta-value">5 total</p>
+        </div>
+        <div class="meta-cell">
+          <p class="meta-label">Reading Time</p>
+          <p class="meta-value">5 min each</p>
+        </div>
+        <div class="meta-cell">
+          <p class="meta-label">Status</p>
+          <p class="meta-value">Launching soon</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EPISODES -->
+    <section class="episodes-section">
+      <p class="eyebrow">The <span class="diamond">⋄</span> Episodes</p>
+      <h2 class="section-title">The <em>series</em></h2>
+
+      <ol class="episode-list">
+        {episodes.map((ep) => {
+          const isLinked = ep.status === "published" && ep.href;
+          const Tag = isLinked ? "a" : "div";
+          return (
+            <li class="episode-item">
+              <Tag class="ep-link" href={isLinked ? ep.href : undefined}>
+                <span class="ep-num">{String(ep.part).padStart(2, "0")}</span>
+                <div class="ep-body">
+                  {ep.title ? (
+                    <>
+                      <p class="ep-title">{ep.title}</p>
+                      {ep.description && <p class="ep-desc">{ep.description}</p>}
+                    </>
+                  ) : (
+                    <p class="ep-title ep-title-muted">Title coming soon</p>
+                  )}
+                </div>
+                <span class={`ep-status ${isLinked ? "ep-status-live" : ""}`}>
+                  {isLinked ? "Read now →" : "Coming soon"}
+                </span>
+              </Tag>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+
+    <!-- WHY IT MATTERS -->
+    <section class="why-block">
+      <p class="eyebrow">Why this series</p>
+      <p class="why-headline">A record of building with AI, <em>honestly.</em></p>
+      <p class="why-text">Not a tutorial. Not a pitch. A closer look at where AI tools accelerate real work — and where they still need a human to notice what matters.</p>
+      <div class="why-cta-row">
+        <a href="/contact" class="why-cta">Get in Touch</a>
+        <a href="/work" class="why-cta-secondary">See My Work</a>
+      </div>
+    </section>
+
+  </div>
+
+</Layout>
+
+<style>
+  /* ─── ORB LAYER ─── */
+  .orb-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+  }
+  .orb-a {
+    width: 260px; height: 260px; top: 14vh; left: 8vw;
+    background: radial-gradient(circle, rgba(200,164,90,0.12) 0%, transparent 70%);
+    animation: floatOrb 10s ease-in-out infinite;
+  }
+  .orb-b {
+    width: 180px; height: 180px; top: 50vh; right: 10vw;
+    background: radial-gradient(circle, rgba(226,192,122,0.14) 0%, transparent 70%);
+    animation: floatOrb 12s ease-in-out 2s infinite;
+  }
+  @keyframes floatOrb {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-28px) scale(1.05); }
+  }
+
+  /* ─── BODY ─── */
+  .series-body {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 72px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── HERO ─── */
+  .series-hero {
+    padding: 140px 0 60px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 72px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .eyebrow .diamond {
+    margin: 0 10px;
+    opacity: 0.6;
+  }
+
+  .series-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(56px, 10vw, 100px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    margin-bottom: 32px;
+  }
+
+  .series-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .series-pullquote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.4;
+    color: var(--gold-light);
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 28px;
+    max-width: 620px;
+  }
+
+  .series-intro {
+    font-family: var(--font-display);
+    font-size: clamp(17px, 1.8vw, 19px);
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 640px;
+    margin-bottom: 40px;
+  }
+
+  /* ─── META STRIP ─── */
+  .meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .meta-cell {
+    flex: 1;
+    min-width: 140px;
+    padding: 18px 0 16px;
+    border-right: 1px solid var(--border);
+  }
+  .meta-cell:last-child {
+    border-right: none;
+  }
+  .meta-label {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .meta-value {
+    font-family: var(--font-display);
+    font-size: 17px;
+    color: var(--cream);
+    line-height: 1.5;
+  }
+
+  /* ─── EPISODES ─── */
+  .episodes-section {
+    margin-bottom: 80px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 32px;
+    letter-spacing: -0.01em;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .episode-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .episode-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ep-link {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 28px;
+    align-items: baseline;
+    padding: 28px 4px;
+    color: inherit;
+    text-decoration: none;
+    transition: background 0.3s, padding 0.3s;
+  }
+
+  a.ep-link:hover {
+    background: rgba(200, 164, 90, 0.04);
+    padding-left: 12px;
+  }
+
+  a.ep-link:hover .ep-title {
+    color: var(--gold-light);
+  }
+
+  .ep-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 36px;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 52px;
+  }
+
+  .ep-body {
+    min-width: 0;
+  }
+
+  .ep-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.35;
+    color: var(--cream);
+    margin: 0 0 8px 0;
+  }
+
+  .ep-title-muted {
+    color: var(--text-muted);
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .ep-desc {
+    font-family: var(--font-display);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin: 0;
+    max-width: 560px;
+  }
+
+  .ep-status {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .ep-status-live {
+    color: var(--gold);
+  }
+
+  /* ─── WHY BLOCK ─── */
+  .why-block {
+    background: rgba(42, 33, 24, 0.55);
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 80px 48px;
+    text-align: center;
+    border-top: 1px solid rgba(200, 164, 90, 0.15);
+    border-bottom: 1px solid rgba(200, 164, 90, 0.15);
+  }
+
+  .why-block .eyebrow {
+    margin-bottom: 24px;
+  }
+
+  .why-headline {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(24px, 3.5vw, 34px);
+    line-height: 1.3;
+    color: var(--cream);
+    margin-bottom: 20px;
+  }
+
+  .why-headline em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .why-text {
+    font-family: var(--font-display);
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin: 0 auto 32px;
+  }
+
+  .why-cta-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .why-cta {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--olive-dark);
+    background: var(--cream);
+    text-decoration: none;
+    padding: 14px 36px;
+    transition: background 0.3s, letter-spacing 0.3s;
+  }
+
+  .why-cta:hover {
+    background: white;
+    letter-spacing: 0.28em;
+  }
+
+  .why-cta-secondary {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-decoration: none;
+    padding: 14px 36px;
+    border: 1px solid var(--border);
+    transition: border-color 0.3s, color 0.3s, letter-spacing 0.3s;
+  }
+
+  .why-cta-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    letter-spacing: 0.28em;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 700px) {
+    .series-body {
+      padding: 0 24px;
+    }
+    .series-hero {
+      padding: 100px 0 48px;
+      margin-bottom: 48px;
+    }
+    .meta-strip {
+      flex-direction: column;
+    }
+    .meta-cell {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta-cell:last-child {
+      border-bottom: none;
+    }
+    .ep-link {
+      grid-template-columns: auto 1fr;
+      gap: 16px 20px;
+      padding: 22px 4px;
+    }
+    .ep-status {
+      grid-column: 1 / -1;
+      padding-left: 72px;
+    }
+    .ep-num {
+      font-size: 28px;
+      min-width: 44px;
+    }
+    .ep-title {
+      font-size: 18px;
+    }
+    .why-block {
+      padding: 52px 24px;
+    }
+  }
+</style>
