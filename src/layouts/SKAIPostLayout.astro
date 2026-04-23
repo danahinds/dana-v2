@@ -84,10 +84,8 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
 
     <!-- POST BODY -->
     <section class="post-body reveal">
-      <div class="post-body-inner">
-        <div class="prose">
-          <slot />
-        </div>
+      <div class="prose">
+        <slot />
       </div>
     </section>
 
@@ -105,13 +103,11 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     <!-- NEXT POST -->
     {frontmatter.nextPart && (
       <aside class="next-post">
-        <div class="next-post-outer">
-          <div class="next-post-inner">
-            <p class="next-post-label">Next in the series</p>
-            <a href={`/posts/${frontmatter.nextPart.slug}`} class="next-post-link">
-              {frontmatter.nextPart.label} <span class="arrow">→</span>
-            </a>
-          </div>
+        <div class="next-post-inner">
+          <p class="next-post-label">Next in the series</p>
+          <a href={`/posts/${frontmatter.nextPart.slug}`} class="next-post-link">
+            {frontmatter.nextPart.label} <span class="arrow">→</span>
+          </a>
         </div>
       </aside>
     )}
@@ -357,13 +353,10 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     position: relative;
     z-index: 1;
   }
-  .post-body-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-  }
   .prose {
     max-width: 720px;
-    /* no margin:auto — left-aligned with the hero column */
+    margin: 0 auto;
+    text-align: left;
   }
 
   /* ─── NEXT POST ─── */
@@ -372,12 +365,9 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     position: relative;
     z-index: 1;
   }
-  .next-post-outer {
-    max-width: 1400px;
-    margin: 0 auto;
-  }
   .next-post-inner {
     max-width: 720px;
+    margin: 0 auto;
     border: 1px solid rgba(156, 122, 62, 0.25);
     padding: 40px 44px;
     background: rgba(44, 58, 34, 0.03);
