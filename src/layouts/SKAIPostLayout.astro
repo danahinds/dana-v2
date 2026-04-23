@@ -105,11 +105,12 @@ const plainTitle = frontmatter.title.replace(/<[^>]+>/g, "");
   /* ─── MASTHEAD ─── */
   .masthead {
     background: var(--olive);
-    padding: 1.25rem 2.5rem;
+    padding: 1.25rem 0;
   }
   .masthead-inner {
     max-width: 580px;
     margin: 0 auto;
+    padding: 0 2.5rem;
     font-family: var(--font-body);
     color: var(--gold);
     font-size: 11px;
@@ -124,9 +125,10 @@ const plainTitle = frontmatter.title.replace(/<[^>]+>/g, "");
 
   @media (max-width: 768px) {
     .masthead {
-      padding: 1rem 1.25rem;
+      padding: 1rem 0;
     }
     .masthead-inner {
+      padding: 0 1.25rem;
       font-size: 10px;
       letter-spacing: 2px;
     }
@@ -193,11 +195,12 @@ const plainTitle = frontmatter.title.replace(/<[^>]+>/g, "");
   .next-post {
     background: rgba(44, 58, 34, 0.04);
     border-top: 1px solid rgba(44, 58, 34, 0.12);
-    padding: 2rem 2.5rem;
+    padding: 2rem 0;
   }
   .next-post-inner {
     max-width: 580px;
     margin: 0 auto;
+    padding: 0 2.5rem;
   }
   .next-post-label {
     font-family: var(--font-body);
@@ -257,7 +260,10 @@ const plainTitle = frontmatter.title.replace(/<[^>]+>/g, "");
       display: none;
     }
     .next-post {
-      padding: 1.5rem 1.25rem;
+      padding: 1.5rem 0;
+    }
+    .next-post-inner {
+      padding: 0 1.25rem;
     }
     .next-post-label {
       font-size: 10px;
@@ -292,12 +298,14 @@ const plainTitle = frontmatter.title.replace(/<[^>]+>/g, "");
     }
     .masthead-inner {
       max-width: 760px;
+      padding: 0 3rem;
     }
     .next-post {
-      padding: 2.5rem 3rem;
+      padding: 2.5rem 0;
     }
     .next-post-inner {
       max-width: 760px;
+      padding: 0 3rem;
     }
     .next-post-link {
       font-size: 26px;
@@ -320,6 +328,7 @@ const plainTitle = frontmatter.title.replace(/<[^>]+>/g, "");
     .masthead-inner,
     .next-post-inner {
       max-width: 880px;
+      padding: 0 4rem;
     }
     .hero-illustration {
       margin-left: -40px;
@@ -339,6 +348,7 @@ const plainTitle = frontmatter.title.replace(/<[^>]+>/g, "");
     .masthead-inner,
     .next-post-inner {
       max-width: 960px;
+      padding: 0 4rem;
     }
     .hero-illustration {
       margin-left: -60px;
