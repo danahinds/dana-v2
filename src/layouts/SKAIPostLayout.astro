@@ -242,9 +242,9 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
 
   .hero-label {
     font-family: var(--font-body);
-    font-weight: 400;
-    font-size: 11px;
-    letter-spacing: 0.5em;
+    font-weight: 500;
+    font-size: clamp(15px, 1.7vw, 20px);
+    letter-spacing: 0.28em;
     text-transform: uppercase;
     color: #5a6d2e;
     margin-bottom: 28px;
@@ -252,8 +252,9 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     animation: fadeUp 0.9s ease 0.1s forwards;
   }
   .hero-label .divider {
-    margin: 0 8px;
-    opacity: 0.6;
+    margin: 0 10px;
+    opacity: 0.55;
+    font-weight: 400;
   }
 
   .hero-title {
