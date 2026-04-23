@@ -15,9 +15,9 @@ nextPart:
   label: "Part 2. The stack: seven tools, four days, zero lines of code"
 ---
 
-AI has been disruptive across so many parts of life. For me, as a product manager, it made some of the projects I poured my heart into obsolete. But there were others it gave new life to.
+As a product manager, AI made some of the projects I poured my heart into obsolete. Others, it gave new life to.
 
-Over the last two to three years, a volunteer project I was part of took on a life of its own, becoming something that shaped both my future and the future of a nonprofit that trusted me to understand their mission and guide their solutions.
+This is one of the latter. For the last two to three years, I've volunteered with a nonprofit that serves Neighbors who need the dignity of meals, hygiene services, and a path toward stability. What started as a small contribution took on a life of its own, shaping both my future and the future of an organization that trusted me to understand their mission and guide their solutions.
 
 In the first year, we built a demo that worked. It delivered real, measurable results.
 
@@ -64,7 +64,7 @@ The outcomes were real.
   </div>
   <div class="metric">
     <div class="metric-number">17%</div>
-    <div class="metric-label">Shower access</div>
+    <div class="metric-label">More Neighbors served</div>
     <div class="metric-caveat">23 to 27 per event</div>
   </div>
   <div class="metric">
@@ -83,6 +83,8 @@ Those numbers are why the demo wasn't the goal. The demo was the proof. And the 
 ## The new design *problem*
 
 Every feature we added was, in theory, a win. More functionality. More flexibility. More of what Neighbors had been asking for. But every feature was also a risk to the thing that mattered most: **the 95% adoption rate.**
+
+New features meant more options, more noise. Capturing more information on showers meant volunteers moved from single taps to actively managing our Neighbors' time in and out. How do we introduce more without overwhelming volunteers, or worse, stripping the dignity from the moment of service?
 
 This is the trap that kills a lot of second-version products. You inherit the success metrics of the first version, and then you slowly destroy them by giving everyone what they asked for.
 
