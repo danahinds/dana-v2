@@ -18,16 +18,16 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
 
 <Layout pageTitle={plainTitle} pageDescription={frontmatter.description}>
 
-  <!-- ORB LAYER -->
-  <div class="orb-layer">
-    <div class="orb orb-a"></div>
-    <div class="orb orb-b"></div>
-    <div class="orb orb-c"></div>
-    <div class="orb orb-d"></div>
-    <div class="orb orb-e"></div>
-  </div>
+  <div class="skai-post">
 
-  <article class="skai-post">
+    <!-- ORB LAYER -->
+    <div class="orb-layer">
+      <div class="orb orb-a"></div>
+      <div class="orb orb-b"></div>
+      <div class="orb orb-c"></div>
+      <div class="orb orb-d"></div>
+      <div class="orb orb-e"></div>
+    </div>
 
     <!-- HERO -->
     <section class="post-hero">
@@ -53,6 +53,9 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
               </>
             )}
           </p>
+          <p class="hero-credit">
+            <em>Written with the editorial assistance of Claude (Anthropic).</em>
+          </p>
         </div>
 
         {frontmatter.heroIllustration && (
@@ -72,11 +75,11 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
 
     <!-- GOLD DIVIDER -->
     <svg class="gold-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 24 Q180 4 360 24 T720 24 T1080 24 T1440 24" fill="none" stroke="rgba(200,164,90,0.35)" stroke-width="1"/>
-      <path d="M0 32 Q240 48 480 28 T960 32 T1440 28" fill="none" stroke="rgba(226,192,122,0.15)" stroke-width="0.75"/>
-      <circle cx="360" cy="24" r="3" fill="rgba(200,164,90,0.5)"/>
-      <circle cx="720" cy="24" r="2" fill="rgba(200,164,90,0.4)"/>
-      <circle cx="1080" cy="24" r="3" fill="rgba(200,164,90,0.5)"/>
+      <path d="M0 24 Q180 4 360 24 T720 24 T1080 24 T1440 24" fill="none" stroke="rgba(156,122,62,0.45)" stroke-width="1"/>
+      <path d="M0 32 Q240 48 480 28 T960 32 T1440 28" fill="none" stroke="rgba(156,122,62,0.2)" stroke-width="0.75"/>
+      <circle cx="360" cy="24" r="3" fill="rgba(156,122,62,0.55)"/>
+      <circle cx="720" cy="24" r="2" fill="rgba(156,122,62,0.45)"/>
+      <circle cx="1080" cy="24" r="3" fill="rgba(156,122,62,0.55)"/>
     </svg>
 
     <!-- POST BODY -->
@@ -88,13 +91,13 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
 
     <!-- GOLD DIVIDER -->
     <svg class="gold-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="72" y1="24" x2="400" y2="24" stroke="rgba(200,164,90,0.4)" stroke-width="0.75"/>
-      <circle cx="400" cy="24" r="2.5" fill="none" stroke="rgba(200,164,90,0.5)" stroke-width="1"/>
-      <line x1="406" y1="24" x2="700" y2="24" stroke="rgba(200,164,90,0.2)" stroke-width="0.5" stroke-dasharray="4 6"/>
-      <circle cx="700" cy="24" r="1.5" fill="rgba(200,164,90,0.4)"/>
-      <line x1="706" y1="24" x2="1040" y2="24" stroke="rgba(200,164,90,0.2)" stroke-width="0.5" stroke-dasharray="4 6"/>
-      <circle cx="1040" cy="24" r="2.5" fill="none" stroke="rgba(200,164,90,0.5)" stroke-width="1"/>
-      <line x1="1046" y1="24" x2="1370" y2="24" stroke="rgba(200,164,90,0.4)" stroke-width="0.75"/>
+      <line x1="72" y1="24" x2="400" y2="24" stroke="rgba(156,122,62,0.5)" stroke-width="0.75"/>
+      <circle cx="400" cy="24" r="2.5" fill="none" stroke="rgba(156,122,62,0.55)" stroke-width="1"/>
+      <line x1="406" y1="24" x2="700" y2="24" stroke="rgba(156,122,62,0.25)" stroke-width="0.5" stroke-dasharray="4 6"/>
+      <circle cx="700" cy="24" r="1.5" fill="rgba(156,122,62,0.45)"/>
+      <line x1="706" y1="24" x2="1040" y2="24" stroke="rgba(156,122,62,0.25)" stroke-width="0.5" stroke-dasharray="4 6"/>
+      <circle cx="1040" cy="24" r="2.5" fill="none" stroke="rgba(156,122,62,0.55)" stroke-width="1"/>
+      <line x1="1046" y1="24" x2="1370" y2="24" stroke="rgba(156,122,62,0.5)" stroke-width="0.75"/>
     </svg>
 
     <!-- NEXT POST -->
@@ -109,12 +112,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
       </aside>
     )}
 
-    <!-- ACKNOWLEDGMENT -->
-    <p class="acknowledgment">
-      Written with the editorial assistance of Claude (Anthropic).
-    </p>
-
-  </article>
+  </div>
 
 </Layout>
 
@@ -141,10 +139,28 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   }
 </script>
 
+<!-- Cream surface — scoped to .skai-post only -->
+<style is:global>
+  .skai-post {
+    --cream-bg: #f5f0e8;
+    --ink: #2c3a22;
+    --ink-muted: rgba(44, 58, 34, 0.68);
+    --ink-subtle: rgba(44, 58, 34, 0.5);
+    --ink-whisper: rgba(44, 58, 34, 0.35);
+    --brown-gold: #9c7a3e;
+    --border-soft: rgba(44, 58, 34, 0.15);
+    --border-whisper: rgba(156, 122, 62, 0.25);
+    background: var(--cream-bg);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+</style>
+
 <style>
-  /* ─── ORB LAYER ─── */
+  /* ─── ORB LAYER (olive + gold tints on cream) ─── */
   .orb-layer {
-    position: fixed;
+    position: absolute;
     inset: 0;
     pointer-events: none;
     z-index: 0;
@@ -155,39 +171,33 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     border-radius: 50%;
   }
   .orb-a {
-    width: 300px; height: 300px; top: 10vh; left: 5vw;
-    background: radial-gradient(circle, rgba(200,164,90,0.14) 0%, transparent 70%);
+    width: 300px; height: 300px; top: 8vh; left: 4vw;
+    background: radial-gradient(circle, rgba(44, 58, 34, 0.08) 0%, transparent 70%);
     animation: floatOrb 9s ease-in-out infinite;
   }
   .orb-b {
-    width: 200px; height: 200px; top: 35vh; right: 6vw;
-    background: radial-gradient(circle, rgba(226,192,122,0.18) 0%, transparent 70%);
+    width: 200px; height: 200px; top: 30vh; right: 5vw;
+    background: radial-gradient(circle, rgba(156, 122, 62, 0.12) 0%, transparent 70%);
     animation: floatOrb 12s ease-in-out 1.5s infinite;
   }
   .orb-c {
-    width: 140px; height: 140px; top: 60vh; left: 20vw;
-    background: radial-gradient(circle, rgba(200,164,90,0.20) 0%, transparent 70%);
+    width: 140px; height: 140px; top: 58vh; left: 18vw;
+    background: radial-gradient(circle, rgba(44, 58, 34, 0.07) 0%, transparent 70%);
     animation: floatOrb 7s ease-in-out 3s infinite;
   }
   .orb-d {
-    width: 90px; height: 90px; top: 75vh; right: 25vw;
-    background: radial-gradient(circle, rgba(226,192,122,0.22) 0%, transparent 70%);
+    width: 90px; height: 90px; top: 72vh; right: 22vw;
+    background: radial-gradient(circle, rgba(156, 122, 62, 0.14) 0%, transparent 70%);
     animation: floatOrb 10s ease-in-out 0.8s infinite;
   }
   .orb-e {
-    width: 240px; height: 240px; bottom: 10vh; right: 4vw;
-    background: radial-gradient(circle, rgba(200,164,90,0.12) 0%, transparent 70%);
+    width: 240px; height: 240px; bottom: 6vh; right: 3vw;
+    background: radial-gradient(circle, rgba(44, 58, 34, 0.06) 0%, transparent 70%);
     animation: floatOrb 14s ease-in-out 2s infinite;
   }
   @keyframes floatOrb {
     0%, 100% { transform: translateY(0) scale(1); }
     50% { transform: translateY(-30px) scale(1.06); }
-  }
-
-  /* ─── POST SHELL ─── */
-  .skai-post {
-    position: relative;
-    z-index: 1;
   }
 
   /* ─── HERO ─── */
@@ -206,7 +216,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     font-style: italic;
     font-size: clamp(120px, 20vw, 260px);
     color: transparent;
-    -webkit-text-stroke: 1px rgba(200,164,90,0.10);
+    -webkit-text-stroke: 1px rgba(44, 58, 34, 0.12);
     pointer-events: none;
     user-select: none;
     line-height: 1;
@@ -232,11 +242,11 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
 
   .hero-label {
     font-family: var(--font-body);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 11px;
     letter-spacing: 0.5em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: #9c7a3e;
     margin-bottom: 28px;
     opacity: 0;
     animation: fadeUp 0.9s ease 0.1s forwards;
@@ -252,14 +262,14 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     font-size: clamp(44px, 7vw, 96px);
     line-height: 1.0;
     letter-spacing: -0.02em;
-    color: var(--cream);
-    margin: 0 0 32px 0;
+    color: #2c3a22;
+    margin: 0 0 24px 0;
     opacity: 0;
     animation: fadeUp 0.9s ease 0.25s forwards;
   }
   .hero-title :global(em) {
     font-style: italic;
-    color: var(--gold-light);
+    color: #9c7a3e;
   }
 
   .hero-byline {
@@ -268,8 +278,8 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     font-size: 13px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--text-muted);
-    margin: 0;
+    color: rgba(44, 58, 34, 0.68);
+    margin: 0 0 8px 0;
     opacity: 0;
     animation: fadeUp 0.9s ease 0.45s forwards;
   }
@@ -278,13 +288,25 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     opacity: 0.5;
   }
 
+  .hero-credit {
+    font-family: var(--font-display);
+    color: rgba(44, 58, 34, 0.5);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.55s forwards;
+  }
+  .hero-credit em {
+    font-style: italic;
+  }
+
   /* ─── HERO ILLUSTRATION ─── */
   .hero-illustration {
     flex-shrink: 0;
     width: 480px;
     max-width: 40vw;
-    filter: drop-shadow(0 0 50px rgba(200,164,90,0.3));
-    animation: illuFloat 7s ease-in-out infinite;
+    filter: drop-shadow(0 0 45px rgba(156, 122, 62, 0.25));
     opacity: 0;
     animation: fadeIn 1s ease 0.5s forwards, illuFloat 7s ease-in-out 1.5s infinite;
   }
@@ -302,7 +324,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     font-family: var(--font-display);
     font-style: italic;
     text-align: center;
-    color: var(--text-muted);
+    color: rgba(44, 58, 34, 0.65);
     font-size: 15px;
     line-height: 1.5;
     max-width: 640px;
@@ -337,21 +359,21 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
 
   /* ─── NEXT POST ─── */
   .next-post {
-    padding: 56px 72px;
+    padding: 40px 72px 96px;
     max-width: 900px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
   }
   .next-post-inner {
-    border: 1px solid rgba(200, 164, 90, 0.18);
+    border: 1px solid rgba(156, 122, 62, 0.25);
     padding: 40px 44px;
-    background: rgba(200, 164, 90, 0.04);
+    background: rgba(44, 58, 34, 0.03);
     transition: background 0.3s, border-color 0.3s;
   }
   .next-post-inner:hover {
-    background: rgba(200, 164, 90, 0.08);
-    border-color: rgba(200, 164, 90, 0.35);
+    background: rgba(44, 58, 34, 0.05);
+    border-color: rgba(156, 122, 62, 0.45);
   }
   .next-post-label {
     font-family: var(--font-body);
@@ -359,12 +381,12 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     font-size: 10px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: #9c7a3e;
     margin: 0 0 12px 0;
   }
   .next-post-link {
     font-family: var(--font-display);
-    color: var(--cream);
+    color: #2c3a22;
     font-size: clamp(20px, 2.4vw, 28px);
     font-weight: 500;
     line-height: 1.2;
@@ -373,27 +395,15 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     transition: color 0.2s;
   }
   .next-post-link:hover {
-    color: var(--gold-light);
+    color: #9c7a3e;
   }
   .next-post-link .arrow {
-    color: var(--gold);
+    color: #9c7a3e;
     margin-left: 8px;
     transition: margin-left 0.2s;
   }
   .next-post-link:hover .arrow {
     margin-left: 16px;
-  }
-
-  /* ─── ACKNOWLEDGMENT ─── */
-  .acknowledgment {
-    font-family: var(--font-display);
-    font-style: italic;
-    text-align: center;
-    color: rgba(245, 240, 232, 0.4);
-    font-size: 14px;
-    padding: 32px 24px 96px;
-    position: relative;
-    z-index: 1;
   }
 
   /* ─── ANIMATIONS ─── */
@@ -439,13 +449,10 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
       padding: 32px 24px 56px;
     }
     .next-post {
-      padding: 40px 24px;
+      padding: 32px 24px 72px;
     }
     .next-post-inner {
       padding: 28px 24px;
-    }
-    .acknowledgment {
-      padding: 24px 24px 72px;
     }
   }
 
@@ -457,6 +464,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     .hero-label,
     .hero-title,
     .hero-byline,
+    .hero-credit,
     .hero-ghost {
       opacity: 1;
       animation: none;
@@ -468,11 +476,11 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   }
 </style>
 
-<!-- ─── PROSE (markdown content on olive) ─── -->
+<!-- ─── PROSE (markdown content on cream) ─── -->
 <style is:global>
   .skai-post .prose h2 {
     font-family: var(--font-display);
-    color: var(--cream);
+    color: #2c3a22;
     font-size: clamp(28px, 3.5vw, 40px);
     line-height: 1.15;
     font-weight: 600;
@@ -481,12 +489,12 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   }
   .skai-post .prose h2 em {
     font-style: italic;
-    color: var(--gold-light);
+    color: #9c7a3e;
     font-weight: 600;
   }
   .skai-post .prose h3 {
     font-family: var(--font-display);
-    color: var(--cream);
+    color: #2c3a22;
     font-size: clamp(20px, 2.4vw, 24px);
     line-height: 1.25;
     font-weight: 500;
@@ -495,30 +503,29 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   }
   .skai-post .prose p {
     font-family: var(--font-display);
-    color: var(--text-muted);
+    color: #2c3a22;
     font-size: clamp(18px, 1.7vw, 20px);
-    line-height: 1.85;
+    line-height: 1.8;
     font-weight: 400;
     margin: 0 0 1.25rem 0;
   }
   .skai-post .prose p strong {
     font-weight: 600;
-    color: var(--cream);
   }
   .skai-post .prose em {
     font-style: italic;
-    color: var(--gold-light);
+    color: #9c7a3e;
   }
   .skai-post .prose a {
-    color: var(--cream);
+    color: #2c3a22;
     text-decoration: underline;
-    text-decoration-color: rgba(200, 164, 90, 0.5);
+    text-decoration-color: rgba(156, 122, 62, 0.5);
     text-underline-offset: 3px;
     transition: text-decoration-color 0.2s, color 0.2s;
   }
   .skai-post .prose a:hover {
-    color: var(--gold-light);
-    text-decoration-color: var(--gold-light);
+    color: #9c7a3e;
+    text-decoration-color: #9c7a3e;
   }
 
   /* EYEBROW (above H2) */
@@ -526,7 +533,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     font-family: var(--font-body);
     font-weight: 400;
     font-style: normal;
-    color: var(--gold);
+    color: #9c7a3e;
     font-size: 11px;
     letter-spacing: 0.5em;
     text-transform: uppercase;
@@ -543,7 +550,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
 
   /* PULL-QUOTE */
   .skai-post .prose blockquote {
-    border-left: 2px solid var(--gold);
+    border-left: 2px solid #9c7a3e;
     padding: 0.75rem 0 0.75rem 1.75rem;
     margin: 1.25rem 0 2rem 0;
     border-radius: 0;
@@ -555,19 +562,19 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     font-size: clamp(22px, 2.6vw, 28px);
     line-height: 1.45;
     font-weight: 400;
-    color: var(--gold-light);
+    color: #2c3a22;
     margin: 0;
   }
   .skai-post .prose blockquote p strong {
     font-weight: 500;
-    color: var(--cream);
+    color: #9c7a3e;
     font-style: italic;
   }
 
   /* METRICS BLOCK */
   .skai-post .prose .metrics {
-    border-top: 1px solid rgba(200, 164, 90, 0.18);
-    border-bottom: 1px solid rgba(200, 164, 90, 0.18);
+    border-top: 1px solid rgba(44, 58, 34, 0.15);
+    border-bottom: 1px solid rgba(44, 58, 34, 0.15);
     padding: 2rem 0;
     margin: 2rem 0 2.25rem 0;
     display: grid;
@@ -577,7 +584,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   .skai-post .prose .metric-number {
     font-family: var(--font-display);
     font-weight: 600;
-    color: var(--gold);
+    color: #9c7a3e;
     font-size: clamp(36px, 4vw, 48px);
     line-height: 1;
     margin-bottom: 0.5rem;
@@ -586,7 +593,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   .skai-post .prose .metric-label {
     font-family: var(--font-body);
     font-weight: 500;
-    color: var(--cream);
+    color: #2c3a22;
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -595,7 +602,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   .skai-post .prose .metric-caveat {
     font-family: var(--font-display);
     font-style: italic;
-    color: var(--text-muted);
+    color: rgba(44, 58, 34, 0.65);
     font-size: 14px;
     line-height: 1.4;
   }
