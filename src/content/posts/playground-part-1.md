@@ -10,7 +10,6 @@ readTime: "5 min read"
 heroIllustration:
   url: "/images/playground/part-1-balance.jpg"
   alt: "Dana holding a balance scale, an ornate key on one side and a tangled pile of gears on the other"
-  caption: "The key earned 95% adoption. The gears are everything that could undo it."
 nextPart:
   slug: "playground-part-2"
   label: "Part 2. The stack: seven tools, four days, zero lines of code"
