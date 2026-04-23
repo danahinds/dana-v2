@@ -61,7 +61,7 @@ import Layout from "../../layouts/Layout.astro";
       </div>
       <div class="m-cell">
         <p class="m-val" data-target="85" data-decimals="0">0%</p>
-        <p class="m-sub">Post-event survey</p>
+        <p class="m-sub">Measured under real stress</p>
         <p class="m-lbl">Volunteer satisfaction</p>
       </div>
       <p class="m-note">Results from testing in live environments — where timing, stress, and unpredictability are real.</p>
@@ -89,7 +89,7 @@ import Layout from "../../layouts/Layout.astro";
       </ul>
       <p class="prose-sub">As a result:</p>
       <ul class="cs-list cascade">
-        <li>Clients faced long wait times for essential services</li>
+        <li>Neighbors faced long wait times for essential services</li>
         <li>Many were forced to choose between critical needs</li>
         <li>Volunteer burnout reduced long-term engagement</li>
       </ul>
@@ -99,7 +99,7 @@ import Layout from "../../layouts/Layout.astro";
     <section class="cs-section cs-section-alt reveal stagger-children">
       <p class="eyebrow">Goal</p>
       <h2 class="section-title">Who we designed <em>for</em></h2>
-      <p class="prose">Design a system that improves operations, supports volunteers, and enhances the client experience.</p>
+      <p class="prose">Design a system that improves operations, supports volunteers, and enhances the neighbor experience.</p>
       <div class="goal-cols stagger-cards">
         <div class="goal-col-card gold-top">
           <p class="goal-col-head">Operational Teams</p>
@@ -114,11 +114,11 @@ import Layout from "../../layouts/Layout.astro";
           <ul class="goal-col-list">
             <li>Simplify workflows</li>
             <li>Reduce on-shift stress</li>
-            <li>Focus on client interaction</li>
+            <li>Focus on neighbor interaction</li>
           </ul>
         </div>
         <div class="goal-col-card gold-top">
-          <p class="goal-col-head">Clients</p>
+          <p class="goal-col-head">Neighbors</p>
           <ul class="goal-col-list">
             <li>Reduce wait times</li>
             <li>Multiple services per visit</li>
@@ -191,7 +191,7 @@ import Layout from "../../layouts/Layout.astro";
 
       <div class="decision-block stagger-card">
         <p class="decision-title">Demand-Driven System Design</p>
-        <p class="decision-body">Prioritized capturing client needs over traditional inventory tracking to understand demand more accurately.</p>
+        <p class="decision-body">Prioritized capturing neighbor needs over traditional inventory tracking to understand demand more accurately.</p>
         <div class="decision-row"><span class="decision-key">Tradeoff</span> Limited early inventory visibility</div>
         <div class="decision-row"><span class="decision-key">Outcome</span> More accurate understanding of demand and better resource planning</div>
       </div>
@@ -213,8 +213,8 @@ import Layout from "../../layouts/Layout.astro";
       <p class="prose">A system designed around real-world workflows, not theoretical ones.</p>
       <div class="solution-grid solution-single stagger-cards">
         <div class="sol-card">
-          <p class="sol-name">Client Intake System</p>
-          <p class="sol-desc">Captures and structures client needs at entry</p>
+          <p class="sol-name">Neighbor Intake System</p>
+          <p class="sol-desc">Captures and structures neighbor needs at entry</p>
         </div>
         <div class="sol-card">
           <p class="sol-name">Queue Management</p>
@@ -272,7 +272,7 @@ import Layout from "../../layouts/Layout.astro";
       <div class="learn-block stagger-card">
         <p class="learn-num">03</p>
         <p class="learn-head">Flexible systems create room for unexpected scale</p>
-        <p class="learn-body">When we implemented the welcome desk workflow, the goal was to enforce sequential client intake. What we discovered was that the underlying code was flexible enough to support two intake specialists running simultaneously — a capability we hadn't explicitly designed for, but that expanded throughput without any rework.</p>
+        <p class="learn-body">When we implemented the welcome desk workflow, the goal was to enforce sequential neighbor intake. What we discovered was that the underlying code was flexible enough to support two intake specialists running simultaneously — a capability we hadn't explicitly designed for, but that expanded throughput without any rework.</p>
       </div>
     </section>
 
@@ -340,7 +340,7 @@ import Layout from "../../layouts/Layout.astro";
         <div class="tl-detail-panel" data-panel="3">
           <p class="tl-detail-phase">Future</p>
           <p class="tl-detail-head">AI-powered volunteer support and training</p>
-          <p class="tl-detail-body">Intake is one of the most sensitive volunteer roles. As SERVE513 scales, an AI-powered system will help volunteers get up to speed quickly — providing in-the-moment guidance to help them phrase questions with sensitivity and confidence, protecting the dignity of every client interaction.</p>
+          <p class="tl-detail-body">Intake is one of the most sensitive volunteer roles. As SERVE513 scales, an AI-powered system will help volunteers get up to speed quickly — providing in-the-moment guidance to help them phrase questions with sensitivity and confidence, protecting the dignity of every neighbor interaction.</p>
         </div>
       </div>
       <p class="tl-hint">Tap a node to explore</p>
@@ -501,7 +501,7 @@ import Layout from "../../layouts/Layout.astro";
 
   /* ─── BODY ─── */
   .cs-body {
-    max-width: 820px;
+    max-width: 920px;
     margin: 0 auto;
     padding: 0 72px;
     position: relative;
@@ -513,6 +513,8 @@ import Layout from "../../layouts/Layout.astro";
     padding: 140px 0 60px;
     border-bottom: 1px solid var(--border);
     margin-bottom: 60px;
+    background: radial-gradient(ellipse at 20% 50%, rgba(200,164,90,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(42,33,24,0.3) 0%, transparent 50%);
   }
 
   .hero-fade {
@@ -727,7 +729,7 @@ import Layout from "../../layouts/Layout.astro";
 
   /* ─── SECTIONS ─── */
   .cs-section {
-    margin-bottom: 64px;
+    margin-bottom: 80px;
   }
 
   .cs-section-alt {
