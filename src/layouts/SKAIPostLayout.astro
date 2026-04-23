@@ -33,6 +33,42 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     <section class="post-hero">
       {partLabel && <div class="hero-ghost">{partLabel}</div>}
 
+      <!-- Gold sprig decorations, scoped to the hero -->
+      <svg class="hero-sprigs" viewBox="0 0 1400 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" role="presentation">
+        <!-- Top-left sprig -->
+        <g transform="translate(90,80) rotate(-18) scale(1.1)">
+          <path d="M0,0 C20,-28 55,-70 92,-108 C118,-134 146,-150 184,-158" fill="none" stroke="#9c7a3e" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>
+          <ellipse cx="38" cy="-46" rx="7" ry="4" transform="rotate(-30,38,-46)" fill="none" stroke="#9c7a3e" stroke-width="1" opacity="0.55"/>
+          <ellipse cx="48" cy="-40" rx="7" ry="4" transform="rotate(-10,48,-40)" fill="none" stroke="#9c7a3e" stroke-width="1" opacity="0.55"/>
+          <ellipse cx="76" cy="-86" rx="7" ry="4" transform="rotate(-38,76,-86)" fill="none" stroke="#9c7a3e" stroke-width="1" opacity="0.55"/>
+          <ellipse cx="90" cy="-80" rx="7" ry="4" transform="rotate(-14,90,-80)" fill="none" stroke="#9c7a3e" stroke-width="1" opacity="0.55"/>
+          <ellipse cx="124" cy="-122" rx="7" ry="4" transform="rotate(-44,124,-122)" fill="none" stroke="#9c7a3e" stroke-width="1" opacity="0.55"/>
+        </g>
+
+        <!-- Top-right sprig, mirrored, near ghost numeral -->
+        <g transform="translate(1340,90) rotate(165) scale(0.95)">
+          <path d="M0,0 C20,-28 55,-70 92,-108 C118,-134 146,-150 184,-158" fill="none" stroke="#9c7a3e" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
+          <ellipse cx="38" cy="-46" rx="7" ry="4" transform="rotate(-30,38,-46)" fill="none" stroke="#9c7a3e" stroke-width="1" opacity="0.5"/>
+          <ellipse cx="76" cy="-86" rx="7" ry="4" transform="rotate(-38,76,-86)" fill="none" stroke="#9c7a3e" stroke-width="1" opacity="0.5"/>
+          <ellipse cx="90" cy="-80" rx="7" ry="4" transform="rotate(-14,90,-80)" fill="none" stroke="#9c7a3e" stroke-width="1" opacity="0.5"/>
+          <ellipse cx="124" cy="-122" rx="7" ry="4" transform="rotate(-44,124,-122)" fill="none" stroke="#9c7a3e" stroke-width="1" opacity="0.5"/>
+        </g>
+
+        <!-- Small flourish, bottom-left of hero -->
+        <g transform="translate(60,520) rotate(-28) scale(0.75)">
+          <path d="M0,0 C20,-28 55,-70 92,-108" fill="none" stroke="#9c7a3e" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+          <ellipse cx="38" cy="-46" rx="6" ry="3.5" transform="rotate(-30,38,-46)" fill="none" stroke="#9c7a3e" stroke-width="0.9" opacity="0.4"/>
+          <ellipse cx="76" cy="-86" rx="6" ry="3.5" transform="rotate(-38,76,-86)" fill="none" stroke="#9c7a3e" stroke-width="0.9" opacity="0.4"/>
+        </g>
+
+        <!-- Scattered small dots -->
+        <circle cx="220" cy="180" r="1.8" fill="#9c7a3e" opacity="0.35"/>
+        <circle cx="1180" cy="220" r="1.6" fill="#9c7a3e" opacity="0.3"/>
+        <circle cx="300" cy="440" r="1.4" fill="#9c7a3e" opacity="0.28"/>
+        <circle cx="1100" cy="480" r="1.4" fill="#9c7a3e" opacity="0.28"/>
+      </svg>
+
+
       <div class="hero-content">
         <div class="hero-text">
           {frontmatter.series && (
@@ -205,6 +241,16 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     padding: 160px 72px 40px;
     position: relative;
     overflow: hidden;
+  }
+  .hero-sprigs {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    animation: fadeIn 1.8s ease 0.6s forwards;
   }
 
   .hero-ghost {
