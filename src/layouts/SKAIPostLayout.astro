@@ -270,6 +270,81 @@ const plainTitle = frontmatter.title.replace(/<[^>]+>/g, "");
       padding: 1.25rem 1.25rem 2rem;
     }
   }
+
+  /* ─── DESKTOP — widen reading column and elements ─── */
+  @media (min-width: 900px) {
+    .post-content {
+      max-width: 860px;
+      padding: 4rem 3rem 2.5rem;
+    }
+    .post-title {
+      font-size: 56px;
+      line-height: 1.05;
+      letter-spacing: -0.8px;
+      margin-bottom: 1.5rem;
+    }
+    .byline {
+      font-size: 14px;
+      margin-bottom: 3rem;
+    }
+    .hero-illustration {
+      margin-bottom: 3rem;
+    }
+    .masthead-inner {
+      max-width: 860px;
+    }
+    .next-post {
+      padding: 2.5rem 3rem;
+    }
+    .next-post-inner {
+      max-width: 860px;
+    }
+    .next-post-link {
+      font-size: 26px;
+    }
+    .acknowledgment {
+      font-size: 15px;
+      padding: 2rem 3rem 3.5rem;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .post-content {
+      max-width: 1000px;
+      padding: 5rem 4rem 3rem;
+    }
+    .post-title {
+      font-size: 68px;
+      letter-spacing: -1px;
+    }
+    .masthead-inner,
+    .next-post-inner {
+      max-width: 1000px;
+    }
+    .hero-illustration {
+      margin-left: -60px;
+      margin-right: -60px;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .post-content {
+      max-width: 1160px;
+      padding: 6rem 5rem 3.5rem;
+    }
+    .post-title {
+      font-size: 80px;
+      letter-spacing: -1.5px;
+    }
+    .masthead-inner,
+    .next-post-inner {
+      max-width: 1160px;
+    }
+    .hero-illustration {
+      margin-left: -80px;
+      margin-right: -80px;
+    }
+  }
 </style>
 
 <!-- Prose styles applied to markdown content via .prose — global so they reach rendered content -->
@@ -433,6 +508,95 @@ const plainTitle = frontmatter.title.replace(/<[^>]+>/g, "");
     }
     .prose .metric-caveat {
       font-size: 12px;
+    }
+  }
+
+  /* ─── DESKTOP — larger prose on bigger screens ─── */
+  @media (min-width: 900px) {
+    .prose h2 {
+      font-size: 34px;
+      line-height: 1.15;
+      margin: 2.75rem 0 1.5rem 0;
+    }
+    .prose h3 {
+      font-size: 24px;
+      margin: 2rem 0 1rem 0;
+    }
+    .prose p {
+      font-size: 21px;
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+    .prose .eyebrow {
+      font-size: 17px;
+      margin: 3.25rem 0 0.5rem 0;
+    }
+    .prose blockquote {
+      padding: 0.75rem 0 0.75rem 1.5rem;
+      margin: 1rem 0 2rem 0;
+    }
+    .prose blockquote p {
+      font-size: 26px;
+      line-height: 1.45;
+    }
+    .prose .metrics {
+      padding: 2rem 0;
+      margin: 2rem 0 2.25rem 0;
+      gap: 1.5rem;
+    }
+    .prose .metric-number {
+      font-size: 44px;
+    }
+    .prose .metric-label {
+      font-size: 12px;
+    }
+    .prose .metric-caveat {
+      font-size: 14px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .prose h2 {
+      font-size: 42px;
+    }
+    .prose h3 {
+      font-size: 26px;
+    }
+    .prose p {
+      font-size: 22px;
+      line-height: 1.7;
+    }
+    .prose blockquote p {
+      font-size: 30px;
+    }
+    /* Metrics break out wider than body on wide screens */
+    .prose .metrics {
+      margin-left: -60px;
+      margin-right: -60px;
+      padding: 2.5rem 0;
+    }
+    .prose .metric-number {
+      font-size: 52px;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .prose h2 {
+      font-size: 48px;
+    }
+    .prose p {
+      font-size: 23px;
+      line-height: 1.75;
+    }
+    .prose blockquote p {
+      font-size: 34px;
+    }
+    .prose .metrics {
+      margin-left: -80px;
+      margin-right: -80px;
+    }
+    .prose .metric-number {
+      font-size: 60px;
     }
   }
 </style>
