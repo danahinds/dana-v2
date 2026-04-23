@@ -37,11 +37,18 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
         <div class="hero-text">
           {frontmatter.series && (
             <p class="hero-label">
-              {frontmatter.series}
-              {frontmatter.part && <> <span class="divider">·</span> Part {frontmatter.part}</>}
+              {frontmatter.part && <span class="hero-part-num">{partLabel}</span>}
+              <span class="hero-label-text">
+                {frontmatter.series}
+                {frontmatter.part && <> <span class="divider">·</span> Part {frontmatter.part}</>}
+              </span>
             </p>
           )}
           <h1 class="hero-title" set:html={frontmatter.title} />
+          {frontmatter.description && (
+            <p class="hero-deck">{frontmatter.description}</p>
+          )}
+          <div class="hero-rule"></div>
           <p class="hero-byline">
             By {frontmatter.author}
             <span class="divider">·</span>
@@ -84,8 +91,10 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
 
     <!-- POST BODY -->
     <section class="post-body reveal">
-      <div class="prose">
-        <slot />
+      <div class="post-body-inner">
+        <div class="prose">
+          <slot />
+        </div>
       </div>
     </section>
 
@@ -103,11 +112,13 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     <!-- NEXT POST -->
     {frontmatter.nextPart && (
       <aside class="next-post">
-        <div class="next-post-inner">
-          <p class="next-post-label">Next in the series</p>
-          <a href={`/posts/${frontmatter.nextPart.slug}`} class="next-post-link">
-            {frontmatter.nextPart.label} <span class="arrow">→</span>
-          </a>
+        <div class="next-post-outer">
+          <div class="next-post-inner">
+            <p class="next-post-label">Next in the series</p>
+            <a href={`/posts/${frontmatter.nextPart.slug}`} class="next-post-link">
+              {frontmatter.nextPart.label} <span class="arrow">→</span>
+            </a>
+          </div>
         </div>
       </aside>
     )}
@@ -241,15 +252,34 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   }
 
   .hero-label {
+    display: flex;
+    align-items: center;
+    gap: 20px;
     font-family: var(--font-body);
     font-weight: 400;
     font-size: 11px;
-    letter-spacing: 0.5em;
+    letter-spacing: 0.45em;
     text-transform: uppercase;
     color: #9c7a3e;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
     opacity: 0;
     animation: fadeUp 0.9s ease 0.1s forwards;
+  }
+  .hero-part-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    color: #9c7a3e;
+    text-transform: none;
+    line-height: 1;
+    padding-right: 18px;
+    border-right: 1px solid rgba(156, 122, 62, 0.4);
+  }
+  .hero-label-text {
+    flex: 1;
+    min-width: 0;
   }
   .hero-label .divider {
     margin: 0 8px;
@@ -258,30 +288,53 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
 
   .hero-title {
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: clamp(44px, 7vw, 96px);
-    line-height: 1.0;
-    letter-spacing: -0.02em;
+    font-weight: 500;
+    font-size: clamp(44px, 7.5vw, 108px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
     color: #2c3a22;
-    margin: 0 0 24px 0;
+    margin: 0 0 28px 0;
     opacity: 0;
     animation: fadeUp 0.9s ease 0.25s forwards;
   }
   .hero-title :global(em) {
     font-style: italic;
     color: #9c7a3e;
+    font-weight: 500;
+  }
+
+  .hero-deck {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(18px, 2.2vw, 26px);
+    line-height: 1.45;
+    color: rgba(44, 58, 34, 0.72);
+    margin: 0 0 36px 0;
+    max-width: 640px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.4s forwards;
+  }
+
+  .hero-rule {
+    width: 56px;
+    height: 2px;
+    background: #9c7a3e;
+    margin: 0 0 28px 0;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.55s forwards;
   }
 
   .hero-byline {
     font-family: var(--font-body);
     font-weight: 400;
-    font-size: 13px;
-    letter-spacing: 0.12em;
+    font-size: 12px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(44, 58, 34, 0.68);
-    margin: 0 0 8px 0;
+    color: rgba(44, 58, 34, 0.7);
+    margin: 0 0 6px 0;
     opacity: 0;
-    animation: fadeUp 0.9s ease 0.45s forwards;
+    animation: fadeUp 0.9s ease 0.6s forwards;
   }
   .hero-byline .divider {
     margin: 0 10px;
@@ -295,7 +348,7 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     line-height: 1.5;
     margin: 0;
     opacity: 0;
-    animation: fadeUp 0.9s ease 0.55s forwards;
+    animation: fadeUp 0.9s ease 0.7s forwards;
   }
   .hero-credit em {
     font-style: italic;
@@ -304,16 +357,18 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
   /* ─── HERO ILLUSTRATION ─── */
   .hero-illustration {
     flex-shrink: 0;
-    width: 480px;
-    max-width: 40vw;
-    filter: drop-shadow(0 0 45px rgba(156, 122, 62, 0.25));
+    width: 520px;
+    max-width: 42vw;
     opacity: 0;
     animation: fadeIn 1s ease 0.5s forwards, illuFloat 7s ease-in-out 1.5s infinite;
   }
   .hero-illustration img {
     width: 100%;
     display: block;
-    border-radius: 4px;
+    /* Feather the rectangular cream background into the page cream */
+    -webkit-mask-image: radial-gradient(ellipse 85% 90% at center, #000 55%, rgba(0,0,0,0.85) 70%, transparent 98%);
+    mask-image: radial-gradient(ellipse 85% 90% at center, #000 55%, rgba(0,0,0,0.85) 70%, transparent 98%);
+    mix-blend-mode: multiply;
   }
   @keyframes illuFloat {
     0%, 100% { transform: translateY(0); }
@@ -351,21 +406,27 @@ const partLabel = frontmatter.part ? String(frontmatter.part).padStart(2, "0") :
     position: relative;
     z-index: 1;
   }
-
+  .post-body-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
   .prose {
     max-width: 720px;
-    margin: 0 auto;
+    /* no margin:auto — left-aligned with the hero column */
   }
 
   /* ─── NEXT POST ─── */
   .next-post {
     padding: 40px 72px 96px;
-    max-width: 900px;
-    margin: 0 auto;
     position: relative;
     z-index: 1;
   }
+  .next-post-outer {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
   .next-post-inner {
+    max-width: 720px;
     border: 1px solid rgba(156, 122, 62, 0.25);
     padding: 40px 44px;
     background: rgba(44, 58, 34, 0.03);
