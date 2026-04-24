@@ -1,0 +1,58 @@
+---
+// Decorative leaf-vein background for case study cards on /work.
+// Used twice on the Work page; extracted to avoid ~45 lines of SVG duplication.
+---
+
+<svg class="cs-leaf-bg" viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <g opacity="0.2" stroke="#c8a45a" fill="none">
+    <path d="M-30,30 C80,0 200,50 320,20" stroke-width="1.2"/>
+    <path d="M-30,30 C60,55 140,80 200,72" stroke-width="0.5"/>
+    <path d="M10,32 C50,22 100,38 150,28" stroke-width="0.4"/>
+    <path d="M60,28 C100,18 160,34 210,24" stroke-width="0.4"/>
+    <path d="M120,26 C160,14 220,30 275,18" stroke-width="0.4"/>
+    <path d="M180,24 C220,12 280,28 330,16" stroke-width="0.35"/>
+    <path d="M240,22 C280,10 340,24 390,12" stroke-width="0.35"/>
+  </g>
+  <g opacity="0.17" stroke="#e2c07a" fill="none">
+    <path d="M520,-20 C540,80 570,180 600,260" stroke-width="1.1"/>
+    <path d="M520,-20 C530,80 535,180 540,260" stroke-width="0.5"/>
+    <path d="M522,20 C548,30 566,50 578,75" stroke-width="0.38"/>
+    <path d="M524,65 C550,76 568,96 580,122" stroke-width="0.38"/>
+    <path d="M526,110 C552,122 570,142 582,168" stroke-width="0.38"/>
+    <path d="M528,155 C554,168 572,188 584,214" stroke-width="0.35"/>
+    <path d="M530,200 C556,214 574,234 586,260" stroke-width="0.35"/>
+  </g>
+  <g opacity="0.15" stroke="#c8a45a" fill="none">
+    <path d="M-20,420 C100,385 240,405 380,370" stroke-width="1.1"/>
+    <path d="M-20,420 C80,435 180,445 280,440" stroke-width="0.5"/>
+    <path d="M20,418 C70,404 130,414 180,400" stroke-width="0.38"/>
+    <path d="M80,414 C130,400 190,410 240,396" stroke-width="0.38"/>
+    <path d="M150,410 C200,396 260,406 310,392" stroke-width="0.35"/>
+    <path d="M220,406 C270,392 330,402 380,388" stroke-width="0.35"/>
+  </g>
+  <g opacity="0.11" stroke="#e2c07a" fill="none">
+    <path d="M600,220 C480,245 340,225 180,260" stroke-width="1"/>
+    <path d="M600,220 C480,265 340,268 180,300" stroke-width="0.5"/>
+    <path d="M560,222 C520,236 470,230 420,244" stroke-width="0.35"/>
+    <path d="M500,228 C460,242 410,236 360,250" stroke-width="0.35"/>
+    <path d="M430,234 C390,248 340,242 290,256" stroke-width="0.32"/>
+    <path d="M360,240 C320,254 270,248 220,262" stroke-width="0.32"/>
+  </g>
+  <g opacity="0.13" stroke="#c8a45a" fill="none">
+    <path d="M600,360 C520,330 420,350 320,320" stroke-width="1"/>
+    <path d="M600,360 C520,375 440,380 360,375" stroke-width="0.5"/>
+    <path d="M570,358 C540,344 500,352 460,338" stroke-width="0.36"/>
+    <path d="M520,354 C490,340 450,348 410,334" stroke-width="0.36"/>
+    <path d="M460,350 C430,336 390,344 350,330" stroke-width="0.32"/>
+  </g>
+</svg>
+
+<style>
+  .cs-leaf-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+</style>

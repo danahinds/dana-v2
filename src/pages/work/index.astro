@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
 ---
 
 <Layout pageTitle="My Work — Dana Sandy">
@@ -29,54 +30,12 @@ import Layout from "../../layouts/Layout.astro";
     <circle cx="1080" cy="24" r="3" fill="rgba(200,164,90,0.5)"/>
   </svg>
 
-  <!-- CASE STUDY CARD -->
+  <!-- CASE STUDY CARD — SERVE513 -->
   <div class="cs-outer reveal">
     <div class="cs-glow-a"></div>
     <div class="cs-glow-b"></div>
 
-    <svg class="cs-leaf-bg" viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <g opacity="0.2" stroke="#c8a45a" fill="none">
-        <path d="M-30,30 C80,0 200,50 320,20" stroke-width="1.2"/>
-        <path d="M-30,30 C60,55 140,80 200,72" stroke-width="0.5"/>
-        <path d="M10,32 C50,22 100,38 150,28" stroke-width="0.4"/>
-        <path d="M60,28 C100,18 160,34 210,24" stroke-width="0.4"/>
-        <path d="M120,26 C160,14 220,30 275,18" stroke-width="0.4"/>
-        <path d="M180,24 C220,12 280,28 330,16" stroke-width="0.35"/>
-        <path d="M240,22 C280,10 340,24 390,12" stroke-width="0.35"/>
-      </g>
-      <g opacity="0.17" stroke="#e2c07a" fill="none">
-        <path d="M520,-20 C540,80 570,180 600,260" stroke-width="1.1"/>
-        <path d="M520,-20 C530,80 535,180 540,260" stroke-width="0.5"/>
-        <path d="M522,20 C548,30 566,50 578,75" stroke-width="0.38"/>
-        <path d="M524,65 C550,76 568,96 580,122" stroke-width="0.38"/>
-        <path d="M526,110 C552,122 570,142 582,168" stroke-width="0.38"/>
-        <path d="M528,155 C554,168 572,188 584,214" stroke-width="0.35"/>
-        <path d="M530,200 C556,214 574,234 586,260" stroke-width="0.35"/>
-      </g>
-      <g opacity="0.15" stroke="#c8a45a" fill="none">
-        <path d="M-20,420 C100,385 240,405 380,370" stroke-width="1.1"/>
-        <path d="M-20,420 C80,435 180,445 280,440" stroke-width="0.5"/>
-        <path d="M20,418 C70,404 130,414 180,400" stroke-width="0.38"/>
-        <path d="M80,414 C130,400 190,410 240,396" stroke-width="0.38"/>
-        <path d="M150,410 C200,396 260,406 310,392" stroke-width="0.35"/>
-        <path d="M220,406 C270,392 330,402 380,388" stroke-width="0.35"/>
-      </g>
-      <g opacity="0.11" stroke="#e2c07a" fill="none">
-        <path d="M600,220 C480,245 340,225 180,260" stroke-width="1"/>
-        <path d="M600,220 C480,265 340,268 180,300" stroke-width="0.5"/>
-        <path d="M560,222 C520,236 470,230 420,244" stroke-width="0.35"/>
-        <path d="M500,228 C460,242 410,236 360,250" stroke-width="0.35"/>
-        <path d="M430,234 C390,248 340,242 290,256" stroke-width="0.32"/>
-        <path d="M360,240 C320,254 270,248 220,262" stroke-width="0.32"/>
-      </g>
-      <g opacity="0.13" stroke="#c8a45a" fill="none">
-        <path d="M600,360 C520,330 420,350 320,320" stroke-width="1"/>
-        <path d="M600,360 C520,375 440,380 360,375" stroke-width="0.5"/>
-        <path d="M570,358 C540,344 500,352 460,338" stroke-width="0.36"/>
-        <path d="M520,354 C490,340 450,348 410,334" stroke-width="0.36"/>
-        <path d="M460,350 C430,336 390,344 350,330" stroke-width="0.32"/>
-      </g>
-    </svg>
+    <CaseStudyLeaves />
 
     <div class="cs-card-wrap">
       <a href="/work/serve513" class="cs-card">
@@ -98,7 +57,7 @@ import Layout from "../../layouts/Layout.astro";
             </div>
             <div class="cs-metric cs-stat" id="s2">
               <span class="cs-metric-val cs-num" id="n2">0%</span>
-              <div class="cs-before-after cs-spacer-ba" style="visibility:hidden;height:18px;"></div>
+              <div class="cs-before-after cs-spacer-ba"></div>
               <span class="cs-metric-lbl">Volunteer adoption rate</span>
               <span class="cs-stat-context">No training overhead — volunteers used it under real event pressure</span>
             </div>
@@ -130,96 +89,48 @@ import Layout from "../../layouts/Layout.astro";
     <line x1="1046" y1="24" x2="1370" y2="24" stroke="rgba(200,164,90,0.4)" stroke-width="0.75"/>
   </svg>
 
-  <!-- NOT-FOR-PROFIT SECTION -->
-  <section class="work-section reveal">
-    <p class="section-eyebrow">Not-for-Profit</p>
-    <h2 class="section-heading">Say Hello <em>Neighbor</em></h2>
-    <div class="work-grid">
-      <div class="work-detail">
-        <div class="work-stats">
-          <div>
-            <p class="stat-label">Role</p>
-            <p class="stat-value">Founder &amp; Product Lead</p>
-          </div>
-          <div>
-            <p class="stat-label">Focus</p>
-            <p class="stat-value"><em>Community Outreach</em></p>
-          </div>
-          <div>
-            <p class="stat-label">Status</p>
-            <p class="stat-value">Active</p>
-          </div>
-        </div>
-      </div>
-      <div class="work-body">
-        <p>
-          <strong>Say Hello Neighbor</strong> is a not-for-profit initiative focused on
-          bridging the gap between communities and the resources they need. The mission is simple —
-          <span class="hl">meet people where they are and connect them to what matters.</span>
-        </p>
-        <p>
-          From coordinating outreach events to building systems that help volunteers and organizations
-          work together more effectively, Say Hello Neighbor is built on the belief that
-          <strong>showing up is the first step to making change.</strong>
-        </p>
-        <p>
-          The work spans resource coordination, volunteer management, and community engagement —
-          all driven by <span class="hl">empathy, intentional design, and a commitment to serving
-          those who are often overlooked.</span>
-        </p>
-      </div>
-    </div>
-  </section>
+  <!-- CASE STUDY CARD — THE PLAYGROUND -->
+  <div class="cs-outer reveal">
+    <div class="cs-glow-a"></div>
+    <div class="cs-glow-b"></div>
 
-  <!-- GOLD DIVIDER -->
-  <svg class="gold-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 24 Q180 4 360 24 T720 24 T1080 24 T1440 24" fill="none" stroke="rgba(200,164,90,0.35)" stroke-width="1"/>
-    <path d="M0 32 Q240 48 480 28 T960 32 T1440 28" fill="none" stroke="rgba(226,192,122,0.15)" stroke-width="0.75"/>
-    <circle cx="360" cy="24" r="3" fill="rgba(200,164,90,0.5)"/>
-    <circle cx="720" cy="24" r="2" fill="rgba(200,164,90,0.4)"/>
-    <circle cx="1080" cy="24" r="3" fill="rgba(200,164,90,0.5)"/>
-  </svg>
+    <CaseStudyLeaves />
 
-  <!-- CONSULTING SECTION -->
-  <section class="work-section reveal">
-    <p class="section-eyebrow">Consulting</p>
-    <h2 class="section-heading">SALT TPA <em>Outpost</em></h2>
-    <div class="work-grid">
-      <div class="work-detail">
-        <div class="work-stats">
-          <div>
-            <p class="stat-label">Role</p>
-            <p class="stat-value">Product Consultant</p>
+    <div class="cs-card-wrap">
+      <a href="/work/the-playground/" class="cs-card">
+        <div class="cs-card-inner">
+          <p class="section-eyebrow">Case Study · Newly Shipped</p>
+          <h2 class="cs-card-title">The <em>Playground</em></h2>
+          <p class="cs-hook">Testing prototypes shouldn't require a platform. I didn't want integrations, accounts, or setup overhead — I just wanted three steps: upload, share, review. So I built that.</p>
+          <hr class="cs-divider">
+          <div class="cs-metrics">
+            <div class="cs-metric cs-stat">
+              <span class="cs-metric-val">Solo</span>
+              <span class="cs-metric-lbl">Design · Engineering · Product</span>
+              <span class="cs-stat-context">One person, start to ship — the range was the point</span>
+            </div>
+            <div class="cs-metric cs-stat">
+              <span class="cs-metric-val">4 days</span>
+              <span class="cs-metric-lbl">Blank repo to live tool</span>
+              <span class="cs-stat-context">The short timeline shaped every decision</span>
+            </div>
+            <div class="cs-metric cs-stat">
+              <span class="cs-metric-val">Live</span>
+              <span class="cs-metric-lbl">React · Netlify · Clarity</span>
+              <span class="cs-stat-context">Newly shipped — report section shows sample data, real tests pending</span>
+            </div>
           </div>
-          <div>
-            <p class="stat-label">Focus</p>
-            <p class="stat-value"><em>Strategy &amp; Operations</em></p>
-          </div>
-          <div>
-            <p class="stat-label">Status</p>
-            <p class="stat-value">Active</p>
-          </div>
+          <span class="cs-read">Read the Case Study &rarr;</span>
         </div>
-      </div>
-      <div class="work-body">
-        <p>
-          <strong>SALT TPA Outpost</strong> is a consulting engagement where product thinking meets
-          real-world operational challenges. Working closely with the team to
-          <span class="hl">define strategy, streamline processes, and build systems that scale.</span>
-        </p>
-        <p>
-          The work focuses on translating complex business needs into clear, actionable roadmaps —
-          aligning stakeholders, identifying opportunities, and ensuring that
-          <strong>every decision is rooted in purpose and impact.</strong>
-        </p>
-        <p>
-          From discovery and requirements gathering to delivery and iteration,
-          this partnership is about <span class="hl">bringing clarity to complexity
-          and helping organizations move forward with confidence.</span>
-        </p>
-      </div>
+      </a>
     </div>
-  </section>
+
+    <!-- SKAI SERIES TIE-IN -->
+    <p class="cs-series-link">
+      <span class="cs-series-eyebrow">Part 01 of the SKAI Series</span>
+      <a href="/posts/playground-part-1" class="cs-series-anchor">The problem that led to The Playground &rarr;</a>
+    </p>
+  </div>
 
   <!-- CTA -->
   <section class="work-cta-section reveal">
@@ -256,13 +167,18 @@ import Layout from "../../layouts/Layout.astro";
 
           // Trigger count-up when the case study card becomes visible
           if (entry.target.classList.contains('cs-outer')) {
-            const n1 = document.getElementById('n1');
-            const n2 = document.getElementById('n2');
-            const n3 = document.getElementById('n3');
+            const n1 = entry.target.querySelector('#n1');
+            const n2 = entry.target.querySelector('#n2');
+            const n3 = entry.target.querySelector('#n3');
             if (n1 && n2 && n3) {
               countUp(n1, 90, 100, false);
               countUp(n2, 95, 320, false);
               countUp(n3, 17.4, 540, true);
+            } else {
+              // Non-numeric card (e.g. The Playground) — stagger-reveal its stats
+              entry.target.querySelectorAll('.cs-stat').forEach((stat, i) => {
+                setTimeout(() => stat.classList.add('cs-stat-visible'), 100 + i * 140);
+              });
             }
           }
         }
@@ -283,11 +199,6 @@ import Layout from "../../layouts/Layout.astro";
   }
 
   document.addEventListener('astro:page-load', initWorkPage);
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initWorkPage);
-  } else {
-    initWorkPage();
-  }
 </script>
 
 <style>
@@ -409,13 +320,7 @@ import Layout from "../../layouts/Layout.astro";
     z-index: 1;
   }
 
-  /* ─── WORK SECTIONS ─── */
-  .work-section {
-    padding: 80px 72px;
-    position: relative;
-    z-index: 1;
-  }
-
+  /* ─── SHARED ─── */
   .section-eyebrow {
     font-family: var(--font-body);
     font-weight: 400;
@@ -426,79 +331,9 @@ import Layout from "../../layouts/Layout.astro";
     margin-bottom: 20px;
   }
 
-  .section-heading {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: clamp(36px, 5vw, 64px);
-    line-height: 0.92;
-    color: var(--cream);
-    margin-bottom: 48px;
-  }
-
-  .section-heading em {
-    font-style: italic;
-    color: var(--gold-light);
-  }
-
-  .work-grid {
-    display: grid;
-    grid-template-columns: 340px 1fr;
-    gap: 72px;
-  }
-
-  .work-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-
-  .stat-label {
-    font-family: var(--font-body);
-    font-weight: 200;
-    font-size: 9px;
-    letter-spacing: 0.45em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 6px;
-  }
-
-  .stat-value {
-    font-family: var(--font-display);
-    font-size: 17px;
-    color: var(--cream);
-    line-height: 1.55;
-  }
-
-  .stat-value em {
-    font-style: italic;
-    color: var(--gold-light);
-  }
-
-  .work-body p {
-    font-family: var(--font-display);
-    font-size: 19px;
-    line-height: 1.95;
-    color: var(--text-muted);
-    margin-bottom: 28px;
-  }
-
-  .work-body p:last-child {
-    margin-bottom: 0;
-  }
-
-  .work-body strong {
-    color: var(--cream);
-    font-weight: 600;
-  }
-
-  .work-body .hl {
-    font-style: italic;
-    color: var(--gold-light);
-  }
-
   /* ─── CASE STUDY CARD ─── */
   .cs-outer {
-    background: #2a2218;
+    background: var(--olive-dark);
     position: relative;
     overflow: hidden;
     padding: 48px 72px;
@@ -526,13 +361,6 @@ import Layout from "../../layouts/Layout.astro";
     border-radius: 50%;
   }
 
-  .cs-leaf-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-  }
-
   .cs-card-wrap {
     position: relative;
     z-index: 2;
@@ -544,7 +372,7 @@ import Layout from "../../layouts/Layout.astro";
   }
 
   .cs-card-inner {
-    background: #342b1e;
+    background: var(--olive-light);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 44px 48px;
@@ -644,6 +472,7 @@ import Layout from "../../layouts/Layout.astro";
   .cs-ba-old { text-decoration: line-through; color: rgba(245,240,232,0.4); }
   .cs-ba-arrow { font-size: 14px; color: var(--gold); }
   .cs-ba-new { color: var(--gold-light); }
+  .cs-spacer-ba { visibility: hidden; height: 18px; }
 
   .cs-metric-lbl {
     font-family: var(--font-body);
@@ -682,6 +511,46 @@ import Layout from "../../layouts/Layout.astro";
   .cs-card:hover .cs-read {
     color: var(--cream);
     border-color: rgba(245,240,232,0.4);
+  }
+
+  /* ─── SKAI SERIES TIE-IN ─── */
+  .cs-series-link {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-top: 28px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-muted);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cs-series-eyebrow {
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .cs-series-anchor {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--gold-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(226,192,122,0.35);
+    padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .cs-series-anchor:hover {
+    color: var(--cream);
+    border-color: rgba(245,240,232,0.5);
   }
 
   /* ─── CTA SECTION ─── */
@@ -760,15 +629,9 @@ import Layout from "../../layouts/Layout.astro";
   /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
     .hero,
-    .work-section,
     .work-cta-section {
       padding-left: 24px;
       padding-right: 24px;
-    }
-
-    .work-grid {
-      grid-template-columns: 1fr;
-      gap: 40px;
     }
 
     .cs-outer {

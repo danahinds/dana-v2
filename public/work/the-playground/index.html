@@ -1,0 +1,3498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Playground — a prototype testing tool</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #111;
+    --bg-3: #161616;
+    --border: #222;
+    --border-2: #2a2a2a;
+    --fg: #ededed;
+    --fg-2: #a1a1a1;
+    --fg-3: #6b6b6b;
+    --accent: #00d26a;
+    --accent-fg: #001a0d;
+    --warn: #ff9f43;
+    --bad: #ff4d4d;
+    --font-sans: "Geist", -apple-system, sans-serif;
+    --font-mono: "Geist Mono", ui-monospace, monospace;
+    --font-serif: "Instrument Serif", Georgia, serif;
+  }
+  html, body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; color: inherit; background: none; border: none; }
+  .mono { font-family: var(--font-mono); font-feature-settings: "zero", "ss01"; }
+  .serif { font-family: var(--font-serif); }
+
+  /* ========== HEADER ========== */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in oklch, var(--bg) 80%, transparent);
+    backdrop-filter: blur(12px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    max-width: 1200px; margin: 0 auto;
+    padding: 12px 32px;
+    display: flex; align-items: center; gap: 24px;
+  }
+  .logo {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-weight: 600; letter-spacing: -0.01em; font-size: 18px;
+  }
+  .logo-mark {
+    width: 22px; height: 22px;
+    background: var(--accent); color: var(--accent-fg);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-weight: 700; font-size: 12px;
+    border-radius: 4px; position: relative;
+  }
+  .logo-mark::before {
+    content: ""; position: absolute; inset: 2px;
+    border: 1.5px dashed currentColor; border-radius: 2px; opacity: 0.35;
+  }
+  .byline {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--fg-3); font-weight: 500; margin-left: 4px;
+  }
+  .byline .by-name { color: var(--fg-2); }
+  nav.main-nav { display: flex; gap: 22px; margin-left: 24px; }
+  nav.main-nav button { font-size: 13px; color: var(--fg-2); }
+  nav.main-nav button:hover { color: var(--fg); }
+  .spacer { flex: 1; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 9px 16px;
+    font-size: 14px; border-radius: 8px;
+    transition: all .15s ease; white-space: nowrap;
+  }
+  .btn-sm { padding: 6px 12px; font-size: 13px; border-radius: 6px; gap: 6px; }
+  .btn-lg { padding: 13px 22px; font-size: 15px; border-radius: 10px; gap: 10px; }
+  .btn-primary { background: var(--accent); color: var(--accent-fg); font-weight: 600; }
+  .btn-primary:hover { opacity: 0.9; }
+  .btn-ghost { background: transparent; color: var(--fg-2); }
+  .btn-ghost:hover { color: var(--fg); background: var(--bg-3); }
+  .btn-outline { background: transparent; color: var(--fg); border: 1px solid var(--border-2); }
+  .btn-outline:hover { border-color: var(--fg-3); }
+
+  /* ========== CHIPS ========== */
+  .chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: var(--font-mono); font-size: 11.5px;
+    padding: 3px 9px; border-radius: 4px;
+    background: var(--bg-3); color: var(--fg-2);
+    border: 1px solid var(--border);
+    text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500;
+  }
+  .chip-accent {
+    background: color-mix(in oklch, var(--accent) 14%, transparent);
+    color: var(--accent);
+    border-color: color-mix(in oklch, var(--accent) 30%, transparent);
+  }
+  .chip-sm { padding: 2px 7px; font-size: 10.5px; }
+
+  /* ========== LAYOUT ========== */
+  main > section {
+    max-width: 1200px; margin: 0 auto;
+    padding: 72px 32px;
+  }
+  main > section.bordered { border-top: 1px solid var(--border); }
+  .section-head {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 24px; flex-wrap: wrap;
+  }
+  h2.section-title {
+    font-size: 36px; font-weight: 600; letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+  h2.section-title .dim { color: var(--fg-3); }
+  .section-lede {
+    color: var(--fg-2); font-size: 15px; max-width: 640px;
+    margin-bottom: 28px; line-height: 1.55;
+  }
+
+  /* ========== HERO ========== */
+  .hero {
+    display: grid; grid-template-columns: 1.05fr 1fr;
+    gap: 48px; align-items: center;
+  }
+  .hero-left h1 {
+    font-size: clamp(42px, 6vw, 64px);
+    font-weight: 600; letter-spacing: -0.035em;
+    line-height: 1.04; margin-bottom: 22px;
+  }
+  .hero-left h1 .dim { color: var(--fg-3); }
+  .hero-left h1 .italic { font-style: italic; font-weight: 400; font-family: var(--font-serif); }
+  .hero-lede {
+    display: flex; flex-wrap: wrap;
+    gap: 14px 22px; align-items: center;
+    font-size: 17px; color: var(--fg-2);
+    max-width: 560px; margin-bottom: 28px;
+  }
+  .hero-lede strong { color: var(--fg); font-weight: 500; }
+
+  .lede-step {
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .lede-icon {
+    display: inline-flex;
+    width: 28px; height: 28px;
+    border-radius: 7px;
+    background: color-mix(in oklch, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in oklch, var(--accent) 28%, transparent);
+    color: var(--accent);
+    align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .lede-icon svg { width: 15px; height: 15px; }
+
+  /* Upload: arrow portion bobs up & fades */
+  .upload-svg .arrow-part {
+    animation: upload-bob 1.8s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  @keyframes upload-bob {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50%      { transform: translateY(-2px); opacity: 0.45; }
+  }
+
+  /* Share: gentle sway */
+  .share-svg {
+    animation: share-sway 2.6s ease-in-out infinite;
+    transform-origin: center;
+  }
+  @keyframes share-sway {
+    0%, 100% { transform: rotate(-6deg); }
+    50%      { transform: rotate(6deg); }
+  }
+
+  /* Feedback: three bars grow in sequence */
+  .lede-icon.bars {
+    display: inline-flex; align-items: flex-end;
+    gap: 2.5px; padding: 6px 7px;
+  }
+  .lede-icon.bars .bar {
+    width: 3px; border-radius: 1px;
+    background: var(--accent);
+    animation: bar-grow 1.8s ease-in-out infinite;
+    transform-origin: bottom;
+  }
+  .lede-icon.bars .bar.b1 { height: 8px;  animation-delay: 0s;    }
+  .lede-icon.bars .bar.b2 { height: 12px; animation-delay: 0.18s; }
+  .lede-icon.bars .bar.b3 { height: 16px; animation-delay: 0.36s; }
+  @keyframes bar-grow {
+    0%, 100% { transform: scaleY(0.35); opacity: 0.55; }
+    50%      { transform: scaleY(1);    opacity: 1;    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .upload-svg .arrow-part,
+    .share-svg,
+    .lede-icon.bars .bar {
+      animation: none !important;
+    }
+  }
+  .hero-meta {
+    display: flex; gap: 10px; align-items: center;
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--fg-3);
+    padding-top: 18px; border-top: 1px solid var(--border);
+  }
+  .hero-meta .dot { color: var(--accent); }
+
+  /* ========== HERO VISUAL ========== */
+  .hero-visual {
+    position: relative;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .hero-visual-label {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 2px;
+  }
+  .hero-visual-label .line { flex: 1; height: 1px; background: var(--border); }
+  .hero-visual-label .txt,
+  .hero-visual-label .num {
+    font-family: var(--font-mono); font-size: 10.5px; color: var(--fg-3);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+
+  .flow-panels {
+    display: grid; gap: 10px;
+  }
+  .flow-panel {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+    display: flex; gap: 14px; align-items: center;
+  }
+  .flow-step-num {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--accent);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 1px solid color-mix(in oklch, var(--accent) 40%, transparent);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    background: color-mix(in oklch, var(--accent) 8%, transparent);
+  }
+  .flow-step-body { flex: 1; min-width: 0; }
+  .flow-step-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+  .flow-step-detail { font-size: 12px; color: var(--fg-2); }
+  .flow-mini-ui {
+    min-height: 44px; width: 160px; flex-shrink: 0;
+    border-radius: 6px; background: var(--bg-3);
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--fg-3);
+    display: flex; flex-direction: column; justify-content: center; gap: 4px;
+  }
+  .flow-mini-ui.dashed { border-style: dashed; text-align: center; }
+  .flow-mini-link { color: var(--accent); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .mini-bar {
+    height: 4px; border-radius: 2px;
+    background: linear-gradient(to right, #10a37f 60%, #d97706 60% 80%, #b91c1c 80%);
+  }
+  .mini-quote {
+    font-family: var(--font-sans); font-size: 10px;
+    color: var(--fg-2); font-style: italic;
+    line-height: 1.3;
+  }
+
+  /* ========== AT-A-GLANCE ========== */
+  .glance {
+    border: 1px solid var(--border); border-radius: 12px;
+    background: var(--bg-2);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    overflow: hidden;
+  }
+  .glance-cell {
+    padding: 22px 24px;
+    border-right: 1px solid var(--border);
+  }
+  .glance-cell:last-child { border-right: none; }
+  .glance-label {
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--fg-3); text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 10px;
+  }
+  .glance-value {
+    font-size: 15px; font-weight: 500; color: var(--fg);
+    line-height: 1.45;
+  }
+  .glance-value .mono-inline {
+    font-family: var(--font-mono); font-size: 13px; color: var(--fg-2);
+  }
+  .glance-value .status-dot {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); margin-right: 6px;
+    box-shadow: 0 0 6px var(--accent);
+  }
+
+  /* ========== STEPS ========== */
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden;
+  }
+  .step-card {
+    padding: 26px 24px; background: var(--bg-2);
+    border-right: 1px solid var(--border);
+  }
+  .step-card:last-child { border-right: none; }
+  .step-card-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px;
+  }
+  .step-num {
+    font-family: var(--font-mono); font-size: 11px; color: var(--accent);
+  }
+  .step-key {
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .step-title {
+    font-size: 18px; font-weight: 600; letter-spacing: -0.015em;
+    margin-bottom: 8px; min-height: 50px;
+  }
+  .step-desc {
+    font-size: 13px; color: var(--fg-2); line-height: 1.55;
+    margin-bottom: 16px; min-height: 100px;
+  }
+  .step-inline-visual {
+    font-size: 10.5px; color: var(--fg-2);
+    background: var(--bg-3); padding: 10px 12px;
+    border-radius: 6px; border: 1px solid var(--border);
+    font-family: var(--font-mono); line-height: 1.5;
+  }
+  .step-inline-visual .kv-line { display: flex; justify-content: space-between; gap: 10px; }
+  .step-inline-visual .kv-line span:first-child { color: var(--fg-3); }
+  .step-inline-visual .accent { color: var(--accent); }
+
+  /* ========== MODES ========== */
+  .modes-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .mode-card {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 32px 28px;
+  }
+  .mode-card-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 14px;
+  }
+  .mode-card h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+  .mode-card-desc {
+    color: var(--fg-2); font-size: 14px; line-height: 1.55;
+    margin-bottom: 20px; max-width: 420px;
+  }
+  .mode-meta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--fg-3); margin-bottom: 22px;
+  }
+  .mode-meta strong { color: var(--fg-2); font-weight: 500; }
+
+  .preview-box {
+    background: #faf9f5; color: #111;
+    border-radius: 8px; padding: 18px 20px;
+    font-family: system-ui, sans-serif;
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+  }
+  .preview-label {
+    font-size: 10.5px; letter-spacing: 0.12em;
+    color: #666; text-transform: uppercase;
+    font-family: var(--font-mono);
+    margin-bottom: 12px;
+  }
+  .preview-title { font-size: 17px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .preview-sub { font-size: 11px; color: #666; margin-bottom: 14px; line-height: 1.45; }
+  .prompt-card {
+    background: #fff; border: 1.5px solid #ddd; border-radius: 8px;
+    padding: 12px 14px; font-size: 12px; color: #333;
+    font-style: italic; line-height: 1.45;
+  }
+  .task-panel-preview {
+    margin-top: 14px;
+    background: #fff; border: 1px solid #e0e0e0; border-radius: 8px;
+    padding: 10px 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .tp-meta {
+    font-size: 10px; letter-spacing: 0.1em; color: #666;
+    text-transform: uppercase; font-family: var(--font-mono);
+    margin-bottom: 2px;
+  }
+  .tp-text { font-size: 12px; font-weight: 500; color: #222; }
+  .tp-body { flex: 1; min-width: 0; }
+  .tp-btn-stuck {
+    padding: 7px 11px; font-size: 11px; background: #fff;
+    color: #555; border: 1.5px solid #ddd; border-radius: 6px;
+    font-weight: 500;
+  }
+  .tp-btn-done {
+    padding: 7px 11px; font-size: 11px;
+    background: #111; color: #fff; border-radius: 6px; font-weight: 600;
+  }
+  .mode-use {
+    margin-top: 18px; padding-top: 18px;
+    border-top: 1px solid var(--border);
+    font-size: 13px; color: var(--fg-2);
+  }
+  .mode-use strong { color: var(--fg); font-weight: 500; }
+
+  /* ========== GUIDED WALKTHROUGH ========== */
+  .walk-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    margin-top: 8px;
+  }
+  .walk-col {
+    display: flex; flex-direction: column;
+  }
+  .walk-col-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap;
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .walk-side-label {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.15em; color: var(--accent);
+    padding: 4px 8px; background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    border-radius: 3px;
+  }
+  .walk-side-label-alt {
+    color: #c08ef7;
+    background: rgba(192, 142, 247, 0.08);
+    border-color: rgba(192, 142, 247, 0.2);
+  }
+  .walk-side-desc {
+    font-size: 12px; color: var(--fg-3);
+    font-family: var(--font-mono); letter-spacing: 0.02em;
+  }
+
+  .walk-stage {
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    overflow: hidden;
+    aspect-ratio: 4 / 3.1;
+  }
+  .walk-frame {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column;
+  }
+  .walk-frame.active { display: flex; }
+
+  .walk-frame-chrome {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 12px;
+    background: #ececec;
+    border-bottom: 1px solid #d5d5d5;
+    flex-shrink: 0;
+  }
+  .walk-dots { display: flex; gap: 5px; }
+  .walk-dots span {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #cfcfcf;
+  }
+  .walk-dots span:nth-child(1) { background: #f87171; }
+  .walk-dots span:nth-child(2) { background: #fbbf24; }
+  .walk-dots span:nth-child(3) { background: #4ade80; }
+  .walk-url {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #d5d5d5;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-family: var(--font-mono); font-size: 11px;
+    color: #555;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .walk-frame-body {
+    flex: 1;
+    padding: 22px 24px;
+    color: #111;
+    overflow: auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  /* maker frame pieces (real upload page is DARK MODE) */
+  .walk-frame-body.walk-dark {
+    background: #0f0f0f !important;
+    color: #e8e8e8;
+  }
+  .walk-dark .walk-step-title { color: #fff; }
+  .walk-dark .walk-step-sub { color: #888; }
+  .walk-dark .walk-field-label {
+    color: #888;
+  }
+  .walk-dark .walk-input,
+  .walk-dark .walk-dark-input {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    color: #ddd;
+  }
+  .walk-dark .walk-dark-input-placeholder { color: #555; }
+  .walk-dark-mode-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .walk-dark-mode-card {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    padding: 11px 12px;
+  }
+  .walk-dark-mode-card-selected {
+    border-color: #22c55e;
+    background: rgba(34, 197, 94, 0.05);
+  }
+  .walk-dark-mode-name {
+    font-size: 12.5px; font-weight: 600; color: #fff;
+    margin-bottom: 3px;
+  }
+  .walk-dark-mode-desc {
+    font-size: 11px; color: #888;
+    line-height: 1.4;
+  }
+  .walk-dark-tasks-label {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 6px;
+  }
+  .walk-dark-tasks-count {
+    font-family: var(--font-mono); font-size: 10px;
+    color: #666;
+  }
+  .walk-dark-task-row {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 6px;
+  }
+  .walk-dark-task-num {
+    font-family: var(--font-mono); font-size: 10px;
+    color: #666;
+    flex-shrink: 0;
+    width: 34px;
+  }
+  .walk-dark-add-task {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 12px;
+    background: transparent;
+    border: 1px solid #2a2a2a;
+    border-radius: 5px;
+    font-size: 11.5px; color: #ccc;
+    margin-top: 4px;
+  }
+  .walk-dark-drop {
+    border: 2px dashed #2a2a2a;
+    border-radius: 7px;
+    padding: 22px 14px;
+    text-align: center;
+    background: #0a0a0a;
+  }
+  .walk-dark-drop-icon {
+    font-size: 18px; color: #666;
+    margin-bottom: 6px;
+  }
+  .walk-dark-drop-text { font-size: 12.5px; color: #ddd; }
+  .walk-dark-drop-sub { font-size: 10.5px; color: #666; margin-top: 3px; font-family: var(--font-mono); }
+  .walk-dark-submit {
+    background: #22c55e;
+    color: #0a0a0a;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 14px;
+  }
+
+  /* Live link (post-submit) */
+  .walk-live-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 10px;
+    background: rgba(34,197,94,0.1);
+    color: #22c55e;
+    border: 1px solid rgba(34,197,94,0.3);
+    padding: 3px 8px; border-radius: 999px;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .walk-live-chip::before {
+    content: ''; width: 6px; height: 6px;
+    background: #22c55e; border-radius: 50%;
+    box-shadow: 0 0 6px #22c55e;
+  }
+  .walk-dark-link-box {
+    display: flex; gap: 8px; align-items: center;
+    background: #1a1a1a;
+    border: 1px solid #22c55e;
+    border-radius: 6px;
+    padding: 8px 8px 8px 12px;
+    margin-bottom: 14px;
+  }
+  .walk-dark-link-url {
+    flex: 1;
+    font-family: var(--font-mono); font-size: 12px;
+    color: #ddd;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .walk-dark-copy-btn {
+    background: #22c55e; color: #0a0a0a;
+    padding: 5px 12px; border-radius: 4px;
+    font-size: 11px; font-weight: 600;
+    flex-shrink: 0;
+  }
+  .walk-dark-meta-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    border: 1px solid #222;
+    border-radius: 6px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .walk-dark-meta {
+    padding: 10px 12px;
+    border-right: 1px solid #222;
+    background: #111;
+  }
+  .walk-dark-meta:last-child { border-right: none; }
+  .walk-dark-meta-label {
+    font-family: var(--font-mono); font-size: 9px;
+    color: #666; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 3px;
+  }
+  .walk-dark-meta-val {
+    font-size: 13px; font-weight: 600; color: #fff;
+    font-family: var(--font-mono);
+  }
+  .walk-dark-hint {
+    font-size: 11.5px; color: #888;
+    padding: 10px 0;
+    border-top: 1px dashed #222;
+    font-style: italic;
+  }
+
+  /* Email notification frame */
+  .walk-email-wrap {
+    padding: 6px 2px;
+  }
+  .walk-email-from {
+    display: flex; gap: 10px; align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 14px;
+  }
+  .walk-email-avatar {
+    width: 36px; height: 36px;
+    background: #22c55e; color: #0a0a0a;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px;
+    flex-shrink: 0;
+  }
+  .walk-email-from-meta {
+    flex: 1; min-width: 0;
+  }
+  .walk-email-sender {
+    font-size: 13px; font-weight: 600; color: #111;
+  }
+  .walk-email-address {
+    font-size: 11px; color: #888;
+    font-family: var(--font-mono);
+  }
+  .walk-email-time {
+    font-size: 11px; color: #888;
+    font-family: var(--font-mono);
+  }
+  .walk-email-subject {
+    font-size: 17px; font-weight: 600;
+    color: #111; margin-bottom: 14px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .walk-email-body {
+    font-size: 13px; color: #333; line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .walk-email-summary-box {
+    background: #f7f7f5;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 13px 15px;
+    margin-bottom: 14px;
+  }
+  .walk-email-stats {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    text-align: center;
+  }
+  .walk-email-stat-val {
+    font-size: 20px; font-weight: 700; color: #111;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .walk-email-stat-label {
+    font-family: var(--font-mono); font-size: 9px;
+    color: #888; letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .walk-email-cta {
+    background: #111; color: #fff;
+    padding: 10px 14px; border-radius: 5px;
+    font-size: 12.5px; font-weight: 600;
+    text-align: center;
+  }
+  .walk-email-footer {
+    font-size: 11px; color: #888;
+    margin-top: 10px; font-style: italic;
+  }
+
+  /* Report summary frame */
+  .walk-report-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 14px;
+  }
+  .walk-report-name {
+    font-size: 15px; font-weight: 600; color: #111;
+  }
+  .walk-report-meta {
+    font-size: 11px; color: #888;
+    font-family: var(--font-mono);
+  }
+  .walk-report-headline {
+    font-size: 15px; font-weight: 600; color: #111;
+    line-height: 1.35;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .walk-report-headline .dim { color: #888; font-weight: 400; }
+  .walk-success-bar {
+    display: flex; height: 10px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 7px;
+  }
+  .walk-success-yes { background: #22c55e; }
+  .walk-success-partial { background: #fbbf24; }
+  .walk-success-no { background: #ef4444; }
+  .walk-success-legend {
+    display: flex; gap: 14px;
+    font-size: 11px; font-family: var(--font-mono);
+    color: #555;
+    margin-bottom: 14px;
+  }
+  .walk-success-legend-dot {
+    display: inline-block; width: 8px; height: 8px;
+    border-radius: 2px; margin-right: 5px;
+    vertical-align: baseline;
+  }
+  .walk-where-broke-label {
+    font-family: var(--font-mono); font-size: 10px;
+    color: #888; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .walk-where-broke {
+    font-size: 13px; color: #111;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .walk-where-broke strong { color: #ef4444; font-weight: 600; }
+  .walk-report-quote {
+    font-size: 12.5px; color: #333;
+    font-style: italic;
+    line-height: 1.55;
+    padding: 10px 12px;
+    background: #f7f7f5;
+    border-left: 3px solid #fbbf24;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 6px;
+  }
+  .walk-report-quote-attr {
+    font-family: var(--font-mono); font-size: 10px;
+    color: #888;
+  }
+
+  /* ========== GUIDED WALKTHROUGH ========== */
+  .walk-step-title {
+    font-size: 18px; font-weight: 600;
+    color: #111; margin-bottom: 3px;
+    letter-spacing: -0.01em;
+  }
+  .walk-step-sub {
+    font-size: 12.5px; color: #777;
+    margin-bottom: 16px;
+  }
+  .walk-drop {
+    border: 2px dashed #c5c5c5;
+    border-radius: 8px;
+    padding: 22px 14px;
+    text-align: center;
+    background: #fff;
+  }
+  .walk-drop-icon {
+    font-size: 22px; color: #888;
+    margin-bottom: 8px;
+  }
+  .walk-drop-text { font-size: 13px; color: #222; }
+  .walk-drop-text strong { font-weight: 600; }
+  .walk-drop-sub { font-size: 11.5px; color: #888; margin-top: 4px; }
+  .walk-link { color: #2563eb; text-decoration: underline; }
+  .walk-or {
+    text-align: center; color: #999;
+    font-size: 11px; margin: 12px 0;
+    font-family: var(--font-mono);
+  }
+  .walk-field { margin-bottom: 10px; }
+  .walk-field-label {
+    font-family: var(--font-mono); font-size: 10px;
+    color: #888; letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 5px;
+  }
+  .walk-input {
+    background: #fff; border: 1px solid #d5d5d5;
+    border-radius: 5px; padding: 8px 10px;
+    font-size: 12px; color: #111;
+    font-family: var(--font-mono);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .walk-input-filled { border-color: #111; }
+  .walk-btn-row {
+    display: flex; justify-content: flex-end; gap: 8px;
+    margin-top: 16px;
+  }
+  .walk-btn {
+    padding: 7px 14px; border-radius: 5px;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid transparent;
+  }
+  .walk-btn-primary { background: #111; color: #fff; }
+  .walk-btn-ghost { background: transparent; color: #555; border-color: #d5d5d5; }
+  .walk-btn-active { box-shadow: 0 0 0 3px rgba(17,17,17,0.08); }
+
+  .walk-mode-card {
+    border: 1px solid #d5d5d5;
+    border-radius: 7px;
+    padding: 11px 13px;
+    margin-bottom: 8px;
+    background: #fff;
+  }
+  .walk-mode-selected {
+    border-color: #111;
+    border-width: 1.5px;
+  }
+  .walk-mode-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 3px;
+  }
+  .walk-mode-name {
+    font-size: 13px; font-weight: 600; color: #111;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .walk-badge-active {
+    font-size: 9px; font-family: var(--font-mono);
+    background: #111; color: #fff;
+    padding: 2px 6px; border-radius: 3px;
+    letter-spacing: 0.08em;
+  }
+  .walk-mode-desc { font-size: 11.5px; color: #777; }
+  .walk-radio {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 1.5px solid #c5c5c5;
+  }
+  .walk-radio-on {
+    border-color: #111;
+    background: radial-gradient(circle, #111 0 4px, #fff 5px 100%);
+  }
+  .walk-pills { display: flex; gap: 6px; }
+  .walk-pill {
+    padding: 5px 11px; border: 1px solid #d5d5d5;
+    border-radius: 999px; font-size: 11px;
+    color: #555; background: #fff;
+  }
+  .walk-pill-active {
+    background: #111; color: #fff; border-color: #111;
+  }
+
+  .walk-task-row {
+    display: flex; align-items: center; gap: 9px;
+    margin-bottom: 7px;
+  }
+  .walk-task-num {
+    width: 22px; height: 22px;
+    background: #111; color: #fff;
+    border-radius: 50%;
+    font-size: 11px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .walk-task-input {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #d5d5d5;
+    border-radius: 5px;
+    padding: 7px 10px;
+    font-size: 12px;
+    color: #111;
+  }
+  .walk-task-input em {
+    font-style: normal;
+    font-family: var(--font-mono);
+    background: #f0f0f0;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 11px;
+  }
+  .walk-task-filled { border-color: #111; }
+  .walk-task-grip {
+    color: #bbb; font-size: 14px;
+    cursor: grab;
+    padding: 0 3px;
+  }
+  .walk-add-task {
+    color: #2563eb; font-size: 12px;
+    padding: 7px 0;
+    margin-top: 3px;
+  }
+
+  .walk-link-box {
+    display: flex; align-items: center; gap: 8px;
+    background: #fff;
+    border: 1px solid #111;
+    border-radius: 6px;
+    padding: 7px 7px 7px 12px;
+    margin-bottom: 14px;
+  }
+  .walk-link-url {
+    flex: 1;
+    font-family: var(--font-mono);
+    font-size: 12px; color: #111;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .walk-copy-btn {
+    background: #111; color: #fff;
+    padding: 5px 11px; border-radius: 4px;
+    font-size: 11px; font-weight: 600;
+    flex-shrink: 0;
+  }
+  .walk-meta-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    padding: 10px 12px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    margin-bottom: 14px;
+  }
+  .walk-meta-label {
+    font-family: var(--font-mono); font-size: 9px;
+    color: #999; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 2px;
+  }
+  .walk-meta-val {
+    font-size: 13px; font-weight: 600; color: #111;
+    font-family: var(--font-mono);
+  }
+  .walk-channel-row {
+    display: flex; gap: 6px; margin-bottom: 12px;
+  }
+  .walk-channel {
+    flex: 1; text-align: center;
+    padding: 7px 8px;
+    border: 1px solid #d5d5d5;
+    border-radius: 5px;
+    font-size: 11.5px; color: #333;
+    background: #fff;
+  }
+  .walk-hint-line {
+    font-size: 11.5px; color: #777;
+    text-align: center;
+    padding: 8px 0;
+    border-top: 1px dashed #e5e5e5;
+  }
+
+  /* tester frame pieces */
+  .walk-tester-welcome {
+    padding: 6px 4px;
+  }
+  .walk-tester-brand {
+    font-family: var(--font-mono); font-size: 11px;
+    color: #888; letter-spacing: 0.2em;
+    margin-bottom: 20px;
+  }
+  .walk-tester-h1 {
+    font-size: 22px; font-weight: 700;
+    color: #111; margin-bottom: 8px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .walk-tester-lede {
+    font-size: 13px; color: #555;
+    line-height: 1.5; margin-bottom: 18px;
+  }
+  .walk-tester-meta {
+    background: #f7f7f5;
+    border-radius: 7px;
+    padding: 11px 14px;
+    margin-bottom: 18px;
+  }
+  .walk-tester-meta-row {
+    display: flex; justify-content: space-between;
+    font-size: 12px; color: #333;
+    padding: 4px 0;
+    border-bottom: 1px dashed #e5e5e5;
+  }
+  .walk-tester-meta-row:last-child { border-bottom: none; }
+  .walk-tester-btn {
+    background: #111; color: #fff;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px; font-weight: 600;
+    text-align: center;
+  }
+
+  /* fake prototype shop */
+  .walk-tester-session { display: flex; flex-direction: column; }
+  .walk-proto {
+    flex: 1;
+    background: #faf9f5;
+    padding: 14px 14px 0;
+    overflow: hidden;
+  }
+  .walk-proto-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e6df;
+    margin-bottom: 12px;
+  }
+  .walk-proto-logo {
+    font-family: Georgia, serif;
+    font-size: 14px; font-weight: 600; color: #3a2a15;
+    letter-spacing: 0.04em;
+  }
+  .walk-proto-cart {
+    font-size: 11.5px; color: #888;
+    font-family: var(--font-mono);
+  }
+  .walk-proto-cart-active { color: #c0392b; font-weight: 600; }
+  .walk-proto-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  .walk-proto-card {
+    background: #fff;
+    border-radius: 5px;
+    padding: 8px;
+    border: 1px solid transparent;
+  }
+  .walk-proto-card-focus {
+    border-color: #111;
+    box-shadow: 0 0 0 3px rgba(17,17,17,0.08);
+  }
+  .walk-proto-img {
+    aspect-ratio: 1;
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+  .walk-proto-img-1 { background: linear-gradient(135deg,#d4c4a8,#a89575); }
+  .walk-proto-img-2 { background: linear-gradient(135deg,#E8A87C,#8B5E3C); }
+  .walk-proto-img-3 { background: linear-gradient(135deg,#c9d3b8,#8aa07c); }
+  .walk-proto-pname {
+    font-size: 10.5px; color: #111; font-weight: 500;
+    margin-bottom: 1px;
+  }
+  .walk-proto-price {
+    font-size: 10.5px; color: #777;
+    font-family: var(--font-mono);
+  }
+
+  .walk-proto-product { padding: 0; background: #fff; }
+  .walk-proto-product .walk-proto-nav {
+    padding: 10px 14px;
+    margin-bottom: 0;
+    background: #faf9f5;
+  }
+  .walk-proto-pdp {
+    padding: 14px;
+  }
+  .walk-proto-hero {
+    position: relative;
+    height: 130px;
+    background: linear-gradient(135deg,#E8A87C 0%,#C38D5E 55%,#8B5E3C 100%);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 10px;
+  }
+  .walk-proto-hero-icon {
+    font-size: 60px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+  }
+  .walk-proto-hero-badge {
+    position: absolute;
+    top: 8px; left: 8px;
+    background: rgba(255,255,255,0.92);
+    color: #8B5E3C;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 3px 7px;
+    border-radius: 3px;
+  }
+  .walk-proto-pdp-info { padding: 0 2px; }
+  .walk-proto-pdp-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 8px;
+    margin-bottom: 3px;
+  }
+  .walk-proto-pdp-name {
+    font-size: 13px; font-weight: 600; color: #111;
+  }
+  .walk-proto-pdp-price {
+    font-size: 14px; font-weight: 700; color: #111;
+  }
+  .walk-proto-pdp-sub {
+    font-size: 11px; color: #888; margin-bottom: 10px;
+  }
+  .walk-proto-pdp-btn {
+    background: #c0392b; color: #fff;
+    padding: 8px 12px; border-radius: 5px;
+    font-size: 11.5px; font-weight: 600;
+    text-align: center;
+  }
+
+  /* task panel (bottom persistent) */
+  .walk-task-panel {
+    background: #fff;
+    border-top: 1px solid #e5e5e5;
+    padding: 9px 12px;
+    display: flex; gap: 10px; align-items: center;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+    flex-shrink: 0;
+  }
+  .walk-task-panel-body { flex: 1; min-width: 0; }
+  .walk-task-panel-tag {
+    font-family: var(--font-mono); font-size: 9px;
+    color: #888; letter-spacing: 0.12em;
+    margin-bottom: 2px;
+  }
+  .walk-task-panel-text {
+    font-size: 11.5px; color: #222; font-weight: 500;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .walk-task-panel-btns { display: flex; gap: 6px; flex-shrink: 0; }
+  .walk-task-panel-stuck {
+    padding: 5px 10px; font-size: 10.5px;
+    background: #fff; color: #555;
+    border: 1.5px solid #d5d5d5; border-radius: 5px;
+  }
+  .walk-task-panel-done {
+    padding: 5px 10px; font-size: 10.5px;
+    background: #111; color: #fff;
+    border-radius: 5px; font-weight: 600;
+  }
+  .walk-task-panel-done-ready {
+    background: #22c55e;
+  }
+
+  /* end screen */
+  .walk-end-field { margin-bottom: 14px; }
+  .walk-end-label {
+    font-family: var(--font-mono); font-size: 10px;
+    color: #888; letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+  .walk-end-textarea {
+    background: #f7f7f5;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    padding: 9px 11px;
+    font-size: 12px; color: #333;
+    font-style: italic;
+  }
+  .walk-end-chips { display: flex; gap: 6px; }
+  .walk-end-chip {
+    padding: 6px 13px; border: 1.5px solid #d5d5d5;
+    border-radius: 999px;
+    font-size: 11.5px; color: #555;
+    background: #fff;
+  }
+  .walk-end-chip-active {
+    background: #111; color: #fff; border-color: #111;
+  }
+  .walk-end-scale { display: flex; gap: 7px; }
+  .walk-end-scale-dot {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 1.5px solid #d5d5d5;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: #555;
+    background: #fff;
+  }
+  .walk-end-scale-dot-active {
+    background: #111; color: #fff; border-color: #111;
+  }
+
+  /* nav controls */
+  .walk-nav {
+    display: flex; align-items: center; justify-content: center;
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .walk-nav-btn {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--bg-2);
+    border: 1px solid var(--border-2);
+    color: var(--fg);
+    font-size: 16px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s ease;
+    font-family: inherit;
+  }
+  .walk-nav-btn:hover {
+    background: var(--fg); color: var(--bg);
+    border-color: var(--fg);
+  }
+  .walk-nav-btn:disabled {
+    opacity: 0.3; cursor: not-allowed;
+  }
+  .walk-nav-btn:disabled:hover {
+    background: var(--bg-2); color: var(--fg);
+    border-color: var(--border-2);
+  }
+  .walk-dots-nav {
+    display: flex; gap: 7px;
+  }
+  .walk-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border-2);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .walk-dot.active {
+    background: var(--fg);
+    transform: scale(1.3);
+  }
+  .walk-dot:hover { background: var(--fg-2); }
+
+  .walk-caption {
+    display: flex; gap: 10px; align-items: baseline;
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .walk-caption-step {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--fg-3); letter-spacing: 0.1em;
+    flex-shrink: 0;
+  }
+  .walk-caption-text {
+    font-size: 13px; color: var(--fg-2);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 960px) {
+    .walk-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ========== TRY IT ========== */
+  .try-frame {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+  }
+  .browser-bar {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px;
+    background: var(--bg-3);
+    border-bottom: 1px solid var(--border);
+  }
+  .browser-dots { display: flex; gap: 6px; }
+  .browser-dots span { width: 11px; height: 11px; border-radius: 50%; }
+  .browser-dots span:nth-child(1) { background: #ff5f57; }
+  .browser-dots span:nth-child(2) { background: #febc2e; }
+  .browser-dots span:nth-child(3) { background: #28c840; }
+  .browser-url {
+    flex: 1; font-family: var(--font-mono); font-size: 11px;
+    color: var(--fg-3); background: var(--bg-2);
+    padding: 5px 10px; border-radius: 5px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .browser-url .rec {
+    color: var(--accent); margin-left: auto;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .browser-url .rec::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 6px var(--accent);
+  }
+
+  .try-panels {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+  }
+  .try-panel {
+    padding: 28px 22px;
+    background: #faf9f5; color: #111;
+    font-family: system-ui, sans-serif;
+    border-right: 1px solid var(--border);
+    min-height: 480px;
+  }
+  .try-panel:last-child { border-right: none; }
+  .try-panel-tag {
+    font-size: 10.5px; letter-spacing: 0.14em;
+    color: #666; text-transform: uppercase;
+    font-family: var(--font-mono);
+    margin-bottom: 14px;
+  }
+  .try-panel h4 {
+    font-size: 19px; font-weight: 600;
+    margin-bottom: 8px; letter-spacing: -0.015em;
+  }
+  .try-panel p { font-size: 12.5px; color: #666; line-height: 1.5; margin-bottom: 16px; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .chip-pill {
+    padding: 5px 10px; font-size: 11.5px;
+    background: #fff; border: 1.5px solid #ddd;
+    border-radius: 6px; color: #555;
+  }
+  .chip-pill.active { background: #111; color: #fff; border-color: #111; font-weight: 600; }
+  .field-label {
+    font-size: 10.5px; letter-spacing: 0.09em;
+    color: #666; text-transform: uppercase;
+    font-family: var(--font-mono);
+    margin-bottom: 6px;
+  }
+  .fake-textarea {
+    background: #fff; border: 1.5px solid #ddd; border-radius: 6px;
+    padding: 9px 12px; font-size: 12px; color: #444; margin-bottom: 14px;
+    min-height: 56px; line-height: 1.45;
+  }
+  .ease-row { display: flex; gap: 6px; margin-bottom: 16px; }
+  .ease-circle {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 1.5px solid #ddd; background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: #555;
+  }
+  .ease-circle.active { background: #111; color: #fff; border-color: #111; font-weight: 600; }
+  .primary-cta-light {
+    background: #111; color: #fff;
+    padding: 9px 18px; font-size: 12px;
+    border-radius: 5px; display: inline-block;
+    font-weight: 600;
+  }
+
+  /* ========== RESULTS ========== */
+  .results-frame {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+  }
+  .results-head {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 12px;
+    background: var(--bg-3);
+    flex-wrap: wrap;
+  }
+  .breadcrumb-sep { color: var(--fg-3); }
+  .results-head-tag { font-family: var(--font-mono); font-size: 12px; color: var(--fg-2); }
+  .results-body { padding: 24px 24px 28px; }
+
+  .results-topline {
+    display: grid; grid-template-columns: 2fr 1fr;
+    gap: 24px; margin-bottom: 32px;
+  }
+  .topline-label {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--fg-3); text-transform: uppercase;
+    letter-spacing: 0.08em; margin-bottom: 10px;
+  }
+  .success-bar {
+    display: flex; height: 28px; border-radius: 6px;
+    overflow: hidden; border: 1px solid var(--border);
+  }
+  .success-bar span {
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 11px; font-weight: 600;
+    font-family: var(--font-mono);
+  }
+  .success-yes { background: #10a37f; flex: 18; }
+  .success-partial { background: #d97706; flex: 6; }
+  .success-no { background: #b91c1c; flex: 3; }
+  .success-legend {
+    display: flex; gap: 14px; margin-top: 8px;
+    font-size: 12px; color: var(--fg-2);
+  }
+  .ease-big {
+    font-size: 32px; font-weight: 600; letter-spacing: -0.02em; line-height: 1;
+  }
+  .ease-big .unit { font-size: 16px; color: var(--fg-3); font-weight: 400; margin-left: 4px; }
+  .ease-meta {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--fg-3); margin-top: 4px;
+  }
+
+  .task-breakdown {
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-3);
+    overflow: hidden;
+  }
+  .task-row {
+    padding: 14px 18px; border-bottom: 1px solid var(--border);
+  }
+  .task-row:last-child { border-bottom: none; }
+  .task-row-head {
+    display: flex; gap: 10px; align-items: baseline; margin-bottom: 6px;
+  }
+  .task-row-meta {
+    font-family: var(--font-mono); display: flex; gap: 20px;
+    font-size: 12px; color: var(--fg-2);
+    flex-wrap: wrap;
+  }
+  .task-row-meta .done { color: #10a37f; }
+  .task-row-meta .stuck { color: var(--warn); }
+  .task-row-meta .dim { color: var(--fg-3); }
+
+  .quotes-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 28px; margin-bottom: 32px;
+  }
+  .quote-col h3 {
+    font-size: 13px; font-weight: 500;
+    color: var(--fg-2); text-transform: uppercase;
+    letter-spacing: 0.08em; font-family: var(--font-mono);
+    margin-bottom: 12px;
+  }
+  .quote-card {
+    padding: 12px 16px;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .quote-text { font-size: 14px; line-height: 1.5; }
+  .quote-demo {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--fg-3); margin-top: 6px;
+  }
+
+  .table-wrap {
+    border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg-3); overflow: hidden;
+  }
+  table.sessions { width: 100%; border-collapse: collapse; }
+  table.sessions th, table.sessions td {
+    padding: 10px 14px; text-align: left; font-size: 13px;
+    border-bottom: 1px solid var(--border);
+  }
+  table.sessions th {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--fg-3); text-transform: uppercase;
+    letter-spacing: 0.08em; font-weight: 500;
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--border-2);
+  }
+  table.sessions tbody tr:last-child td { border-bottom: none; }
+  table.sessions tbody tr:hover td { background: var(--bg-2); }
+  table.sessions tbody tr:hover .clarity-link { opacity: 1; }
+  .sid { font-family: var(--font-mono); font-size: 12px; }
+  .success-pill {
+    font-size: 11px; font-weight: 600;
+    padding: 2px 8px; border-radius: 4px; color: #fff;
+  }
+  .success-pill.yes { background: #10a37f; }
+  .success-pill.partial { background: #d97706; }
+  .success-pill.no { background: #b91c1c; }
+  .clarity-link {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--accent); opacity: 0;
+    transition: opacity 0.15s;
+  }
+  .clarity-link::before { content: "↗ "; }
+  .results-footnote {
+    margin-top: 12px; font-size: 12px; color: var(--fg-3);
+  }
+  .results-footnote .mono { color: var(--fg-2); }
+
+  /* ========== RESULTS — redesigned additions ========== */
+
+  /* TL;DR banner */
+  .report-tldr {
+    display: flex; gap: 18px; align-items: flex-start;
+    padding: 22px 24px;
+    background: color-mix(in oklch, var(--accent) 7%, var(--bg-2));
+    border-bottom: 1px solid var(--border);
+  }
+  .tldr-label {
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--accent); text-transform: uppercase;
+    letter-spacing: 0.12em; padding-top: 4px; flex-shrink: 0;
+    font-weight: 600;
+  }
+  .tldr-body {
+    font-size: 15px; color: var(--fg); line-height: 1.55;
+    font-family: var(--font-serif);
+    font-style: italic;
+    max-width: 720px;
+  }
+  .tldr-body strong {
+    font-family: var(--font-sans);
+    font-weight: 600; font-style: normal;
+    color: var(--fg);
+  }
+
+  /* Filter bar */
+  .filter-bar {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 24px;
+    background: color-mix(in oklch, var(--accent) 10%, var(--bg-2));
+    border-bottom: 1px solid color-mix(in oklch, var(--accent) 25%, transparent);
+  }
+  .filter-bar-label {
+    font-size: 10.5px; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .filter-bar-chip {
+    font-size: 13px; color: var(--fg); font-weight: 500;
+  }
+  .filter-bar-chip .count {
+    font-family: var(--font-mono); color: var(--fg-3);
+    margin-left: 6px; font-weight: 400;
+  }
+  .filter-bar-clear {
+    margin-left: auto;
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--fg-2);
+    padding: 4px 10px; border-radius: 4px;
+    border: 1px solid var(--border-2);
+  }
+  .filter-bar-clear:hover { color: var(--fg); border-color: var(--fg-3); }
+
+  /* Topline enhancements */
+  .topline-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px; margin-bottom: 10px;
+  }
+  .topline-hint {
+    font-size: 10.5px; color: var(--fg-3);
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+
+  /* Interactive success bar */
+  .success-bar.interactive {
+    cursor: default;
+  }
+  .success-bar.interactive .success-seg {
+    border: none; color: #fff;
+    cursor: pointer; transition: all 0.15s ease;
+    position: relative;
+  }
+  .success-bar.interactive .success-seg:hover {
+    filter: brightness(1.15);
+  }
+  .success-bar.interactive .success-seg.dim {
+    opacity: 0.3;
+  }
+  .success-bar.interactive .success-seg.active {
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.4);
+  }
+  .success-legend.interactive {
+    margin-top: 10px;
+  }
+  .success-legend.interactive button {
+    font-size: 12px; color: var(--fg-2);
+    padding: 3px 8px; border-radius: 4px;
+    transition: background 0.15s;
+  }
+  .success-legend.interactive button:hover {
+    background: var(--bg-3); color: var(--fg);
+  }
+  .success-legend.interactive button.active {
+    background: var(--bg-3); color: var(--fg);
+  }
+  .success-legend .pct {
+    font-family: var(--font-mono); color: var(--fg-3);
+    font-size: 11px; margin-left: 4px;
+  }
+
+  /* Ease distribution */
+  .ease-dist {
+    margin-top: 14px;
+    display: grid; gap: 4px;
+    max-width: 240px;
+  }
+  .dist-row {
+    display: grid; grid-template-columns: 16px 1fr 24px;
+    gap: 10px; align-items: center;
+  }
+  .dist-label {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--fg-3); text-align: right;
+  }
+  .dist-track {
+    height: 6px; background: var(--bg-3);
+    border-radius: 2px; overflow: hidden;
+  }
+  .dist-fill {
+    height: 100%; background: var(--accent);
+    opacity: 0.75;
+    border-radius: 2px;
+  }
+  .dist-count {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--fg-2);
+  }
+
+  /* Section block with headline callouts */
+  .section-block {
+    margin-bottom: 32px;
+  }
+  .block-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 10px; gap: 12px;
+  }
+  .block-hint {
+    font-size: 10.5px; color: var(--fg-3);
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .headline-callout {
+    padding: 14px 18px;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+  .callout-mark {
+    font-weight: 600; color: var(--fg);
+    font-size: 14.5px;
+    margin-right: 6px;
+  }
+  .callout-body {
+    font-size: 13.5px; color: var(--fg-2);
+  }
+  .callout-body strong {
+    color: var(--fg); font-weight: 500;
+  }
+
+  /* Task row — danger variant */
+  .task-row.danger {
+    background: color-mix(in oklch, var(--warn) 6%, transparent);
+    border-left: 2px solid var(--warn);
+  }
+  .health-pill {
+    font-family: var(--font-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 2px 7px; border-radius: 3px;
+    font-weight: 500;
+  }
+  .health-good {
+    background: color-mix(in oklch, #10a37f 18%, transparent);
+    color: #14b88a;
+  }
+  .health-bad {
+    background: color-mix(in oklch, var(--warn) 20%, transparent);
+    color: var(--warn);
+  }
+
+  /* Quote theme pills */
+  .quote-theme-pill {
+    display: inline-block;
+    font-family: var(--font-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-3);
+    padding: 2px 8px; border-radius: 3px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+  .quote-theme-pill.hot {
+    color: var(--warn);
+    background: color-mix(in oklch, var(--warn) 12%, transparent);
+    border-color: color-mix(in oklch, var(--warn) 28%, transparent);
+  }
+  .quote-card-heat {
+    border-color: color-mix(in oklch, var(--warn) 35%, transparent);
+    background: color-mix(in oklch, var(--warn) 5%, var(--bg-3));
+  }
+
+  /* Interactive sessions table */
+  .sessions-interactive tbody tr.session-row {
+    cursor: pointer;
+  }
+  .sessions-interactive tbody tr.session-row td {
+    transition: background 0.12s;
+  }
+  .sessions-interactive tbody tr.session-row:hover td {
+    background: var(--bg-2);
+  }
+  .sessions-interactive tbody tr.session-row.expanded td {
+    background: var(--bg-2);
+    border-bottom-color: transparent;
+  }
+  .sessions-interactive .caret-cell {
+    width: 28px; color: var(--fg-3);
+    padding-right: 0;
+  }
+  .sessions-interactive .caret {
+    display: inline-block;
+    transition: transform 0.15s ease;
+    font-size: 10px;
+  }
+  .sessions-interactive .session-row.expanded .caret {
+    transform: rotate(90deg);
+    color: var(--accent);
+  }
+  .dim-cell { color: var(--fg-3); }
+
+  /* Session detail row */
+  .session-detail {
+    background: var(--bg-2);
+  }
+  .session-detail td {
+    padding: 0 !important;
+    border-bottom: 1px solid var(--border-2) !important;
+  }
+  .detail-grid {
+    display: grid; grid-template-columns: 1.2fr 1.2fr 1fr;
+    gap: 24px;
+    padding: 18px 24px;
+  }
+  .detail-section {
+    font-size: 13px;
+  }
+  .detail-label {
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--fg-3); text-transform: uppercase;
+    letter-spacing: 0.08em; margin-bottom: 6px;
+  }
+  .detail-body {
+    color: var(--fg); line-height: 1.5;
+  }
+  .detail-body.mono { font-family: var(--font-mono); font-size: 12px; }
+  .detail-body.dim { color: var(--fg-3); font-style: italic; }
+  .detail-body .good { color: #10a37f; }
+  .detail-body .warn { color: var(--warn); }
+  .detail-body .bad { color: #b91c1c; }
+  .detail-body .dim { color: var(--fg-3); }
+
+  .clarity-link-big {
+    display: inline-block;
+    margin: 0 24px 18px;
+    padding: 7px 14px;
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--accent);
+    background: color-mix(in oklch, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in oklch, var(--accent) 30%, transparent);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .clarity-link-big:hover {
+    background: color-mix(in oklch, var(--accent) 15%, transparent);
+  }
+
+  /* Row hide/show for filters */
+  .session-row.hidden-by-filter,
+  .session-detail.hidden-by-filter {
+    display: none;
+  }
+
+  @media (max-width: 920px) {
+    .detail-grid { grid-template-columns: 1fr; gap: 14px; }
+    .report-tldr { flex-direction: column; gap: 8px; }
+  }
+  .decisions-wrap {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .decision {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 24px 26px;
+  }
+  .decision-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 12px; gap: 10px;
+  }
+  .decision h3 {
+    font-size: 17px; font-weight: 600; letter-spacing: -0.015em;
+  }
+  .decision-num {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--fg-3);
+  }
+  .decision-body {
+    font-size: 14px; color: var(--fg-2); line-height: 1.6;
+  }
+  .decision-body p + p { margin-top: 10px; }
+  .decision-body strong { color: var(--fg); font-weight: 500; }
+  .tradeoff {
+    margin-top: 12px; padding-top: 12px;
+    border-top: 1px solid var(--border);
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .tradeoff-label {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--warn); text-transform: uppercase;
+    letter-spacing: 0.1em; padding-top: 3px; flex-shrink: 0;
+  }
+  .tradeoff-body { font-size: 13px; color: var(--fg-2); line-height: 1.55; }
+
+  /* ========== WHAT'S NEXT ========== */
+  .next-list {
+    display: grid; gap: 10px; max-width: 900px;
+  }
+  .next-item {
+    display: flex; gap: 16px; padding: 14px 18px;
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .next-status {
+    font-family: var(--font-mono); font-size: 10.5px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 3px 8px; border-radius: 4px;
+    height: fit-content; flex-shrink: 0;
+  }
+  .next-status.soon {
+    background: color-mix(in oklch, var(--accent) 14%, transparent);
+    color: var(--accent);
+    border: 1px solid color-mix(in oklch, var(--accent) 30%, transparent);
+  }
+  .next-status.maybe {
+    background: var(--bg-3); color: var(--fg-2);
+    border: 1px solid var(--border);
+  }
+  .next-title { font-size: 15px; font-weight: 500; margin-bottom: 2px; }
+  .next-body { flex: 1; }
+  .next-desc { font-size: 13px; color: var(--fg-2); line-height: 1.5; }
+
+  /* ========== CLOSE ========== */
+  .close-box {
+    padding: 56px 44px; border-radius: 14px;
+    background: var(--bg-2); border: 1px solid var(--border-2);
+    text-align: center; max-width: 760px; margin: 0 auto;
+    position: relative; overflow: hidden;
+  }
+  .close-box::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, var(--border) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.3; pointer-events: none;
+  }
+  .close-box > * { position: relative; }
+  .close-box h2 {
+    font-size: 32px; font-weight: 600; letter-spacing: -0.025em;
+    margin: 14px 0 12px; line-height: 1.15;
+  }
+  .close-box .italic { font-style: italic; font-weight: 400; font-family: var(--font-serif); }
+  .close-box p {
+    color: var(--fg-2); font-size: 15px; max-width: 520px;
+    margin: 0 auto 22px; line-height: 1.55;
+  }
+  .close-box .byline-big {
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--fg-3);
+    margin-top: 20px;
+  }
+  .close-box .byline-big .by-name { color: var(--fg-2); }
+
+  /* ========== FOOTER ========== */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px;
+    margin-top: 32px;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 16px;
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--fg-3);
+  }
+
+  @media (max-width: 920px) {
+    .hero { grid-template-columns: 1fr; }
+    .glance { grid-template-columns: 1fr 1fr; }
+    .glance-cell:nth-child(2) { border-right: none; }
+    .glance-cell:nth-child(1), .glance-cell:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .step-card:nth-child(2) { border-right: none; }
+    .step-card:nth-child(1), .step-card:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .modes-grid, .decisions-wrap { grid-template-columns: 1fr; }
+    .try-panels { grid-template-columns: 1fr; }
+    .try-panel { border-right: none; border-bottom: 1px solid var(--border); }
+    .results-topline, .quotes-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="index.html">
+      <span class="logo-mark">P</span>
+      <span>Playground</span>
+      <span class="byline">by <span class="by-name">Dana Sandy</span></span>
+    </a>
+    <nav class="main-nav">
+      <button>How it works</button>
+      <button>Modes</button>
+      <button>Try it</button>
+      <button>Results</button>
+      <button>Decisions</button>
+    </nav>
+    <span class="spacer"></span>
+    <a href="index.html" style="font-family:var(--font-mono);font-size:12px;color:var(--fg-2);letter-spacing:0.04em;">← Home</a>
+    <span class="chip chip-sm">CASE STUDY · 2026</span>
+  </div>
+</header>
+
+<main>
+
+<!-- ========== HERO ========== -->
+<section>
+  <div class="hero">
+    <div class="hero-left">
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:22px;">
+        <span class="chip chip-accent">● case study</span>
+        <span class="mono" style="font-size:11px;color:var(--fg-3);">design · engineering · product</span>
+      </div>
+      <h1>
+        Keep testing<br>
+        <span class="dim">simple.</span>
+      </h1>
+      <div class="hero-lede">
+        <span class="lede-step">
+          <span class="lede-icon">
+            <svg class="upload-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <g class="arrow-part">
+                <polyline points="7 10 12 5 17 10"/>
+                <line x1="12" y1="5" x2="12" y2="15"/>
+              </g>
+            </svg>
+          </span>
+          <strong>Upload the HTML.</strong>
+        </span>
+        <span class="lede-step">
+          <span class="lede-icon share-wrap">
+            <svg class="share-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+          </span>
+          <strong>Share the link.</strong>
+        </span>
+        <span class="lede-step">
+          <span class="lede-icon bars">
+            <span class="bar b1"></span>
+            <span class="bar b2"></span>
+            <span class="bar b3"></span>
+          </span>
+          <strong>Get feedback.</strong>
+        </span>
+      </div>
+      <div class="hero-meta">
+        <span class="dot">●</span>
+        <span>Live project · in personal use</span>
+        <span style="margin:0 6px;">·</span>
+        <span>Built solo</span>
+        <span style="margin:0 6px;">·</span>
+        <span>4 working days · 2026</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-visual-label">
+        <span class="txt">OVERVIEW · three-step.flow</span>
+        <span class="line"></span>
+        <span class="num">01 / 01</span>
+      </div>
+      <div class="flow-panels">
+        <div class="flow-panel">
+          <div class="flow-step-num">1</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Upload</div>
+            <div class="flow-step-detail">Drag an HTML file or ZIP — drop zone, not a terminal.</div>
+          </div>
+          <div class="flow-mini-ui dashed">
+            ↓<br>
+            <span style="color:var(--fg-2);">checkout-v3.html</span>
+          </div>
+        </div>
+        <div class="flow-panel">
+          <div class="flow-step-num">2</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Share</div>
+            <div class="flow-step-detail">Each test gets its own link. Send it to anyone.</div>
+          </div>
+          <div class="flow-mini-ui">
+            <span style="color:var(--fg-3);">link:</span>
+            <span class="flow-mini-link">/t?proto=checkout-v3</span>
+          </div>
+        </div>
+        <div class="flow-panel">
+          <div class="flow-step-num">3</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">Review</div>
+            <div class="flow-step-detail">Success, ease, quotes, and per-task timing on one page.</div>
+          </div>
+          <div class="flow-mini-ui">
+            <div class="mini-bar"></div>
+            <div class="mini-quote">"I missed the skip link at first…"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== AT-A-GLANCE ========== -->
+<section style="padding-top: 0;">
+  <div class="glance">
+    <div class="glance-cell">
+      <div class="glance-label">Role</div>
+      <div class="glance-value">Design, engineering<br>&amp; product — solo</div>
+    </div>
+    <div class="glance-cell">
+      <div class="glance-label">Stack</div>
+      <div class="glance-value"><span class="mono-inline">React · Netlify · Clarity</span></div>
+    </div>
+    <div class="glance-cell">
+      <div class="glance-label">Timeline</div>
+      <div class="glance-value">4 working days<br><span class="mono-inline" style="font-size:12px;">2026</span></div>
+    </div>
+    <div class="glance-cell">
+      <div class="glance-label">Status</div>
+      <div class="glance-value"><span class="status-dot"></span>Live, in personal use</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HOW IT WORKS ========== -->
+<section class="bordered">
+  <div class="section-head">
+    <span class="chip">HOW IT WORKS</span>
+    <h2 class="section-title">
+      Four things happen.
+      <span class="dim">That's the whole tool.</span>
+    </h2>
+  </div>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-card-head">
+        <span class="step-num">01</span>
+        <span class="step-key">UPLOAD</span>
+      </div>
+      <div class="step-title">Drag in an HTML file or ZIP</div>
+      <div class="step-desc">
+        No build step, no CLI. If your ZIP has multiple HTML files, you pick the entry point. Live URL in 1–2 minutes.
+      </div>
+      <div class="step-inline-visual">
+        <div class="kv-line"><span>file</span><span>checkout-v3.html</span></div>
+        <div class="kv-line"><span>size</span><span>142 KB</span></div>
+        <div class="kv-line"><span>status</span><span class="accent">deploying ✓</span></div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-card-head">
+        <span class="step-num">02</span>
+        <span class="step-key">CONFIGURE</span>
+      </div>
+      <div class="step-title">Pick exploration or guided tasks</div>
+      <div class="step-desc">
+        Exploration: testers roam freely, optional prompt. Guided: up to 10 ordered tasks with per-task timing. Name the test, get the link.
+      </div>
+      <div class="step-inline-visual" style="padding:12px 12px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:12px;">
+          <div style="padding:7px 8px;border-radius:4px;background:var(--bg-2);color:var(--fg-2);text-align:center;font-size:11px;">Exploration</div>
+          <div style="padding:7px 8px;border-radius:4px;background:color-mix(in oklch, var(--accent) 18%, transparent);color:var(--accent);text-align:center;font-size:11px;font-weight:600;border:1px solid color-mix(in oklch, var(--accent) 35%, transparent);">Guided ✓</div>
+        </div>
+        <div style="display:grid;gap:5px;">
+          <div style="display:flex;gap:8px;align-items:center;padding:6px 8px;background:var(--bg-2);border-radius:3px;">
+            <span style="color:var(--fg-3);width:10px;font-family:var(--font-mono);font-size:11px;">1</span>
+            <span style="color:var(--fg);font-size:11.5px;flex:1;">Find a product under $40</span>
+            <span style="color:var(--fg-3);">⋮⋮</span>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:6px 8px;background:var(--bg-2);border-radius:3px;">
+            <span style="color:var(--fg-3);width:10px;font-family:var(--font-mono);font-size:11px;">2</span>
+            <span style="color:var(--fg);font-size:11.5px;flex:1;">Apply a student discount</span>
+            <span style="color:var(--fg-3);">⋮⋮</span>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;padding:6px 8px;background:var(--bg-2);border-radius:3px;">
+            <span style="color:var(--fg-3);width:10px;font-family:var(--font-mono);font-size:11px;">3</span>
+            <span style="color:var(--fg);font-size:11.5px;flex:1;">Get to checkout</span>
+            <span style="color:var(--fg-3);">⋮⋮</span>
+          </div>
+          <div style="padding:5px 6px;color:var(--fg-2);font-size:11px;text-align:center;border:1px dashed var(--border-2);border-radius:3px;">+ add task</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-card-head">
+        <span class="step-num">03</span>
+        <span class="step-key">CAPTURE</span>
+      </div>
+      <div class="step-title">Pre + post questions, plus the replay</div>
+      <div class="step-desc">
+        4 intake questions, Clarity records the session, then 4 post-session questions — intent, success, confusion, ease. Session ID links all three.
+      </div>
+      <div class="step-inline-visual">
+        <div class="kv-line"><span>pre</span><span>age, device, tech, fam</span></div>
+        <div class="kv-line"><span>during</span><span>clicks, scrolls, rage</span></div>
+        <div class="kv-line"><span>post</span><span class="accent">in their own words</span></div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-card-head">
+        <span class="step-num">04</span>
+        <span class="step-key">REVIEW</span>
+      </div>
+      <div class="step-title">Aggregate here, replays in Clarity</div>
+      <div class="step-desc">
+        Success, ease, per-task breakdown, and every tester's quotes on one page. Jump to the replay in Clarity filtered by session ID.
+      </div>
+      <div class="step-inline-visual">
+        <div class="kv-line"><span>this page</span><span>aggregate + quotes</span></div>
+        <div class="kv-line"><span>clarity</span><span>session replay</span></div>
+        <div class="kv-line"><span>bridge</span><span class="accent">session_id</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MODES ========== -->
+<section class="bordered">
+  <div class="section-head">
+    <span class="chip chip-accent">TWO MODES, ONE LINK</span>
+    <h2 class="section-title">
+      Freeform discovery,
+      <span class="dim">or scripted validation.</span>
+    </h2>
+  </div>
+  <p class="section-lede">
+    The tester link is the same shape either way. What changes is how much structure you ask the tester to follow — and how much quantitative data you get back.
+  </p>
+
+  <div class="modes-grid">
+    <div class="mode-card">
+      <div class="mode-card-header">
+        <h3>Exploration</h3>
+        <span class="chip chip-sm">MODE · EXPLORATION</span>
+      </div>
+      <p class="mode-card-desc">
+        Drop testers in with an optional prompt. Good for early concepts, directional feedback, vibe checks — when you want to see what they notice before you tell them what to do.
+      </p>
+      <div class="mode-meta">
+        <span><strong>Prompt</strong> optional</span>
+        <span><strong>Time limit</strong> none</span>
+        <span><strong>Signal</strong> qualitative</span>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-label">PLAYGROUND · YOUR PROMPT</div>
+        <div class="preview-title">Here's what to try.</div>
+        <div class="preview-sub">Explore however feels natural. There are no wrong answers.</div>
+        <div class="prompt-card">
+          "Act as if you're buying a gift for a friend whose birthday is tomorrow. Find something under $40 and get as close to checkout as you can."
+        </div>
+      </div>
+
+      <div class="mode-use">
+        <strong>Use when:</strong> you want to see where they get stuck, not whether they can complete a known path.
+      </div>
+    </div>
+
+    <div class="mode-card">
+      <div class="mode-card-header">
+        <h3>Guided tasks</h3>
+        <span class="chip chip-sm">MODE · GUIDED</span>
+      </div>
+      <p class="mode-card-desc">
+        Up to 10 ordered steps. Each task tracks completion, time-to-done, and "I'm stuck" signals. Good for validating specific flows — checkout, onboarding, a new settings page.
+      </p>
+      <div class="mode-meta">
+        <span><strong>Tasks</strong> up to 10</span>
+        <span><strong>Per-task</strong> timing + status</span>
+        <span><strong>Signal</strong> quantitative</span>
+      </div>
+
+      <div class="preview-box" style="padding-bottom: 0;">
+        <div class="preview-label">PROTOTYPE · CHECKOUT-V3</div>
+        <div class="preview-title">Checkout — pick a plan</div>
+        <div class="preview-sub">(Prototype renders above. Task panel sticks to the bottom.)</div>
+        <div class="task-panel-preview">
+          <div class="tp-body">
+            <div class="tp-meta">TASK 2 OF 3</div>
+            <div class="tp-text">Find the student discount and apply it.</div>
+          </div>
+          <div class="tp-btn-stuck">I'm stuck</div>
+          <div class="tp-btn-done">Done, next →</div>
+        </div>
+        <div style="height: 18px;"></div>
+      </div>
+
+      <div class="mode-use">
+        <strong>Use when:</strong> you want to measure success rates, completion times, and stuck-points across a cohort.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GUIDED WALKTHROUGH ========== -->
+<section class="bordered">
+  <div class="section-head">
+    <span class="chip chip-accent">● GUIDED MODE · WALKTHROUGH</span>
+    <h2 class="section-title">
+      How guided mode actually feels.
+      <span class="dim">Both sides, step by step.</span>
+    </h2>
+  </div>
+  <p class="section-lede">
+    Two independent walkthroughs running in parallel. On the left, the <strong>maker's side</strong> — configure the test, share the link, get the report. On the right, the <strong>tester's side</strong> — welcome, tasks, post-session questions. Click through each at your own pace.
+  </p>
+
+  <div class="walk-grid">
+    <!-- ==== MAKER SIDE ==== -->
+    <div class="walk-col">
+      <div class="walk-col-head">
+        <span class="walk-side-label">MAKER</span>
+        <span class="walk-side-desc">Your side · ~90 seconds setup</span>
+      </div>
+
+      <div class="walk-stage" data-walk="maker">
+        <!-- Frame 1: Configure form (real single-page form) -->
+        <div class="walk-frame active" data-frame="1">
+          <div class="walk-frame-chrome">
+            <div class="walk-dots"><span></span><span></span><span></span></div>
+            <div class="walk-url">playground-uxtg.netlify.app/upload</div>
+          </div>
+          <div class="walk-frame-body walk-dark">
+            <div class="walk-step-title">Configure your test</div>
+            <div class="walk-step-sub">One page. Drop a file, name it, add tasks, done.</div>
+
+            <div class="walk-field">
+              <div class="walk-field-label">TEST NAME</div>
+              <div class="walk-input walk-dark-input">Checkout V3</div>
+            </div>
+
+            <div class="walk-field">
+              <div class="walk-field-label">TEST MODE</div>
+              <div class="walk-dark-mode-grid">
+                <div class="walk-dark-mode-card">
+                  <div class="walk-dark-mode-name">Exploration</div>
+                  <div class="walk-dark-mode-desc">Testers explore freely. Optional prompt.</div>
+                </div>
+                <div class="walk-dark-mode-card walk-dark-mode-card-selected">
+                  <div class="walk-dark-mode-name">Guided tasks</div>
+                  <div class="walk-dark-mode-desc">Ordered tasks. Use for defined flows.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="walk-field">
+              <div class="walk-dark-tasks-label">
+                <span class="walk-field-label">TASKS</span>
+                <span class="walk-dark-tasks-count">2 / 10</span>
+              </div>
+              <div class="walk-dark-task-row">
+                <span class="walk-dark-task-num">Task 1</span>
+                <div class="walk-input walk-dark-input" style="flex:1;">Find the pour-over mug.</div>
+              </div>
+              <div class="walk-dark-task-row">
+                <span class="walk-dark-task-num">Task 2</span>
+                <div class="walk-input walk-dark-input" style="flex:1;">Add it to cart and reach checkout.</div>
+              </div>
+              <div class="walk-dark-add-task">＋ Add task</div>
+            </div>
+
+            <div class="walk-field" style="margin-top:14px;">
+              <div class="walk-field-label">PROTOTYPE FILE</div>
+              <div class="walk-dark-drop">
+                <div class="walk-dark-drop-icon">↑</div>
+                <div class="walk-dark-drop-text">Drag and drop your file here</div>
+                <div class="walk-dark-drop-sub">or click to browse · HTML or ZIP · max 512KB per file</div>
+              </div>
+            </div>
+
+            <div class="walk-dark-submit">Create test →</div>
+          </div>
+        </div>
+
+        <!-- Frame 2: Live link -->
+        <div class="walk-frame" data-frame="2">
+          <div class="walk-frame-chrome">
+            <div class="walk-dots"><span></span><span></span><span></span></div>
+            <div class="walk-url">playground-uxtg.netlify.app/t/k2x9</div>
+          </div>
+          <div class="walk-frame-body walk-dark">
+            <div class="walk-live-chip">LIVE</div>
+            <div class="walk-step-title">Your test is live</div>
+            <div class="walk-step-sub">Share this link. Expires in 5 days or after 8 sessions.</div>
+
+            <div class="walk-dark-link-box">
+              <div class="walk-dark-link-url">playground-uxtg.netlify.app/t/k2x9?p=9m3z</div>
+              <div class="walk-dark-copy-btn">Copy</div>
+            </div>
+
+            <div class="walk-dark-meta-grid">
+              <div class="walk-dark-meta">
+                <div class="walk-dark-meta-label">Password</div>
+                <div class="walk-dark-meta-val">9m3z</div>
+              </div>
+              <div class="walk-dark-meta">
+                <div class="walk-dark-meta-label">Sessions</div>
+                <div class="walk-dark-meta-val">0 / 8</div>
+              </div>
+              <div class="walk-dark-meta">
+                <div class="walk-dark-meta-label">Expires</div>
+                <div class="walk-dark-meta-val">Oct 29</div>
+              </div>
+            </div>
+
+            <div class="walk-dark-hint">No accounts. No dashboard to check. The report comes to you.</div>
+          </div>
+        </div>
+
+        <!-- Frame 3: Email notification -->
+        <div class="walk-frame" data-frame="3">
+          <div class="walk-frame-chrome">
+            <div class="walk-dots"><span></span><span></span><span></span></div>
+            <div class="walk-url">mail.google.com · inbox</div>
+          </div>
+          <div class="walk-frame-body" style="background:#fff;">
+            <div class="walk-email-wrap">
+              <div class="walk-email-from">
+                <div class="walk-email-avatar">P</div>
+                <div class="walk-email-from-meta">
+                  <div class="walk-email-sender">Playground</div>
+                  <div class="walk-email-address">reports@playground.test</div>
+                </div>
+                <div class="walk-email-time">9:14 AM</div>
+              </div>
+
+              <div class="walk-email-subject">Your test is ready · checkout-v3 · 8 sessions</div>
+
+              <div class="walk-email-body">
+                Your 5-day window closed. Here's what happened:
+              </div>
+
+              <div class="walk-email-summary-box">
+                <div class="walk-email-stats">
+                  <div>
+                    <div class="walk-email-stat-val">8</div>
+                    <div class="walk-email-stat-label">Sessions</div>
+                  </div>
+                  <div>
+                    <div class="walk-email-stat-val">75%</div>
+                    <div class="walk-email-stat-label">Success</div>
+                  </div>
+                  <div>
+                    <div class="walk-email-stat-val">3.8</div>
+                    <div class="walk-email-stat-label">Ease</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="walk-email-body">
+                <strong>Lowest completion:</strong> task 2 — apply a discount code. 5 of 8 completed, median 47s.
+              </div>
+
+              <div class="walk-email-cta">View full report →</div>
+
+              <div class="walk-email-footer">Link expires in 5 days.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frame 4: Full report -->
+        <div class="walk-frame" data-frame="4">
+          <div class="walk-frame-chrome">
+            <div class="walk-dots"><span></span><span></span><span></span></div>
+            <div class="walk-url">playground.test/r/k2x9</div>
+          </div>
+          <div class="walk-frame-body" style="background:#fff;">
+            <div class="walk-report-head">
+              <div class="walk-report-name">checkout-v3</div>
+              <div class="walk-report-meta">8 sessions · 4 days</div>
+            </div>
+
+            <div class="walk-report-headline">
+              8 sessions · 5 completed all tasks.
+              <span class="dim">Task 2 had the lowest completion rate.</span>
+            </div>
+
+            <div class="walk-success-bar">
+              <div class="walk-success-yes" style="width:62.5%;"></div>
+              <div class="walk-success-partial" style="width:25%;"></div>
+              <div class="walk-success-no" style="width:12.5%;"></div>
+            </div>
+            <div class="walk-success-legend">
+              <span><span class="walk-success-legend-dot walk-success-yes"></span>5 yes</span>
+              <span><span class="walk-success-legend-dot walk-success-partial"></span>2 partial</span>
+              <span><span class="walk-success-legend-dot walk-success-no"></span>1 no</span>
+            </div>
+
+            <div class="walk-where-broke-label">LOWEST COMPLETION</div>
+            <div class="walk-where-broke">
+              <strong>Task 2</strong> · apply a discount code · 5 of 8 completed. Median time to success: <strong>47s</strong> (vs 12s average on other tasks).
+            </div>
+
+            <div class="walk-report-quote">
+              "I missed the field at first — looked like a label, not an input."
+            </div>
+            <div class="walk-report-quote-attr">— Session 04 · guided</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Maker navigation -->
+      <div class="walk-nav">
+        <button class="walk-nav-btn walk-prev" data-side="maker" data-dir="-1" aria-label="Previous">←</button>
+        <div class="walk-dots-nav">
+          <span class="walk-dot active" data-side="maker" data-goto="1"></span>
+          <span class="walk-dot" data-side="maker" data-goto="2"></span>
+          <span class="walk-dot" data-side="maker" data-goto="3"></span>
+          <span class="walk-dot" data-side="maker" data-goto="4"></span>
+        </div>
+        <button class="walk-nav-btn walk-next" data-side="maker" data-dir="1" aria-label="Next">→</button>
+      </div>
+      <div class="walk-caption" data-walk-caption="maker">
+        <span class="walk-caption-step">Step 1 of 4</span>
+        <span class="walk-caption-text">Configure the test — name, mode, tasks, prototype file. All on one page.</span>
+      </div>
+    </div>
+
+    <!-- ==== TESTER SIDE ==== -->
+    <div class="walk-col">
+      <div class="walk-col-head">
+        <span class="walk-side-label walk-side-label-alt">TESTER</span>
+        <span class="walk-side-desc">Their side · 3–5 min session</span>
+      </div>
+
+      <div class="walk-stage" data-walk="tester">
+        <!-- Frame 1: Welcome -->
+        <div class="walk-frame active" data-frame="1">
+          <div class="walk-frame-chrome">
+            <div class="walk-dots"><span></span><span></span><span></span></div>
+            <div class="walk-url">playground.test/t/k2x9</div>
+          </div>
+          <div class="walk-frame-body" style="background:#fff;">
+            <div class="walk-tester-welcome">
+              <div class="walk-tester-brand">Playground</div>
+              <div class="walk-tester-h1">You're about to test a prototype.</div>
+              <div class="walk-tester-lede">Three short tasks. Takes about 4 minutes. Your cursor and clicks are recorded — no video, no mic.</div>
+
+              <div class="walk-tester-meta">
+                <div class="walk-tester-meta-row"><span>Estimated time</span><span>~4 min</span></div>
+                <div class="walk-tester-meta-row"><span>Tasks</span><span>3</span></div>
+                <div class="walk-tester-meta-row"><span>Recorded</span><span>Cursor + clicks only</span></div>
+              </div>
+
+              <div class="walk-tester-btn">Start →</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frame 2: Task 1 in progress -->
+        <div class="walk-frame" data-frame="2">
+          <div class="walk-frame-chrome">
+            <div class="walk-dots"><span></span><span></span><span></span></div>
+            <div class="walk-url">playground.test/t/k2x9/session</div>
+          </div>
+          <div class="walk-frame-body walk-tester-session" style="background:#fff;padding:0;">
+            <!-- Fake prototype shop -->
+            <div class="walk-proto walk-proto-shop">
+              <div class="walk-proto-nav">
+                <div class="walk-proto-logo">Tertera</div>
+                <div class="walk-proto-cart">🛒 0</div>
+              </div>
+              <div class="walk-proto-grid">
+                <div class="walk-proto-card">
+                  <div class="walk-proto-img walk-proto-img-1">🫖</div>
+                  <div class="walk-proto-pname">Teapot</div>
+                  <div class="walk-proto-price">$48</div>
+                </div>
+                <div class="walk-proto-card walk-proto-card-focus">
+                  <div class="walk-proto-img walk-proto-img-2">☕</div>
+                  <div class="walk-proto-pname">Pour-over mug</div>
+                  <div class="walk-proto-price">$32</div>
+                </div>
+                <div class="walk-proto-card">
+                  <div class="walk-proto-img walk-proto-img-3">🥣</div>
+                  <div class="walk-proto-pname">Bowl</div>
+                  <div class="walk-proto-price">$24</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom task panel -->
+            <div class="walk-task-panel">
+              <div class="walk-task-panel-body">
+                <div class="walk-task-panel-tag">TASK 1 OF 3</div>
+                <div class="walk-task-panel-text">Find the pour-over mug on the homepage.</div>
+              </div>
+              <div class="walk-task-panel-btns">
+                <div class="walk-task-panel-stuck">Stuck</div>
+                <div class="walk-task-panel-done">Done →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frame 3: Task 2 (product + cart) -->
+        <div class="walk-frame" data-frame="3">
+          <div class="walk-frame-chrome">
+            <div class="walk-dots"><span></span><span></span><span></span></div>
+            <div class="walk-url">playground.test/t/k2x9/session</div>
+          </div>
+          <div class="walk-frame-body walk-tester-session" style="background:#fff;padding:0;">
+            <!-- Product detail -->
+            <div class="walk-proto walk-proto-product">
+              <div class="walk-proto-nav">
+                <div class="walk-proto-logo">Tertera</div>
+                <div class="walk-proto-cart walk-proto-cart-active">🛒 1</div>
+              </div>
+              <div class="walk-proto-pdp">
+                <div class="walk-proto-hero">
+                  <div class="walk-proto-hero-icon">☕</div>
+                  <div class="walk-proto-hero-badge">NEW</div>
+                </div>
+                <div class="walk-proto-pdp-info">
+                  <div class="walk-proto-pdp-row">
+                    <div class="walk-proto-pdp-name">Pour-over mug</div>
+                    <div class="walk-proto-pdp-price">$32</div>
+                  </div>
+                  <div class="walk-proto-pdp-sub">Terracotta · 12oz</div>
+                  <div class="walk-proto-pdp-btn">Checkout →</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom task panel -->
+            <div class="walk-task-panel">
+              <div class="walk-task-panel-body">
+                <div class="walk-task-panel-tag">TASK 2 OF 3</div>
+                <div class="walk-task-panel-text">Add it to your cart and reach checkout.</div>
+              </div>
+              <div class="walk-task-panel-btns">
+                <div class="walk-task-panel-stuck">Stuck</div>
+                <div class="walk-task-panel-done walk-task-panel-done-ready">Done →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frame 4: End screen -->
+        <div class="walk-frame" data-frame="4">
+          <div class="walk-frame-chrome">
+            <div class="walk-dots"><span></span><span></span><span></span></div>
+            <div class="walk-url">playground.test/t/k2x9/end</div>
+          </div>
+          <div class="walk-frame-body" style="background:#fff;">
+            <div class="walk-tester-welcome">
+              <div class="walk-tester-h1">That's it.</div>
+              <div class="walk-tester-lede">Three quick questions, then you're done. Their answers — in their own words — land in the report next to the click data.</div>
+
+              <div class="walk-end-field">
+                <div class="walk-end-label">01 · WHAT WERE YOU TRYING TO DO?</div>
+                <div class="walk-end-textarea">I was shopping for a housewarming gift under $40…</div>
+              </div>
+
+              <div class="walk-end-field">
+                <div class="walk-end-label">02 · DID YOU SUCCEED?</div>
+                <div class="walk-end-chips">
+                  <span class="walk-end-chip walk-end-chip-active">Yes</span>
+                  <span class="walk-end-chip">Partially</span>
+                  <span class="walk-end-chip">No</span>
+                </div>
+              </div>
+
+              <div class="walk-end-field">
+                <div class="walk-end-label">03 · HOW EASY WAS IT?</div>
+                <div class="walk-end-scale">
+                  <span class="walk-end-scale-dot">1</span>
+                  <span class="walk-end-scale-dot">2</span>
+                  <span class="walk-end-scale-dot">3</span>
+                  <span class="walk-end-scale-dot walk-end-scale-dot-active">4</span>
+                  <span class="walk-end-scale-dot">5</span>
+                </div>
+              </div>
+
+              <div class="walk-tester-btn">Finish →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tester navigation -->
+      <div class="walk-nav">
+        <button class="walk-nav-btn walk-prev" data-side="tester" data-dir="-1" aria-label="Previous">←</button>
+        <div class="walk-dots-nav">
+          <span class="walk-dot active" data-side="tester" data-goto="1"></span>
+          <span class="walk-dot" data-side="tester" data-goto="2"></span>
+          <span class="walk-dot" data-side="tester" data-goto="3"></span>
+          <span class="walk-dot" data-side="tester" data-goto="4"></span>
+        </div>
+        <button class="walk-nav-btn walk-next" data-side="tester" data-dir="1" aria-label="Next">→</button>
+      </div>
+      <div class="walk-caption" data-walk-caption="tester">
+        <span class="walk-caption-step">Step 1 of 4</span>
+        <span class="walk-caption-text">Welcome screen — sets expectations, no signup.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TRY IT ========== -->
+<section class="bordered">
+  <div class="section-head">
+    <span class="chip chip-accent">● LIVE PREVIEW</span>
+    <h2 class="section-title">
+      What testers see.
+      <span class="dim">Intake → prototype → post.</span>
+    </h2>
+  </div>
+  <p class="section-lede">
+    Three screens, in order. Intake is four fixed-choice questions — no free-text, no PII. The prototype is your file. Post-session is where the qualitative gold gets captured — what they tried, whether they succeeded, what confused them, how easy it felt.
+  </p>
+
+  <div class="try-frame">
+    <div class="browser-bar">
+      <div class="browser-dots"><span></span><span></span><span></span></div>
+      <div class="browser-url">
+        🔒 playground.uxtg.dev/t?proto=checkout-v3
+        <span class="rec">REC</span>
+      </div>
+    </div>
+
+    <div class="try-panels">
+
+      <!-- INTAKE — 4 fixed-choice questions -->
+      <div class="try-panel">
+        <div class="try-panel-tag">01 · INTAKE · 4 QUESTIONS</div>
+        <h4>Before we start.</h4>
+        <p>All fixed-choice. No name, email, or IP collected.</p>
+
+        <div class="field-label">01 · AGE RANGE</div>
+        <div class="chip-row">
+          <span class="chip-pill">18–24</span>
+          <span class="chip-pill active">25–34</span>
+          <span class="chip-pill">35–44</span>
+          <span class="chip-pill">45–54</span>
+          <span class="chip-pill">55+</span>
+        </div>
+
+        <div class="field-label">02 · DEVICE</div>
+        <div class="chip-row">
+          <span class="chip-pill active">Desktop</span>
+          <span class="chip-pill">Laptop</span>
+          <span class="chip-pill">Tablet</span>
+          <span class="chip-pill">Phone</span>
+        </div>
+
+        <div class="field-label">03 · TECH COMFORT</div>
+        <div class="chip-row">
+          <span class="chip-pill">Get by</span>
+          <span class="chip-pill active">Comfortable</span>
+          <span class="chip-pill">Power user</span>
+        </div>
+
+        <div class="field-label">04 · FAMILIAR WITH THIS AREA</div>
+        <div class="chip-row">
+          <span class="chip-pill">Not really</span>
+          <span class="chip-pill active">A bit</span>
+          <span class="chip-pill">Very familiar</span>
+        </div>
+
+        <div class="primary-cta-light">Start the test →</div>
+      </div>
+
+      <!-- PROTOTYPE -->
+      <div class="try-panel">
+        <div class="try-panel-tag">02 · PROTOTYPE · GUIDED</div>
+        <h4>Your file, inside the wrapper.</h4>
+        <p>The prototype renders full-frame. A persistent task panel sits along the bottom in guided mode. In exploration mode, just an end-session button.</p>
+
+        <div style="background:#fff;border:1px solid #e0e0e0;border-radius:6px;padding:14px 16px;margin-bottom:12px;">
+          <div style="font-size:10px;color:#666;letter-spacing:0.12em;margin-bottom:12px;font-family:var(--font-mono);display:flex;justify-content:space-between;align-items:center;gap:8px;text-transform:uppercase;white-space:nowrap;">
+            <span style="overflow:hidden;text-overflow:ellipsis;">Shop-v3</span>
+            <span style="color:#333;font-weight:600;white-space:nowrap;flex-shrink:0;">🛒 Cart · 0</span>
+          </div>
+
+          <div style="border:1px solid #eee;border-radius:6px;overflow:hidden;margin-bottom:10px;">
+            <div style="height:110px;background:linear-gradient(135deg,#E8A87C 0%,#C38D5E 55%,#8B5E3C 100%);display:flex;align-items:center;justify-content:center;position:relative;">
+              <div style="font-size:58px;filter:drop-shadow(0 4px 6px rgba(0,0,0,0.2));">☕</div>
+              <div style="position:absolute;top:8px;left:8px;background:rgba(255,255,255,0.95);color:#8B5E3C;font-size:10px;font-weight:700;letter-spacing:0.12em;padding:3px 8px;border-radius:3px;font-family:var(--font-mono);">NEW</div>
+            </div>
+            <div style="padding:10px 12px;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:3px;">
+                <div style="font-size:11.5px;font-weight:600;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Ceramic mug</div>
+                <div style="font-size:13px;font-weight:700;color:#111;flex-shrink:0;">$32</div>
+              </div>
+              <div style="font-size:11px;color:#666;margin-bottom:10px;">Terracotta · 12oz · handmade</div>
+              <div style="background:#C0392B;color:#fff;padding:8px 12px;border-radius:5px;font-size:11.5px;font-weight:600;text-align:center;letter-spacing:0.01em;">Add to cart</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:9px 12px;display:flex;gap:10px;align-items:center;box-shadow:0 -2px 6px rgba(0,0,0,0.05);">
+          <div style="flex:1;">
+            <div style="font-size:10px;letter-spacing:0.1em;color:#666;text-transform:uppercase;font-family:var(--font-mono);margin-bottom:3px;">TASK 2 OF 3</div>
+            <div style="font-size:12px;color:#111;font-weight:500;line-height:1.4;">Add the ceramic mug to your cart and reach checkout.</div>
+          </div>
+          <div style="padding:6px 10px;font-size:11px;background:#fff;color:#333;border:1.5px solid #ccc;border-radius:5px;font-weight:500;">Stuck</div>
+          <div style="padding:6px 10px;font-size:11px;background:#111;color:#fff;border-radius:5px;font-weight:600;">Done →</div>
+        </div>
+      </div>
+
+      <!-- POST-SESSION -->
+      <div class="try-panel">
+        <div class="try-panel-tag">03 · POST · 4 QUESTIONS</div>
+        <h4>A few quick questions.</h4>
+        <p>Their own words. This is where you find out <em>why</em> the click heatmap looks the way it does.</p>
+
+        <div class="field-label">01 · WHAT WERE YOU TRYING TO DO?</div>
+        <div class="fake-textarea">
+          I was looking for the cheapest option that still let me invite a teammate — the Pro plan seemed right but I wasn't sure.
+        </div>
+
+        <div class="field-label">02 · DID YOU SUCCEED?</div>
+        <div class="chip-row">
+          <span class="chip-pill">Yes</span>
+          <span class="chip-pill active">Partially</span>
+          <span class="chip-pill">No</span>
+        </div>
+
+        <div class="field-label">04 · HOW EASY WAS IT?</div>
+        <div class="ease-row">
+          <div class="ease-circle">1</div>
+          <div class="ease-circle">2</div>
+          <div class="ease-circle active">3</div>
+          <div class="ease-circle">4</div>
+          <div class="ease-circle">5</div>
+        </div>
+
+        <div class="primary-cta-light">Finish →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== RESULTS ========== -->
+<section class="bordered">
+  <div class="section-head">
+    <span class="chip">THE REPORT</span>
+    <h2 class="section-title">
+      Not a dashboard.
+      <span class="dim">The data, simplified. You decide.</span>
+    </h2>
+  </div>
+  <p class="section-lede">
+    The report answers two questions, in order: <strong>what happened?</strong> · <strong>in their own words, why?</strong> No recommendations — the tool counts and surfaces patterns, you decide what to do. The success bar and session table are live; click through and try it.
+  </p>
+  <p class="section-lede" style="font-size:12.5px;color:var(--fg-3);font-style:italic;margin-top:-16px;">
+    Note: numbers, quotes, and session IDs below are sample data for illustration — the tool itself is live, but this report isn't a real test.
+  </p>
+
+  <div class="results-frame" id="reportDemo">
+    <div class="results-head">
+      <span class="logo" style="font-size:14px;">
+        <span class="logo-mark" style="width:18px;height:18px;font-size:10px;">P</span>
+        <span>Playground</span>
+      </span>
+      <span class="breadcrumb-sep">/</span>
+      <span class="results-head-tag">results</span>
+      <span class="breadcrumb-sep">/</span>
+      <span class="results-head-tag" style="color:var(--fg);">checkout-v3</span>
+      <span class="spacer" style="flex:1;"></span>
+      <span class="chip chip-sm" style="background:color-mix(in oklch, var(--warn) 14%, transparent);color:var(--warn);border-color:color-mix(in oklch, var(--warn) 30%, transparent);">SAMPLE DATA</span>
+      <span class="chip chip-sm">GUIDED · 3 TASKS</span>
+      <span class="chip chip-accent chip-sm">● 27 RESPONSES</span>
+    </div>
+
+    <!-- TL;DR SUMMARY -->
+    <div class="report-tldr">
+      <div class="tldr-label">AT&nbsp;A&nbsp;GLANCE</div>
+      <div class="tldr-body">
+        <strong>18 of 27 completed all three tasks.</strong> Task&nbsp;2 (apply student discount) had the lowest completion — 64% vs 94–96% on tasks 1 and 3, and 4× the median time. 7 testers pressed &ldquo;stuck&rdquo; on it. Discount placement was mentioned in 7 of 27 sessions.
+      </div>
+    </div>
+
+    <!-- FILTER BAR (only visible when a filter is active) -->
+    <div class="filter-bar" id="filterBar" hidden>
+      <span class="filter-bar-label mono">FILTERED ·</span>
+      <span class="filter-bar-chip" id="filterChip"></span>
+      <button class="filter-bar-clear" onclick="clearReportFilter()">Clear filter ✕</button>
+    </div>
+
+    <div class="results-body">
+      <!-- TOPLINE -->
+      <div class="results-topline">
+        <div>
+          <div class="topline-head">
+            <span class="topline-label">Success (self-reported)</span>
+            <span class="topline-hint mono">Click a segment to see those sessions</span>
+          </div>
+          <div class="success-bar interactive">
+            <button class="success-seg success-yes" data-success="yes" onclick="filterByReportSuccess('yes')" aria-label="Filter to yes responses">18</button>
+            <button class="success-seg success-partial" data-success="partial" onclick="filterByReportSuccess('partial')" aria-label="Filter to partial">6</button>
+            <button class="success-seg success-no" data-success="no" onclick="filterByReportSuccess('no')" aria-label="Filter to no responses">3</button>
+          </div>
+          <div class="success-legend interactive">
+            <button onclick="filterByReportSuccess('yes')"><span style="color:#10a37f;">●</span> Yes 18 <span class="pct">67%</span></button>
+            <button onclick="filterByReportSuccess('partial')"><span style="color:#d97706;">●</span> Partial 6 <span class="pct">22%</span></button>
+            <button onclick="filterByReportSuccess('no')"><span style="color:#b91c1c;">●</span> No 3 <span class="pct">11%</span></button>
+          </div>
+        </div>
+
+        <div>
+          <div class="topline-label">Ease · avg</div>
+          <div class="ease-big">3.8<span class="unit">/ 5</span></div>
+          <div class="ease-meta">24 responses · distribution below</div>
+          <!-- NEW: Distribution strip -->
+          <div class="ease-dist">
+            <div class="dist-row"><span class="dist-label">1</span><div class="dist-track"><div class="dist-fill" style="width:8%"></div></div><span class="dist-count">2</span></div>
+            <div class="dist-row"><span class="dist-label">2</span><div class="dist-track"><div class="dist-fill" style="width:12%"></div></div><span class="dist-count">3</span></div>
+            <div class="dist-row"><span class="dist-label">3</span><div class="dist-track"><div class="dist-fill" style="width:34%"></div></div><span class="dist-count">8</span></div>
+            <div class="dist-row"><span class="dist-label">4</span><div class="dist-track"><div class="dist-fill" style="width:30%"></div></div><span class="dist-count">7</span></div>
+            <div class="dist-row"><span class="dist-label">5</span><div class="dist-track"><div class="dist-fill" style="width:16%"></div></div><span class="dist-count">4</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PER-TASK -->
+      <div class="section-block">
+        <div class="block-head">
+          <span class="topline-label">Per-task breakdown</span>
+        </div>
+        <div class="headline-callout">
+          <span class="callout-mark">Task 2 · lowest completion.</span>
+          <span class="callout-body">64% completion vs 94–96% for tasks 1 and 3. Median time <strong>4× longer</strong>. 7 testers pressed &ldquo;stuck&rdquo; before finishing.</span>
+        </div>
+
+        <div class="task-breakdown">
+          <div class="task-row">
+            <div class="task-row-head">
+              <span class="mono" style="font-size:11px;color:var(--fg-3);">Task 1</span>
+              <span style="font-size:14px;flex:1;">Select the Pro plan and continue.</span>
+              <span class="health-pill health-good">Healthy</span>
+            </div>
+            <div class="task-row-meta">
+              <span>26 attempted</span>
+              <span class="done">25 done · 96%</span>
+              <span class="dim">median 11s</span>
+            </div>
+          </div>
+          <div class="task-row danger">
+            <div class="task-row-head">
+              <span class="mono" style="font-size:11px;color:var(--fg-3);">Task 2</span>
+              <span style="font-size:14px;flex:1;">Find the student discount and apply it.</span>
+              <span class="health-pill health-bad">Bottleneck</span>
+            </div>
+            <div class="task-row-meta">
+              <span>25 attempted</span>
+              <span class="done">16 done · 64%</span>
+              <span class="stuck">7 stuck</span>
+              <span class="dim">median 48s</span>
+            </div>
+          </div>
+          <div class="task-row">
+            <div class="task-row-head">
+              <span class="mono" style="font-size:11px;color:var(--fg-3);">Task 3</span>
+              <span style="font-size:14px;flex:1;">Complete the checkout with saved payment.</span>
+              <span class="health-pill health-good">Healthy</span>
+            </div>
+            <div class="task-row-meta">
+              <span>18 attempted</span>
+              <span class="done">17 done · 94%</span>
+              <span class="dim">median 19s</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUOTES -->
+      <div class="section-block">
+        <div class="block-head">
+          <span class="topline-label">In their own words</span>
+        </div>
+        <div class="headline-callout">
+          <span class="callout-mark">Most-mentioned theme: discount placement.</span>
+          <span class="callout-body">7 of 27 testers (26%) referred to the placement or discoverability of the discount field. Plan pricing and checkout UX drew fewer than 4 mentions each.</span>
+        </div>
+
+        <div class="quotes-grid">
+          <div class="quote-col">
+            <h3>What they tried to do</h3>
+            <div class="quote-card">
+              <div class="quote-theme-pill">Plan comparison · 6 mentions</div>
+              <div class="quote-text">"I wanted the cheapest option that still let me invite a teammate. Pro seemed right but I second-guessed it."</div>
+              <div class="quote-demo">25–34 · Desktop · Power user</div>
+            </div>
+            <div class="quote-card">
+              <div class="quote-theme-pill">Scan-and-go · 5 mentions</div>
+              <div class="quote-text">"Skim the plans, pick the middle one, move on. I don't want to read a comparison table."</div>
+              <div class="quote-demo">35–44 · Laptop · Comfortable</div>
+            </div>
+            <div class="quote-card">
+              <div class="quote-theme-pill">Discount hunt · 4 mentions</div>
+              <div class="quote-text">"Tried to apply my student email but couldn't find where to paste it."</div>
+              <div class="quote-demo">18–24 · Phone · Comfortable</div>
+            </div>
+          </div>
+          <div class="quote-col">
+            <h3>What confused them</h3>
+            <div class="quote-card quote-card-heat">
+              <div class="quote-theme-pill hot">Discount placement · 7 mentions</div>
+              <div class="quote-text">"The discount field is buried under 'More options' — I almost gave up."</div>
+              <div class="quote-demo">18–24 · Phone · Comfortable</div>
+            </div>
+            <div class="quote-card">
+              <div class="quote-theme-pill">Team seat limits · 3 mentions</div>
+              <div class="quote-text">"The 'Team' plan has team pricing but no mention of seats. I didn't know how many people I could invite."</div>
+              <div class="quote-demo">45–54 · Laptop · Get by</div>
+            </div>
+            <div class="quote-card">
+              <div class="quote-theme-pill">Expired payment label · 2 mentions</div>
+              <div class="quote-text">"Saved payment showed but said 'expired' — I couldn't tell if it'd actually charge."</div>
+              <div class="quote-demo">35–44 · Desktop · Power user</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SESSIONS TABLE -->
+      <div class="section-block">
+        <div class="block-head">
+          <span class="topline-label">Sessions</span>
+          <span class="block-hint mono">Click any row to expand</span>
+        </div>
+
+        <div class="table-wrap">
+          <table class="sessions sessions-interactive">
+            <thead>
+              <tr>
+                <th style="width:28px;"></th>
+                <th>Session</th>
+                <th>Age</th>
+                <th>Device</th>
+                <th>Tech</th>
+                <th>Success</th>
+                <th>Ease</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody id="sessionsTable">
+
+              <!-- Row 1 -->
+              <tr class="session-row" data-success="yes" onclick="toggleSessionRow(this)">
+                <td class="caret-cell"><span class="caret">▸</span></td>
+                <td><span class="sid">4f2a-b9c1-5e77…</span></td>
+                <td>25–34</td>
+                <td>Desktop</td>
+                <td>Power user</td>
+                <td><span class="success-pill yes">Yes</span></td>
+                <td>4</td>
+                <td class="mono dim-cell">3m 14s</td>
+              </tr>
+              <tr class="session-detail" hidden>
+                <td colspan="8">
+                  <div class="detail-grid">
+                    <div class="detail-section">
+                      <div class="detail-label">Intent</div>
+                      <div class="detail-body">"I wanted the cheapest option that still let me invite a teammate. Pro seemed right but I second-guessed it."</div>
+                    </div>
+                    <div class="detail-section">
+                      <div class="detail-label">Confusion</div>
+                      <div class="detail-body dim">(no answer)</div>
+                    </div>
+                    <div class="detail-section">
+                      <div class="detail-label">Task timings</div>
+                      <div class="detail-body mono">
+                        <div>T1 · <span class="good">done</span> · 9s</div>
+                        <div>T2 · <span class="good">done</span> · 31s</div>
+                        <div>T3 · <span class="good">done</span> · 14s</div>
+                      </div>
+                    </div>
+                  </div>
+                  <a class="clarity-link-big">↗ View recording in Clarity</a>
+                </td>
+              </tr>
+
+              <!-- Row 2 -->
+              <tr class="session-row" data-success="partial" onclick="toggleSessionRow(this)">
+                <td class="caret-cell"><span class="caret">▸</span></td>
+                <td><span class="sid">a1c5-02de-8814…</span></td>
+                <td>45–54</td>
+                <td>Laptop</td>
+                <td>Get by</td>
+                <td><span class="success-pill partial">Partial</span></td>
+                <td>2</td>
+                <td class="mono dim-cell">5m 02s</td>
+              </tr>
+              <tr class="session-detail" hidden>
+                <td colspan="8">
+                  <div class="detail-grid">
+                    <div class="detail-section">
+                      <div class="detail-label">Intent</div>
+                      <div class="detail-body">"Trying to find the seat count for the Team plan — couldn't tell if 'team' meant 3 people or 30."</div>
+                    </div>
+                    <div class="detail-section">
+                      <div class="detail-label">Confusion</div>
+                      <div class="detail-body">"The 'Team' plan has team pricing but no mention of seats. I didn't know how many people I could invite."</div>
+                    </div>
+                    <div class="detail-section">
+                      <div class="detail-label">Task timings</div>
+                      <div class="detail-body mono">
+                        <div>T1 · <span class="good">done</span> · 14s</div>
+                        <div>T2 · <span class="warn">stuck</span> · 2m 18s</div>
+                        <div>T3 · <span class="good">done</span> · 22s</div>
+                      </div>
+                    </div>
+                  </div>
+                  <a class="clarity-link-big">↗ View recording in Clarity</a>
+                </td>
+              </tr>
+
+              <!-- Row 3 -->
+              <tr class="session-row" data-success="yes" onclick="toggleSessionRow(this)">
+                <td class="caret-cell"><span class="caret">▸</span></td>
+                <td><span class="sid">e73b-9102-22aa…</span></td>
+                <td>18–24</td>
+                <td>Phone</td>
+                <td>Comfortable</td>
+                <td><span class="success-pill yes">Yes</span></td>
+                <td>4</td>
+                <td class="mono dim-cell">2m 41s</td>
+              </tr>
+              <tr class="session-detail" hidden>
+                <td colspan="8">
+                  <div class="detail-grid">
+                    <div class="detail-section">
+                      <div class="detail-label">Intent</div>
+                      <div class="detail-body">"Tried to apply my student email but couldn't find where to paste it."</div>
+                    </div>
+                    <div class="detail-section">
+                      <div class="detail-label">Confusion</div>
+                      <div class="detail-body">"The discount field is buried under 'More options' — I almost gave up."</div>
+                    </div>
+                    <div class="detail-section">
+                      <div class="detail-label">Task timings</div>
+                      <div class="detail-body mono">
+                        <div>T1 · <span class="good">done</span> · 8s</div>
+                        <div>T2 · <span class="good">done</span> · 1m 12s</div>
+                        <div>T3 · <span class="good">done</span> · 11s</div>
+                      </div>
+                    </div>
+                  </div>
+                  <a class="clarity-link-big">↗ View recording in Clarity</a>
+                </td>
+              </tr>
+
+              <!-- Row 4 -->
+              <tr class="session-row" data-success="no" onclick="toggleSessionRow(this)">
+                <td class="caret-cell"><span class="caret">▸</span></td>
+                <td><span class="sid">c84f-551a-99ef…</span></td>
+                <td>35–44</td>
+                <td>Desktop</td>
+                <td>I build software</td>
+                <td><span class="success-pill no">No</span></td>
+                <td>2</td>
+                <td class="mono dim-cell">4m 38s</td>
+              </tr>
+              <tr class="session-detail" hidden>
+                <td colspan="8">
+                  <div class="detail-grid">
+                    <div class="detail-section">
+                      <div class="detail-label">Intent</div>
+                      <div class="detail-body">"Wanted to apply the student discount. Gave up after two minutes."</div>
+                    </div>
+                    <div class="detail-section">
+                      <div class="detail-label">Confusion</div>
+                      <div class="detail-body">"Discount input wasn't where I'd expect. I looked in the cart, the plan page, the profile. Never found it."</div>
+                    </div>
+                    <div class="detail-section">
+                      <div class="detail-label">Task timings</div>
+                      <div class="detail-body mono">
+                        <div>T1 · <span class="good">done</span> · 10s</div>
+                        <div>T2 · <span class="bad">abandoned</span> · 2m 04s</div>
+                        <div>T3 · <span class="dim">not reached</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <a class="clarity-link-big">↗ View recording in Clarity</a>
+                </td>
+              </tr>
+
+              <!-- Row 5 -->
+              <tr class="session-row" data-success="partial" onclick="toggleSessionRow(this)">
+                <td class="caret-cell"><span class="caret">▸</span></td>
+                <td><span class="sid">9b0d-dd71-4012…</span></td>
+                <td>55+</td>
+                <td>Laptop</td>
+                <td>Get by</td>
+                <td><span class="success-pill partial">Partial</span></td>
+                <td>3</td>
+                <td class="mono dim-cell">6m 12s</td>
+              </tr>
+              <tr class="session-detail" hidden>
+                <td colspan="8">
+                  <div class="detail-grid">
+                    <div class="detail-section">
+                      <div class="detail-label">Intent</div>
+                      <div class="detail-body">"Comparing the plans carefully. I don't buy things I don't understand."</div>
+                    </div>
+                    <div class="detail-section">
+                      <div class="detail-label">Confusion</div>
+                      <div class="detail-body">"Saved payment showed but said 'expired' — I couldn't tell if it'd actually charge."</div>
+                    </div>
+                    <div class="detail-section">
+                      <div class="detail-label">Task timings</div>
+                      <div class="detail-body mono">
+                        <div>T1 · <span class="good">done</span> · 22s</div>
+                        <div>T2 · <span class="warn">stuck</span> · 3m 44s</div>
+                        <div>T3 · <span class="good">done</span> · 48s</div>
+                      </div>
+                    </div>
+                  </div>
+                  <a class="clarity-link-big">↗ View recording in Clarity</a>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="results-footnote">
+          Session replays live in Microsoft Clarity — search the <span class="mono">session_id</span> tag to find a specific recording. Intake answers travel with it.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== DECISIONS ========== -->
+<section class="bordered">
+  <div class="section-head">
+    <span class="chip">DECISIONS &amp; TRADEOFFS</span>
+    <h2 class="section-title">
+      Why it works this way.
+      <span class="dim">And what I'm living with.</span>
+    </h2>
+  </div>
+  <p class="section-lede">
+    Every tool is the product of a handful of early decisions. These are the ones that shaped The Playground, including the ones I'd reconsider with more time.
+  </p>
+
+  <div class="decisions-wrap">
+
+    <div class="decision">
+      <div class="decision-head">
+        <h3>HTML only, no Figma integration.</h3>
+        <span class="decision-num">D01</span>
+      </div>
+      <div class="decision-body">
+        <p>Figma's mirror protocol doesn't cooperate with iframes, and owning a Figma integration means owning its breakages. HTML prototypes — whether exported from Figma, hand-coded, or generated by AI tools — render cleanly inside the wrapper.</p>
+        <div class="tradeoff">
+          <span class="tradeoff-label">Tradeoff</span>
+          <span class="tradeoff-body">You have to export to HTML first. For most of my prototypes that's one extra step; for designers living in Figma, it's friction.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="decision">
+      <div class="decision-head">
+        <h3>Built on Clarity + Netlify, not a custom stack.</h3>
+        <span class="decision-num">D02</span>
+      </div>
+      <div class="decision-body">
+        <p>Microsoft Clarity already records sessions, generates heatmaps, and surfaces rage-click events — and it's free. Netlify Forms handles submissions without a backend. Rolling my own would have meant weeks of infrastructure work for worse results.</p>
+        <div class="tradeoff">
+          <span class="tradeoff-label">Tradeoff</span>
+          <span class="tradeoff-body">Two tools to check instead of one. The aggregate view lives in The Playground, the replays live in Clarity, and <span class="mono">session_id</span> is the bridge.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="decision">
+      <div class="decision-head">
+        <h3>Two modes, not one.</h3>
+        <span class="decision-num">D03</span>
+      </div>
+      <div class="decision-body">
+        <p>I started with exploration mode only — it was simpler and fit the "unmoderated testing" framing. But for validating specific flows I kept wanting to measure completion rates. Adding guided tasks took a weekend and doubled the tool's usefulness for flow-specific work.</p>
+        <div class="tradeoff">
+          <span class="tradeoff-label">Tradeoff</span>
+          <span class="tradeoff-body">More surface area to explain on the homepage. Worth it — the split between exploratory and validation testing is real, and one mode can't serve both.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="decision">
+      <div class="decision-head">
+        <h3>Dropped the role question from intake.</h3>
+        <span class="decision-num">D04</span>
+      </div>
+      <div class="decision-body">
+        <p>The original intake asked for role as free text. I removed it because (a) free text invited PII — testers were typing company names and real people's names — and (b) for unmoderated testing, role didn't change how I interpreted sessions nearly as much as <strong>tech comfort</strong> and <strong>device</strong> did.</p>
+        <div class="tradeoff">
+          <span class="tradeoff-label">Tradeoff</span>
+          <span class="tradeoff-body">Quotes in the results page are slightly less characterful — "25–34 · Desktop · Power user" reads less vividly than "Designer · 25–34." Worth the cleaner privacy posture.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="decision">
+      <div class="decision-head">
+        <h3>No auth on share links.</h3>
+        <span class="decision-num">D05</span>
+      </div>
+      <div class="decision-body">
+        <p>Anyone with the tester URL can participate. I shipped without auth because the tool is used with existing recruitment channels — I'm not posting links in public Slacks — and building a password layer would have delayed the first real test by a week.</p>
+        <div class="tradeoff">
+          <span class="tradeoff-label">Tradeoff</span>
+          <span class="tradeoff-body">A leaked link means noisy data. Mitigation today: don't post links publicly. Phase 2: password gating.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="decision">
+      <div class="decision-head">
+        <h3>One deploy pipeline, not per-prototype.</h3>
+        <span class="decision-num">D06</span>
+      </div>
+      <div class="decision-body">
+        <p>Every prototype lives under the same Netlify site, served via <span class="mono">/t?proto=&lt;slug&gt;</span>. New prototypes get committed to a folder and deployed incrementally — no per-prototype site, no per-prototype DNS.</p>
+        <div class="tradeoff">
+          <span class="tradeoff-label">Tradeoff</span>
+          <span class="tradeoff-body">1–2 minute deploy polling on upload before a link is live. Good-enough latency; the alternative (instant but isolated prototypes) would have meant maintaining N Netlify sites.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== WHAT'S NEXT ========== -->
+<section class="bordered">
+  <div class="section-head">
+    <span class="chip">WHAT'S NEXT</span>
+    <h2 class="section-title">
+      Known gaps.
+      <span class="dim">Roughly in priority order.</span>
+    </h2>
+  </div>
+  <p class="section-lede">
+    Every tool has a backlog of things the creator can see clearly but hasn't built yet. These are mine.
+  </p>
+
+  <div class="next-list">
+    <div class="next-item">
+      <span class="next-status soon">NEXT</span>
+      <div class="next-body">
+        <div class="next-title">Password gating on share links</div>
+        <div class="next-desc">Single shared password per prototype, entered at the intake screen. Low lift, closes the "leaked link" gap.</div>
+      </div>
+    </div>
+
+    <div class="next-item">
+      <span class="next-status soon">NEXT</span>
+      <div class="next-body">
+        <div class="next-title">Mobile viewport guard, per-prototype</div>
+        <div class="next-desc">If the prototype is desktop-only, let the PM set a min-width so mobile testers see a friendly "rotate or switch" screen instead of a broken layout.</div>
+      </div>
+    </div>
+
+    <div class="next-item">
+      <span class="next-status maybe">MAYBE</span>
+      <div class="next-body">
+        <div class="next-title">Figma-to-HTML pipeline</div>
+        <div class="next-desc">Not a direct integration — a one-click export helper that takes a Figma file URL and produces a zippable HTML bundle. Keeps the "HTML only" contract while shortening the export step.</div>
+      </div>
+    </div>
+
+    <div class="next-item">
+      <span class="next-status maybe">MAYBE</span>
+      <div class="next-body">
+        <div class="next-title">Tester recruitment integration</div>
+        <div class="next-desc">Paid panel access (Prolific, UserInterviews) wired into the share flow so I don't have to source testers manually. Significant scope; only worth it if the tool gets more use.</div>
+      </div>
+    </div>
+
+    <div class="next-item">
+      <span class="next-status maybe">MAYBE</span>
+      <div class="next-body">
+        <div class="next-title">Export to CSV / analysis handoff</div>
+        <div class="next-desc">Right now the results page is where analysis happens. A CSV export would let someone take the data elsewhere — useful if I ever want to share a test with a non-Playground user.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CLOSE ========== -->
+<section class="bordered">
+  <div class="close-box">
+    <span class="chip chip-accent">● END OF CASE STUDY</span>
+    <h2>
+      Thanks for reading.<br>
+      <span class="italic">That's the whole thing.</span>
+    </h2>
+    <p>
+      If you build, ship, or hire for design-engineering-product crossover roles and something here caught your eye — I'd love to hear what.
+    </p>
+    <div class="byline-big">
+      by <span class="by-name">Dana Sandy</span> · <a href="mailto:danahinds@gmail.com" style="color:var(--accent);">danahinds@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 · The Playground · a case study by Dana Sandy</span>
+    <span>Built with React · Netlify · Microsoft Clarity</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const TOTALS = { yes: 18, partial: 6, no: 3 };
+  const LABELS = { yes: 'Success = Yes', partial: 'Success = Partial', no: 'Success = No' };
+  let activeFilter = null;
+
+  function updateFilterBar() {
+    const bar = document.getElementById('filterBar');
+    const chip = document.getElementById('filterChip');
+    if (!activeFilter) {
+      bar.hidden = true;
+      return;
+    }
+    // Count visible session rows of this type (currently in DOM)
+    const visibleRows = document.querySelectorAll(
+      `.session-row[data-success="${activeFilter}"]`
+    ).length;
+    bar.hidden = false;
+    chip.innerHTML = `${LABELS[activeFilter]} <span class="count">showing ${visibleRows} of ${TOTALS[activeFilter]}</span>`;
+  }
+
+  function applyFilterClasses() {
+    // Success bar segments
+    document.querySelectorAll('.success-bar.interactive .success-seg').forEach(seg => {
+      seg.classList.remove('active', 'dim');
+      if (activeFilter) {
+        if (seg.dataset.success === activeFilter) seg.classList.add('active');
+        else seg.classList.add('dim');
+      }
+    });
+    // Legend buttons
+    document.querySelectorAll('.success-legend.interactive button').forEach(btn => {
+      btn.classList.remove('active');
+      const match = btn.getAttribute('onclick') || '';
+      if (activeFilter && match.includes(`'${activeFilter}'`)) btn.classList.add('active');
+    });
+    // Session rows + their detail rows
+    document.querySelectorAll('.session-row').forEach(row => {
+      const detail = row.nextElementSibling;
+      if (!activeFilter || row.dataset.success === activeFilter) {
+        row.classList.remove('hidden-by-filter');
+        if (detail && detail.classList.contains('session-detail')) {
+          detail.classList.remove('hidden-by-filter');
+        }
+      } else {
+        row.classList.add('hidden-by-filter');
+        // Also collapse it if it was open
+        row.classList.remove('expanded');
+        if (detail && detail.classList.contains('session-detail')) {
+          detail.classList.add('hidden-by-filter');
+          detail.hidden = true;
+        }
+      }
+    });
+  }
+
+  window.filterByReportSuccess = function (value) {
+    // Toggle off if already active
+    activeFilter = (activeFilter === value) ? null : value;
+    applyFilterClasses();
+    updateFilterBar();
+  };
+
+  window.clearReportFilter = function () {
+    activeFilter = null;
+    applyFilterClasses();
+    updateFilterBar();
+  };
+
+  window.toggleSessionRow = function (row) {
+    const detail = row.nextElementSibling;
+    if (!detail || !detail.classList.contains('session-detail')) return;
+    const isOpen = !detail.hidden;
+    detail.hidden = isOpen;
+    row.classList.toggle('expanded', !isOpen);
+  };
+})();
+</script>
+
+<script>
+// Guided walkthrough: two independent clickable stages (maker + tester)
+(function () {
+  const CAPTIONS = {
+    maker: {
+      1: ['Step 1 of 4', 'Configure the test — name, mode, tasks, prototype file. All on one page.'],
+      2: ['Step 2 of 4', 'Link goes live. Share it. 5-day expiry, 8-session cap by default.'],
+      3: ['Step 3 of 4', 'Email arrives when the window closes — the numbers and the patterns. You decide what to do.'],
+      4: ['Step 4 of 4', 'Click through to the full report. Data and quotes, no recommendations.']
+    },
+    tester: {
+      1: ['Step 1 of 4', 'Welcome screen — sets expectations, no signup.'],
+      2: ['Step 2 of 4', 'Prototype with a persistent task panel at the bottom.'],
+      3: ['Step 3 of 4', 'Second task — cart added, Done button turns green when ready.'],
+      4: ['Step 4 of 4', 'Three short post-session questions. Plain words, no sliders.']
+    }
+  };
+
+  function init(side) {
+    const stage = document.querySelector('[data-walk="' + side + '"]');
+    if (!stage) return;
+    const frames = stage.querySelectorAll('.walk-frame');
+    const dots = document.querySelectorAll('.walk-dot[data-side="' + side + '"]');
+    const prevBtn = document.querySelector('.walk-prev[data-side="' + side + '"]');
+    const nextBtn = document.querySelector('.walk-next[data-side="' + side + '"]');
+    const caption = document.querySelector('[data-walk-caption="' + side + '"]');
+    const total = frames.length;
+    let current = 1;
+
+    function render() {
+      frames.forEach(f => {
+        f.classList.toggle('active', +f.dataset.frame === current);
+      });
+      dots.forEach(d => {
+        d.classList.toggle('active', +d.dataset.goto === current);
+      });
+      if (prevBtn) prevBtn.disabled = current === 1;
+      if (nextBtn) nextBtn.disabled = current === total;
+      if (caption && CAPTIONS[side][current]) {
+        const [step, text] = CAPTIONS[side][current];
+        caption.querySelector('.walk-caption-step').textContent = step;
+        caption.querySelector('.walk-caption-text').textContent = text;
+      }
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => {
+      if (current > 1) { current--; render(); }
+    });
+    if (nextBtn) nextBtn.addEventListener('click', () => {
+      if (current < total) { current++; render(); }
+    });
+    dots.forEach(d => {
+      d.addEventListener('click', () => {
+        current = +d.dataset.goto;
+        render();
+      });
+    });
+
+    render();
+  }
+
+  init('maker');
+  init('tester');
+})();
+</script>
+</body>
+</html>
