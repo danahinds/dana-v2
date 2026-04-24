@@ -6,7 +6,7 @@
 <title>The Playground — a prototype testing tool</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -1912,9 +1912,132 @@
     .try-panel { border-right: none; border-bottom: 1px solid var(--border); }
     .results-topline, .quotes-grid { grid-template-columns: 1fr; }
   }
+
+  /* ========== BRAND STRIP (Dana Sandy site identity) ========== */
+  .brand-strip {
+    background: #1a2214;
+    border-bottom: 1px solid rgba(200, 164, 90, 0.2);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: 'Jost', sans-serif;
+  }
+  .brand-strip-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #f5f0e8;
+  }
+  .brand-strip-logo svg {
+    width: 16px; height: 16px; fill: #c8a45a; flex-shrink: 0;
+  }
+  .brand-strip-name {
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .brand-strip-context {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: rgba(245, 240, 232, 0.55);
+    flex: 1;
+    text-align: center;
+  }
+  .brand-strip-back {
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.8);
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1px solid rgba(200, 164, 90, 0.35);
+    border-radius: 2px;
+    transition: color 0.25s, border-color 0.25s, background 0.25s;
+  }
+  .brand-strip-back:hover {
+    color: #1a2214;
+    background: #c8a45a;
+    border-color: #c8a45a;
+  }
+  @media (max-width: 700px) {
+    .brand-strip { padding: 12px 20px; flex-wrap: wrap; gap: 10px; }
+    .brand-strip-context { display: none; }
+    .brand-strip-name { font-size: 12px; letter-spacing: 0.24em; }
+    .brand-strip-back { font-size: 10px; padding: 5px 10px; }
+  }
+
+  /* ========== BRAND FOOTER (Dana Sandy site footer) ========== */
+  .brand-footer {
+    background: #1a2214;
+    color: #f5f0e8;
+    padding: 56px 52px 40px;
+    border-top: 1px solid rgba(200, 164, 90, 0.2);
+    font-family: 'Jost', sans-serif;
+  }
+  .brand-footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+  .brand-footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 30px;
+    color: #f5f0e8;
+    opacity: 0.75;
+  }
+  .brand-footer-name em { font-style: italic; color: #e2c07a; }
+  .brand-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px;
+  }
+  .brand-footer-links a {
+    font-weight: 300;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.65);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .brand-footer-links a:hover { color: #c8a45a; }
+  .brand-footer-credit {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: rgba(245, 240, 232, 0.45);
+    text-align: center;
+    line-height: 1.8;
+  }
+  .brand-footer-credit span + span::before { content: " · "; opacity: 0.5; margin: 0 4px; }
+  @media (max-width: 700px) {
+    .brand-footer { padding: 44px 24px 32px; }
+    .brand-footer-links { gap: 18px; }
+  }
 </style>
 </head>
 <body>
+
+<!-- ========== BRAND STRIP (Dana Sandy site identity) ========== -->
+<div class="brand-strip">
+  <a class="brand-strip-logo" href="/">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    <span class="brand-strip-name">Dana Sandy</span>
+  </a>
+  <span class="brand-strip-context">Case Study — The Playground</span>
+  <a class="brand-strip-back" href="/work">← Back to My Work</a>
+</div>
 
 <!-- ========== HEADER ========== -->
 <header>
@@ -1932,7 +2055,6 @@
       <button>Decisions</button>
     </nav>
     <span class="spacer"></span>
-    <a href="index.html" style="font-family:var(--font-mono);font-size:12px;color:var(--fg-2);letter-spacing:0.04em;">← Home</a>
     <span class="chip chip-sm">CASE STUDY · 2026</span>
   </div>
 </header>
@@ -3343,10 +3465,21 @@
 
 </main>
 
-<footer>
-  <div class="footer-inner">
-    <span>© 2026 · The Playground · a case study by Dana Sandy</span>
-    <span>Built with React · Netlify · Microsoft Clarity</span>
+<!-- ========== BRAND FOOTER (back to Dana Sandy site) ========== -->
+<footer class="brand-footer">
+  <div class="brand-footer-inner">
+    <div class="brand-footer-name">Dana <em>Sandy</em></div>
+    <div class="brand-footer-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/work">My Work</a>
+      <a href="/series/skai">SKAI Series</a>
+      <a href="/contact">Work With Me</a>
+    </div>
+    <div class="brand-footer-credit">
+      <span>© 2026 Dana Sandy</span>
+      <span>The Playground · Built with React · Netlify · Microsoft Clarity</span>
+    </div>
   </div>
 </footer>
 
