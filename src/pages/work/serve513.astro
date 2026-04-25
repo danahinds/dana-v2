@@ -4,6 +4,12 @@ import Layout from "../../layouts/Layout.astro";
 
 <Layout pageTitle="SERVE513 — Case Study — Dana Sandy" pageDescription="A service coordination platform helping volunteers deliver essential services to unhoused communities.">
 
+  <!-- CASE STUDY CONTEXTUAL STRIP (mirrors Playground frame) -->
+  <div class="case-study-strip">
+    <span class="case-study-strip-context">Case Study — <em>SERVE513</em></span>
+    <a class="case-study-strip-back" href="/work">← Back to My Work</a>
+  </div>
+
   <!-- ORB LAYER -->
   <div class="orb-layer">
     <div class="orb orb-a"></div>
@@ -15,7 +21,6 @@ import Layout from "../../layouts/Layout.astro";
 
     <!-- HERO -->
     <section class="cs-hero">
-      <a href="/work" class="back-link hero-fade" style="--delay:0s">← My Work</a>
       <p class="eyebrow hero-fade" style="--delay:0.1s">Case Study · Community Tech · HMIS Application</p>
       <h1 class="cs-title hero-fade" style="--delay:0.2s">SERVE<em>513</em></h1>
       <p class="cs-pullquote hero-fade" style="--delay:0.35s">The systems meant to help were getting in the way.</p>
@@ -543,20 +548,50 @@ import Layout from "../../layouts/Layout.astro";
     animation-delay: var(--delay);
   }
 
-  .back-link {
+  /* Case study contextual strip — mirrors Playground brand-strip pattern */
+  .case-study-strip {
+    background: var(--olive-dark);
+    border-bottom: 1px solid rgba(200, 164, 90, 0.2);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
     font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    text-decoration: none;
-    display: inline-block;
-    margin-bottom: 32px;
-    transition: color 0.3s;
   }
-
-  .back-link:hover {
+  .case-study-strip-context {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-lg);
+    color: rgba(245, 240, 232, 0.6);
+    flex: 1;
+    text-align: center;
+  }
+  .case-study-strip-context em {
     color: var(--gold-light);
+    font-style: italic;
+  }
+  .case-study-strip-back {
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.8);
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1px solid rgba(200, 164, 90, 0.35);
+    border-radius: 2px;
+    transition: color 0.25s, border-color 0.25s, background 0.25s;
+  }
+  .case-study-strip-back:hover {
+    color: var(--olive-dark);
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+  @media (max-width: 700px) {
+    .case-study-strip { padding: 12px 20px; flex-wrap: wrap; gap: 10px; }
+    .case-study-strip-context { font-size: var(--text-base); text-align: left; }
+    .case-study-strip-back { font-size: 10px; padding: 5px 10px; }
   }
 
   .eyebrow {
