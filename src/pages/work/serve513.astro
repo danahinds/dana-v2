@@ -1241,6 +1241,37 @@ import Layout from "../../layouts/Layout.astro";
     }
   }
 
+  /* Tablet — between mobile and desktop, drop 4-col metrics to 2 and tighten padding */
+  @media (max-width: 1000px) and (min-width: 701px) {
+    .cs-body {
+      padding: 0 40px;
+    }
+    .metrics-banner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .m-cell:nth-child(2) {
+      border-right: none;
+    }
+    .m-cell:nth-child(3),
+    .m-cell:nth-child(4) {
+      border-top: 1px solid rgba(200, 164, 90, 0.18);
+    }
+    .goal-cols {
+      grid-template-columns: 1fr;
+    }
+    .goal-col + .goal-col {
+      border-left: none;
+      border-top: 1px solid rgba(200, 164, 90, 0.18);
+    }
+    .learn-block {
+      grid-template-columns: 64px 1fr;
+      gap: 20px;
+    }
+    .learn-num {
+      font-size: var(--text-2xl);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .hero-fade {
       opacity: 1;

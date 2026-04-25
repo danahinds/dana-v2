@@ -88,6 +88,24 @@
   .btn-outline { background: transparent; color: var(--fg); border: 1px solid var(--border-2); }
   .btn-outline:hover { border-color: var(--fg-3); }
 
+  /* Header "Visit live site" — gold-tinted outline so it's visible on the olive page bg */
+  .header-live-btn {
+    background: transparent;
+    color: var(--fg);
+    border: 1px solid rgba(200, 164, 90, 0.55);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .header-live-btn:hover {
+    background: rgba(200, 164, 90, 0.95);
+    color: #1a2214;
+    border-color: rgba(200, 164, 90, 0.95);
+  }
+  @media (max-width: 700px) {
+    .header-inner { padding: 10px 16px; gap: 12px; flex-wrap: wrap; }
+    .header-live-btn { font-size: 11px; padding: 5px 10px; }
+    .header-inner .chip { display: none; }
+  }
+
   /* ========== CHIPS ========== */
   .chip {
     display: inline-flex; align-items: center; gap: 5px;
@@ -2049,7 +2067,7 @@
       <span>Playground</span>
     </a>
     <span class="spacer"></span>
-    <a class="btn btn-sm btn-outline" href="https://playground-uxtg.netlify.app" target="_blank" rel="noopener">Visit live site ↗</a>
+    <a class="btn btn-sm header-live-btn" href="https://playground-uxtg.netlify.app" target="_blank" rel="noopener">Visit live site ↗</a>
     <span class="chip chip-sm">CASE STUDY · 2026</span>
   </div>
 </header>
