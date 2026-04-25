@@ -20,24 +20,8 @@ import Layout from "../layouts/Layout.astro";
 
     <div class="section-break" aria-hidden="true"><span></span><span class="dot"></span><span></span></div>
 
-    <!-- TWO-COLUMN: info + form -->
+    <!-- FORM (single centered column) -->
     <section class="contact-grid">
-
-      <aside class="contact-info">
-        <div class="info-cell">
-          <p class="info-label">Based in</p>
-          <p class="info-value">Florida, <em>USA</em></p>
-        </div>
-        <div class="info-cell">
-          <p class="info-label">Email</p>
-          <p class="info-value"><a class="info-link" href="mailto:hello@danasandy.com">hello@danasandy.com</a></p>
-        </div>
-        <div class="info-cell">
-          <p class="info-label">Currently</p>
-          <p class="info-value">Open to product, partnership, and speaking conversations.</p>
-        </div>
-      </aside>
-
       <div class="contact-form-wrap">
         <div class="form-success" id="form-success" hidden>
           <p class="eyebrow">Thank you</p>
@@ -85,6 +69,8 @@ import Layout from "../layouts/Layout.astro";
 
           <button type="submit" class="form-submit">Send message &rarr;</button>
         </form>
+
+        <p class="form-aside">Prefer email? <a class="info-link" href="mailto:hello@danasandy.com">hello@danasandy.com</a></p>
       </div>
 
     </section>
@@ -202,48 +188,32 @@ import Layout from "../layouts/Layout.astro";
     opacity: 0.6;
   }
 
-  /* ─── GRID ─── */
+  /* ─── FORM SECTION (single centered column) ─── */
   .contact-grid {
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 80px;
+    display: flex;
+    justify-content: center;
     padding-bottom: 120px;
   }
 
-  /* ─── INFO COLUMN ─── */
-  .contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
+  .contact-form-wrap {
+    width: 100%;
+    max-width: 640px;
   }
 
-  .info-label {
-    font-family: var(--font-body);
-    font-weight: var(--weight-medium);
-    font-size: var(--text-2xs);
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 10px;
-  }
-
-  .info-value {
+  .form-aside {
+    margin-top: 32px;
     font-family: var(--font-display);
-    font-size: var(--text-xl);
-    line-height: var(--leading-snug);
-    color: var(--cream);
-  }
-
-  .info-value em {
     font-style: italic;
-    color: var(--gold-light);
+    font-size: var(--text-base);
+    color: var(--text-muted);
+    text-align: center;
   }
 
   .info-link {
     color: var(--gold-light);
     text-decoration: none;
-    border-bottom: 1px solid rgba(226, 192, 122, 0.5);
-    padding-bottom: 2px;
+    border-bottom: 2px solid var(--gold);
+    padding: 0 0 3px;
     transition: color 0.25s, border-color 0.25s;
   }
 
