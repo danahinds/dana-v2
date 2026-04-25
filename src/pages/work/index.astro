@@ -1,17 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
 ---
 
 <Layout pageTitle="My Work — Dana Sandy">
-
-  <!-- ORB LAYER -->
-  <div class="orb-layer">
-    <div class="orb orb-a"></div>
-    <div class="orb orb-b"></div>
-    <div class="orb orb-c"></div>
-    <div class="orb orb-d"></div>
-  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -20,63 +11,6 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
     <h1 class="hero-name">My <em>Work</em></h1>
     <p class="hero-sub">Building products and partnerships that serve communities, strengthen organizations, and create lasting impact.</p>
   </section>
-
-  <!-- GOLD DIVIDER -->
-  <svg class="gold-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 24 Q180 4 360 24 T720 24 T1080 24 T1440 24" fill="none" stroke="rgba(200,164,90,0.35)" stroke-width="1"/>
-    <path d="M0 32 Q240 48 480 28 T960 32 T1440 28" fill="none" stroke="rgba(226,192,122,0.15)" stroke-width="0.75"/>
-    <circle cx="360" cy="24" r="3" fill="rgba(200,164,90,0.5)"/>
-    <circle cx="720" cy="24" r="2" fill="rgba(200,164,90,0.4)"/>
-    <circle cx="1080" cy="24" r="3" fill="rgba(200,164,90,0.5)"/>
-  </svg>
-
-  <!-- CASE STUDY CARD — SERVE513 -->
-  <div class="cs-outer reveal">
-    <div class="cs-glow-a"></div>
-    <div class="cs-glow-b"></div>
-
-    <CaseStudyLeaves />
-
-    <div class="cs-card-wrap">
-      <a href="/work/serve513" class="cs-card">
-        <div class="cs-card-inner">
-          <p class="section-eyebrow">Case Study</p>
-          <h2 class="cs-card-title">SERVE<em>513</em></h2>
-          <p class="cs-hook">Volunteers were burning out. Clients were waiting too long. The systems meant to help were getting in the way — so I built something better.</p>
-          <hr class="cs-divider">
-          <div class="cs-metrics">
-            <div class="cs-metric cs-stat" id="s1">
-              <span class="cs-metric-val cs-num" id="n1">0%</span>
-              <div class="cs-before-after">
-                <span class="cs-ba-val cs-ba-old">45 min</span>
-                <span class="cs-ba-arrow">&rarr;</span>
-                <span class="cs-ba-val cs-ba-new">under 10 min</span>
-              </div>
-              <span class="cs-metric-lbl">Clothing wait time reduction</span>
-              <span class="cs-stat-context">Waitlists at shelters can last all day — every minute saved matters</span>
-            </div>
-            <div class="cs-metric cs-stat" id="s2">
-              <span class="cs-metric-val cs-num" id="n2">0%</span>
-              <div class="cs-before-after cs-spacer-ba"></div>
-              <span class="cs-metric-lbl">Volunteer adoption rate</span>
-              <span class="cs-stat-context">No training overhead — volunteers used it under real event pressure</span>
-            </div>
-            <div class="cs-metric cs-stat" id="s3">
-              <span class="cs-metric-val cs-num" id="n3">0%</span>
-              <div class="cs-before-after">
-                <span class="cs-ba-val cs-ba-old">23</span>
-                <span class="cs-ba-arrow">&rarr;</span>
-                <span class="cs-ba-val cs-ba-new">27 showers</span>
-              </div>
-              <span class="cs-metric-lbl">More shower capacity</span>
-              <span class="cs-stat-context">Hygiene access is a direct barrier to employment and housing stability</span>
-            </div>
-          </div>
-          <span class="cs-read">Read the Case Study &rarr;</span>
-        </div>
-      </a>
-    </div>
-  </div>
 
   <!-- GOLD DIVIDER -->
   <svg class="gold-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,54 +23,98 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
     <line x1="1046" y1="24" x2="1370" y2="24" stroke="rgba(200,164,90,0.4)" stroke-width="0.75"/>
   </svg>
 
-  <!-- CASE STUDY CARD — THE PLAYGROUND -->
-  <div class="cs-outer reveal">
-    <div class="cs-glow-a"></div>
-    <div class="cs-glow-b"></div>
+  <!-- CHAPTER 01 — SERVE513 -->
+  <article class="chapter reveal" data-chapter="01">
+    <header class="chapter-head">
+      <span class="chapter-num">01</span>
+      <p class="chapter-eyebrow">Case Study · Community Tech · HMIS Application</p>
+    </header>
 
-    <CaseStudyLeaves />
+    <h2 class="chapter-title">SERVE<em>513</em></h2>
+    <p class="chapter-hook">Volunteers were burning out. Clients were waiting too long. The systems meant to help were getting in the way — so I built something better.</p>
 
-    <div class="cs-card-wrap">
-      <a href="/work/the-playground/" class="cs-card">
-        <div class="cs-card-inner">
-          <p class="section-eyebrow">Case Study · Newly Shipped</p>
-          <h2 class="cs-card-title">The <em>Playground</em></h2>
-          <p class="cs-hook">Testing prototypes shouldn't require a platform. I didn't want integrations, accounts, or setup overhead — I just wanted three steps: upload, share, review. So I built that.</p>
-          <hr class="cs-divider">
-          <div class="cs-metrics">
-            <div class="cs-metric cs-stat">
-              <span class="cs-metric-val">Solo</span>
-              <span class="cs-metric-lbl">Design · Engineering · Product</span>
-              <span class="cs-stat-context">One person, start to ship — the range was the point</span>
-            </div>
-            <div class="cs-metric cs-stat">
-              <span class="cs-metric-val">4 days</span>
-              <span class="cs-metric-lbl">Blank repo to live tool</span>
-              <span class="cs-stat-context">The short timeline shaped every decision</span>
-            </div>
-            <div class="cs-metric cs-stat">
-              <span class="cs-metric-val">Live</span>
-              <span class="cs-metric-lbl">React · Netlify · Clarity</span>
-              <span class="cs-stat-context">Newly shipped — report section shows sample data, real tests pending</span>
-            </div>
-          </div>
-          <span class="cs-read">Read the Case Study &rarr;</span>
+    <hr class="chapter-rule" />
+
+    <div class="chapter-metrics">
+      <div class="metric metric-stat" id="s1">
+        <span class="metric-val cs-num" id="n1">0%</span>
+        <div class="metric-ba">
+          <span class="metric-ba-old">45 min</span>
+          <span class="metric-ba-arrow">&rarr;</span>
+          <span class="metric-ba-new">under 10 min</span>
         </div>
-      </a>
+        <span class="metric-lbl">Clothing wait time reduction</span>
+        <span class="metric-context">Waitlists at shelters can last all day — every minute saved matters</span>
+      </div>
+      <div class="metric metric-stat" id="s2">
+        <span class="metric-val cs-num" id="n2">0%</span>
+        <div class="metric-ba metric-ba-spacer"></div>
+        <span class="metric-lbl">Volunteer adoption rate</span>
+        <span class="metric-context">No training overhead — volunteers used it under real event pressure</span>
+      </div>
+      <div class="metric metric-stat" id="s3">
+        <span class="metric-val cs-num" id="n3">0%</span>
+        <div class="metric-ba">
+          <span class="metric-ba-old">23</span>
+          <span class="metric-ba-arrow">&rarr;</span>
+          <span class="metric-ba-new">27 showers</span>
+        </div>
+        <span class="metric-lbl">More shower capacity</span>
+        <span class="metric-context">Hygiene access is a direct barrier to employment and housing stability</span>
+      </div>
     </div>
 
-    <!-- SKAI SERIES TIE-IN -->
-    <p class="cs-series-link">
-      <span class="cs-series-eyebrow">Part 01 of the SKAI Series</span>
-      <a href="/posts/playground-part-1" class="cs-series-anchor">The problem that led to The Playground &rarr;</a>
-    </p>
+    <a class="chapter-read" href="/work/serve513">Read the case study &rarr;</a>
+  </article>
+
+  <!-- CHAPTER BREAK -->
+  <div class="chapter-break" aria-hidden="true">
+    <span></span><span class="dot"></span><span></span>
   </div>
+
+  <!-- CHAPTER 02 — THE PLAYGROUND -->
+  <article class="chapter reveal" data-chapter="02">
+    <header class="chapter-head">
+      <span class="chapter-num">02</span>
+      <p class="chapter-eyebrow">Case Study · Newly Shipped · Design + Engineering + Product</p>
+    </header>
+
+    <h2 class="chapter-title">The <em>Playground</em></h2>
+    <p class="chapter-hook">Testing prototypes shouldn't require a platform. I didn't want integrations, accounts, or setup overhead — I just wanted three steps: upload, share, review. So I built that.</p>
+
+    <hr class="chapter-rule" />
+
+    <div class="chapter-metrics">
+      <div class="metric metric-stat">
+        <span class="metric-val">Solo</span>
+        <span class="metric-lbl">Design · Engineering · Product</span>
+        <span class="metric-context">One person, start to ship — the range was the point</span>
+      </div>
+      <div class="metric metric-stat">
+        <span class="metric-val">4 days</span>
+        <span class="metric-lbl">Blank repo to live tool</span>
+        <span class="metric-context">The short timeline shaped every decision</span>
+      </div>
+      <div class="metric metric-stat">
+        <span class="metric-val">Live</span>
+        <span class="metric-lbl">React · Netlify · Clarity</span>
+        <span class="metric-context">Newly shipped — report section shows sample data, real tests pending</span>
+      </div>
+    </div>
+
+    <a class="chapter-read" href="/work/the-playground/">Read the case study &rarr;</a>
+
+    <p class="chapter-aside">
+      <span class="chapter-aside-eyebrow">Part 01 of the SKAI Series</span>
+      <a class="chapter-aside-link" href="/posts/playground-part-1">The problem that led to The Playground &rarr;</a>
+    </p>
+  </article>
 
   <!-- CTA -->
   <section class="work-cta-section reveal">
     <p class="cta-label">Interested in Working Together?</p>
-    <h2 class="cta-heading">Let's Build Something <em>Meaningful</em></h2>
-    <a href="/contact" class="work-cta">Get in Touch</a>
+    <h2 class="cta-heading">Let's build something <em>meaningful</em>.</h2>
+    <a href="/contact" class="work-cta">Get in touch &rarr;</a>
   </section>
 
 </Layout>
@@ -144,7 +122,7 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
 <script>
   function countUp(el, target, delay, decimals) {
     setTimeout(() => {
-      el.closest('.cs-stat').classList.add('cs-stat-visible');
+      el.closest('.metric-stat').classList.add('metric-visible');
       let val = 0;
       const inc = target / (950 / 16);
       const t = setInterval(() => {
@@ -165,8 +143,8 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
           entry.target.classList.add('visible');
           observer.unobserve(entry.target);
 
-          // Trigger count-up when the case study card becomes visible
-          if (entry.target.classList.contains('cs-outer')) {
+          // Trigger count-up when a chapter becomes visible
+          if (entry.target.classList.contains('chapter')) {
             const n1 = entry.target.querySelector('#n1');
             const n2 = entry.target.querySelector('#n2');
             const n3 = entry.target.querySelector('#n3');
@@ -175,9 +153,9 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
               countUp(n2, 95, 320, false);
               countUp(n3, 17.4, 540, true);
             } else {
-              // Non-numeric card (e.g. The Playground) — stagger-reveal its stats
-              entry.target.querySelectorAll('.cs-stat').forEach((stat, i) => {
-                setTimeout(() => stat.classList.add('cs-stat-visible'), 100 + i * 140);
+              // Non-numeric chapter — stagger-reveal the metrics
+              entry.target.querySelectorAll('.metric-stat').forEach((stat, i) => {
+                setTimeout(() => stat.classList.add('metric-visible'), 100 + i * 140);
               });
             }
           }
@@ -189,12 +167,8 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
 
     // Safety net — force all reveals visible after 3s
     setTimeout(() => {
-      document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
-        el.classList.add('visible');
-      });
-      document.querySelectorAll('.cs-stat:not(.cs-stat-visible)').forEach(el => {
-        el.classList.add('cs-stat-visible');
-      });
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
+      document.querySelectorAll('.metric-stat:not(.metric-visible)').forEach(el => el.classList.add('metric-visible'));
     }, 3000);
   }
 
@@ -202,49 +176,6 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
 </script>
 
 <style>
-  /* ─── ORB LAYER ─── */
-  .orb-layer {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-  }
-
-  .orb {
-    position: absolute;
-    border-radius: 50%;
-  }
-
-  .orb-a {
-    width: 280px; height: 280px; top: 12vh; left: 6vw;
-    background: radial-gradient(circle, rgba(200,164,90,0.14) 0%, transparent 70%);
-    animation: floatOrb 9s ease-in-out infinite;
-  }
-
-  .orb-b {
-    width: 180px; height: 180px; top: 40vh; right: 8vw;
-    background: radial-gradient(circle, rgba(226,192,122,0.16) 0%, transparent 70%);
-    animation: floatOrb 11s ease-in-out 2s infinite;
-  }
-
-  .orb-c {
-    width: 120px; height: 120px; top: 65vh; left: 22vw;
-    background: radial-gradient(circle, rgba(200,164,90,0.18) 0%, transparent 70%);
-    animation: floatOrb 8s ease-in-out 1s infinite;
-  }
-
-  .orb-d {
-    width: 200px; height: 200px; bottom: 15vh; right: 12vw;
-    background: radial-gradient(circle, rgba(226,192,122,0.12) 0%, transparent 70%);
-    animation: floatOrb 13s ease-in-out 3s infinite;
-  }
-
-  @keyframes floatOrb {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-30px) scale(1.06); }
-  }
-
   /* ─── HERO ─── */
   .hero {
     padding: 160px 72px 80px;
@@ -254,8 +185,8 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
 
   .hero-label {
     font-family: var(--font-body);
-    font-weight: 200;
-    font-size: 9px;
+    font-weight: var(--weight-light);
+    font-size: var(--text-2xs);
     letter-spacing: 0.55em;
     text-transform: uppercase;
     color: var(--gold);
@@ -266,10 +197,10 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
 
   .hero-name {
     font-family: var(--font-display);
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
     font-size: clamp(72px, 12vw, 150px);
     line-height: 0.88;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--tracking-tight);
     color: var(--cream);
     opacity: 0;
     animation: fadeUp 0.9s ease 0.25s forwards;
@@ -285,7 +216,7 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
     font-family: var(--font-display);
     font-style: italic;
     font-size: clamp(17px, 2vw, 26px);
-    line-height: 1.6;
+    line-height: var(--leading-relaxed);
     color: var(--text-muted);
     margin-top: 36px;
     max-width: 600px;
@@ -298,7 +229,7 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
     right: 40px;
     top: 110px;
     font-family: var(--font-display);
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
     font-style: italic;
     font-size: clamp(100px, 18vw, 200px);
     color: transparent;
@@ -320,242 +251,231 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
     z-index: 1;
   }
 
-  /* ─── SHARED ─── */
-  .section-eyebrow {
+  /* ─── CHAPTER ─── */
+  .chapter {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 96px 72px 72px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .chapter-head {
+    display: flex;
+    align-items: baseline;
+    gap: 28px;
+    margin-bottom: 18px;
+  }
+
+  .chapter-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: var(--weight-light);
+    font-size: clamp(56px, 8vw, 96px);
+    line-height: 1;
+    color: var(--gold);
+    letter-spacing: var(--tracking-tight);
+    flex-shrink: 0;
+  }
+
+  .chapter-eyebrow {
     font-family: var(--font-body);
-    font-weight: 400;
-    font-size: 11px;
-    letter-spacing: 0.55em;
+    font-weight: var(--weight-regular);
+    font-size: var(--text-2xs);
+    letter-spacing: 0.45em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 20px;
+    line-height: 1.4;
   }
 
-  /* ─── CASE STUDY CARD ─── */
-  .cs-outer {
-    background: var(--olive-dark);
-    position: relative;
-    overflow: hidden;
-    padding: 48px 72px;
-    margin: 40px 0;
-    z-index: 1;
-    border-top: 1px solid rgba(200,164,90,0.1);
-    border-bottom: 1px solid rgba(200,164,90,0.1);
-  }
-
-  .cs-glow-a {
-    position: absolute;
-    top: -80px; right: -80px;
-    width: 360px; height: 360px;
-    background: radial-gradient(circle, rgba(200,164,90,0.16) 0%, rgba(200,164,90,0.05) 50%, transparent 70%);
-    pointer-events: none;
-    border-radius: 50%;
-  }
-
-  .cs-glow-b {
-    position: absolute;
-    bottom: -100px; left: -60px;
-    width: 280px; height: 280px;
-    background: radial-gradient(circle, rgba(200,164,90,0.08) 0%, transparent 65%);
-    pointer-events: none;
-    border-radius: 50%;
-  }
-
-  .cs-card-wrap {
-    position: relative;
-    z-index: 2;
-  }
-
-  .cs-card {
-    display: block;
-    text-decoration: none;
-  }
-
-  .cs-card-inner {
-    background: var(--olive-light);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 44px 48px;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.4s ease, box-shadow 0.4s ease;
-  }
-
-  .cs-card-inner::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--gold);
-  }
-
-  .cs-card:hover .cs-card-inner {
-    border-color: rgba(200,164,90,0.35);
-    box-shadow: 0 8px 60px rgba(200,164,90,0.1);
-  }
-
-  .cs-card-title {
+  .chapter-title {
     font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 1.1;
+    font-weight: var(--weight-light);
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 1;
     color: var(--cream);
-    margin-bottom: 14px;
+    margin: 0 0 28px;
+    letter-spacing: var(--tracking-tight);
   }
 
-  .cs-card-title em {
+  .chapter-title em {
     font-style: italic;
     color: var(--gold-light);
   }
 
-  .cs-hook {
-    font-family: var(--font-body);
-    font-size: 19px;
-    line-height: 1.75;
-    color: var(--text-muted);
-    margin-bottom: 28px;
+  .chapter-hook {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: var(--leading-relaxed);
+    color: var(--cream);
+    max-width: 720px;
+    margin: 0 0 40px;
   }
 
-  .cs-divider {
+  .chapter-rule {
     border: none;
-    border-top: 1px solid var(--border);
-    margin: 0 0 28px;
+    border-top: 1px solid rgba(200, 164, 90, 0.4);
+    margin: 0 0 40px;
+    width: 80px;
   }
 
-  .cs-metrics {
+  .chapter-metrics {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin-bottom: 32px;
+    gap: 0;
+    margin-bottom: 48px;
   }
 
-  .cs-metric {
-    padding-right: 24px;
+  .metric {
+    padding: 0 28px;
   }
 
-  .cs-stat {
+  .metric:first-child { padding-left: 0; }
+  .metric:last-child  { padding-right: 0; }
+  .metric + .metric   { border-left: 1px solid rgba(200, 164, 90, 0.18); }
+
+  .metric-stat {
     opacity: 0;
     transform: translateY(8px);
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
 
-  .cs-stat.cs-stat-visible {
+  .metric-stat.metric-visible {
     opacity: 1;
     transform: translateY(0);
   }
 
-  .cs-metric + .cs-metric {
-    padding-left: 24px;
-    padding-right: 0;
-    border-left: 1px solid var(--border);
-  }
-
-  .cs-metric-val {
-    font-family: var(--font-body);
-    font-weight: 500;
-    font-size: 28px;
+  .metric-val {
+    font-family: var(--font-display);
+    font-weight: var(--weight-light);
+    font-size: clamp(36px, 4.4vw, 52px);
     color: var(--gold);
     display: block;
     line-height: 1;
-    margin-bottom: 5px;
+    margin-bottom: 12px;
     font-variant-numeric: tabular-nums;
   }
 
-  .cs-before-after {
+  .metric-ba {
     display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-bottom: 6px;
-    flex-wrap: wrap;
-  }
-
-  .cs-ba-val { font-size: 14px; font-weight: 500; }
-  .cs-ba-old { text-decoration: line-through; color: rgba(245,240,232,0.4); }
-  .cs-ba-arrow { font-size: 14px; color: var(--gold); }
-  .cs-ba-new { color: var(--gold-light); }
-  .cs-spacer-ba { visibility: hidden; height: 18px; }
-
-  .cs-metric-lbl {
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.5;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-    display: block;
-  }
-
-  .cs-stat-context {
-    font-size: 14px;
-    line-height: 1.6;
-    color: rgba(245,240,232,0.6);
-    font-style: italic;
-    display: block;
-    border-top: 1px solid var(--border);
-    padding-top: 8px;
-  }
-
-  .cs-read {
-    font-family: var(--font-body);
-    font-weight: 500;
-    font-size: 15px;
-    color: var(--gold-light);
-    letter-spacing: 0.03em;
-    display: inline-flex;
     align-items: center;
     gap: 6px;
-    border-bottom: 1px solid rgba(226,192,122,0.35);
-    padding-bottom: 2px;
-    transition: color 0.2s, border-color 0.2s;
-  }
-
-  .cs-card:hover .cs-read {
-    color: var(--cream);
-    border-color: rgba(245,240,232,0.4);
-  }
-
-  /* ─── SKAI SERIES TIE-IN ─── */
-  .cs-series-link {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    margin-top: 28px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
     font-family: var(--font-body);
-    font-size: 14px;
+    font-size: var(--text-sm);
+  }
+
+  .metric-ba-old   { text-decoration: line-through; color: rgba(245,240,232,0.4); }
+  .metric-ba-arrow { color: var(--gold); }
+  .metric-ba-new   { color: var(--gold-light); }
+  .metric-ba-spacer { visibility: hidden; height: 1.4em; }
+
+  .metric-lbl {
+    font-family: var(--font-body);
+    font-weight: var(--weight-regular);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    color: var(--cream);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .metric-context {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--text-muted);
+    display: block;
+  }
+
+  .chapter-read {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: var(--weight-regular);
+    font-size: var(--text-xl);
+    color: var(--gold-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(226, 192, 122, 0.4);
+    padding-bottom: 4px;
+    transition: color 0.25s, border-color 0.25s;
+    display: inline-block;
+  }
+
+  .chapter-read:hover {
+    color: var(--cream);
+    border-color: var(--cream);
+  }
+
+  /* SKAI series tie-in inside chapter 02 */
+  .chapter-aside {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px dashed rgba(200, 164, 90, 0.25);
+    font-family: var(--font-body);
     color: var(--text-muted);
     display: flex;
+    align-items: baseline;
+    gap: 14px;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
   }
 
-  .cs-series-eyebrow {
-    font-weight: 400;
-    font-size: 10px;
-    letter-spacing: 0.45em;
+  .chapter-aside-eyebrow {
+    font-weight: var(--weight-regular);
+    font-size: var(--text-2xs);
+    letter-spacing: 0.4em;
     text-transform: uppercase;
     color: var(--gold);
   }
 
-  .cs-series-anchor {
+  .chapter-aside-link {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 16px;
+    font-size: var(--text-lg);
     color: var(--gold-light);
     text-decoration: none;
-    border-bottom: 1px solid rgba(226,192,122,0.35);
+    border-bottom: 1px solid rgba(226, 192, 122, 0.35);
     padding-bottom: 2px;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    transition: color 0.25s, border-color 0.25s;
   }
 
-  .cs-series-anchor:hover {
+  .chapter-aside-link:hover {
     color: var(--cream);
-    border-color: rgba(245,240,232,0.5);
+    border-color: var(--cream);
   }
 
-  /* ─── CTA SECTION ─── */
+  /* ─── CHAPTER BREAK ─── */
+  .chapter-break {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 72px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .chapter-break span {
+    flex: 1;
+    height: 1px;
+    background: rgba(200, 164, 90, 0.18);
+  }
+
+  .chapter-break .dot {
+    flex: none;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+
+  /* ─── CTA ─── */
   .work-cta-section {
-    padding: 80px 72px 100px;
+    max-width: 920px;
+    margin: 80px auto 0;
+    padding: 80px 72px 120px;
     text-align: center;
     position: relative;
     z-index: 1;
@@ -564,20 +484,21 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
 
   .cta-label {
     font-family: var(--font-body);
-    font-weight: 400;
-    font-size: 11px;
+    font-weight: var(--weight-regular);
+    font-size: var(--text-2xs);
     letter-spacing: 0.55em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
   .cta-heading {
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: clamp(28px, 4vw, 48px);
+    font-weight: var(--weight-light);
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: var(--leading-snug);
     color: var(--cream);
-    margin-bottom: 40px;
+    margin-bottom: 36px;
   }
 
   .cta-heading em {
@@ -586,22 +507,20 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
   }
 
   .work-cta {
-    display: inline-block;
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-size: 12px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--olive-dark);
-    background: var(--cream);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-xl);
+    color: var(--gold-light);
     text-decoration: none;
-    padding: 14px 40px;
-    transition: background 0.3s, letter-spacing 0.3s;
+    border-bottom: 1px solid rgba(226, 192, 122, 0.4);
+    padding-bottom: 4px;
+    transition: color 0.25s, border-color 0.25s, letter-spacing 0.3s;
   }
 
   .work-cta:hover {
-    background: white;
-    letter-spacing: 0.32em;
+    color: var(--cream);
+    border-color: var(--cream);
+    letter-spacing: 0.02em;
   }
 
   /* ─── ANIMATIONS ─── */
@@ -629,54 +548,27 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
   /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
     .hero,
-    .work-cta-section {
+    .work-cta-section,
+    .chapter,
+    .chapter-break {
       padding-left: 24px;
       padding-right: 24px;
     }
 
-    .cs-outer {
-      margin-left: 0;
-      margin-right: 0;
-      padding: 32px 24px;
-    }
+    .chapter { padding-top: 64px; padding-bottom: 48px; }
 
-    .cs-card-inner {
-      padding: 24px 18px;
-    }
+    .chapter-head { gap: 18px; }
 
-    .cs-metrics {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .cs-metric:nth-child(3) {
-      grid-column: 1 / -1;
-      border-left: none;
-      border-top: 1px solid var(--border);
-      padding: 16px 0 0;
-      margin-top: 16px;
-    }
+    .chapter-metrics { grid-template-columns: 1fr; gap: 24px; }
+    .metric { padding: 0 0 24px; border-left: none !important; border-bottom: 1px solid rgba(200, 164, 90, 0.18); }
+    .metric:last-child { border-bottom: none; padding-bottom: 0; }
+    .metric-ba-spacer { display: none; }
   }
 
-  @media (max-width: 420px) {
-    .cs-outer { padding: 20px 16px; }
-    .cs-card-inner { padding: 24px 18px; }
-    .cs-card-title { font-size: 24px; }
-    .cs-metrics { grid-template-columns: 1fr; }
-    .cs-metric {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      column-gap: 14px;
-      padding: 14px 0 !important;
-      border-left: none !important;
-      border-top: 1px solid var(--border) !important;
-      margin-top: 0 !important;
-    }
-    .cs-metric:first-child { border-top: none !important; padding-top: 0 !important; }
-    .cs-metric-val { grid-column: 1; grid-row: 1; font-size: 32px; align-self: center; }
-    .cs-before-after { grid-column: 2; grid-row: 1; align-self: flex-end; }
-    .cs-metric-lbl { grid-column: 2; grid-row: 2; }
-    .cs-stat-context { grid-column: 1 / -1; grid-row: 3; border-top: none; padding-top: 6px; }
-    .cs-spacer-ba { display: none; }
+  @media (max-width: 480px) {
+    .chapter-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .chapter-num { font-size: 56px; }
+    .chapter-title { font-size: 44px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -687,14 +579,8 @@ import CaseStudyLeaves from "../../components/astro/CaseStudyLeaves.astro";
       opacity: 1;
       animation: none;
     }
-
-    .orb {
-      animation: none;
-    }
-
-    .reveal {
-      opacity: 1;
-      transform: none;
-    }
+    .reveal { opacity: 1; transform: none; }
   }
 </style>
+</content>
+</invoke>
