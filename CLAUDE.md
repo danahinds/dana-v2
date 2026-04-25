@@ -62,6 +62,61 @@ Always follow this design system. Do not deviate unless I explicitly ask.
 - **Body / UI:** `Jost` (Google Fonts) — weights 300, 400, 500, 600
 - **Never use:** Arial, Inter, Roboto, system fonts, or any other font not listed above
 
+#### Type scale (defined in `src/styles/index.css`)
+
+Always use these tokens for `font-size`, `line-height`, `font-weight`, and `letter-spacing` instead of hard-coded values. They keep every page on the same scale.
+
+**Static sizes** (modular ratio ~1.25)
+```css
+--text-2xs:  0.6875rem;  /* 11px — micro labels */
+--text-xs:   0.75rem;    /* 12px — captions, meta */
+--text-sm:   0.875rem;   /* 14px — small UI, buttons, .label */
+--text-base: 1rem;       /* 16px — body default */
+--text-lg:   1.125rem;   /* 18px — lead paragraph */
+--text-xl:   1.25rem;    /* 20px — large intro */
+--text-2xl:  1.5rem;     /* 24px — h4 */
+--text-3xl:  2rem;       /* 32px — h3 */
+--text-4xl:  2.5rem;     /* 40px — h2 floor */
+--text-5xl:  3rem;       /* 48px — h2 ceiling / h1 floor */
+--text-6xl:  4rem;       /* 64px — h1 ceiling */
+--text-7xl:  5rem;       /* 80px — hero display */
+```
+
+**Fluid sizes** (use for hero/heading levels — they auto-scale with viewport)
+```css
+--text-h3-fluid:      clamp(1.5rem, 3vw, 2rem);
+--text-h2-fluid:      clamp(2rem,   4vw, 3rem);
+--text-h1-fluid:      clamp(2.5rem, 5vw, 4rem);
+--text-display-fluid: clamp(3rem,   7vw, 5rem);
+```
+
+**Line heights**
+```css
+--leading-tight:   1.1;    /* large display */
+--leading-snug:    1.2;    /* heading default */
+--leading-normal:  1.5;    /* general */
+--leading-relaxed: 1.7;
+--leading-loose:   1.85;   /* body paragraph */
+```
+
+**Weights** (only those actually loaded)
+```css
+--weight-light:    300;    /* heading default */
+--weight-regular:  400;    /* body default */
+--weight-medium:   500;    /* labels, buttons */
+--weight-semibold: 600;
+```
+
+**Letter spacing**
+```css
+--tracking-tight:  -0.02em;
+--tracking-normal: 0;
+--tracking-wide:   0.1em;
+--tracking-wider:  0.15em; /* uppercase labels */
+```
+
+**Defaults applied site-wide**: `h1`/`h2`/`h3` use the fluid clamps; `h4`–`h6` step down through `--text-2xl` → `--text-lg`; `p` is `--text-base` with `--leading-loose`; `.label` and `.btn` are `--text-sm`. Override per-component using the tokens, never raw rem/px values.
+
 ### Aesthetic
 - Editorial, refined, elegant — inspired by high-end lifestyle and wellness sites
 - Generous whitespace and breathing room
