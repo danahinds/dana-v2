@@ -64,7 +64,15 @@ import Layout from "../../layouts/Layout.astro";
       </div>
     </div>
 
-    <a class="chapter-read" href="/work/serve513">Read the case study &rarr;</a>
+    <div class="chapter-cta-list">
+      <a class="chapter-cta-item" href="/work/serve513">
+        <span class="chapter-cta-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22.5z"/><path d="M4 4.5A2.5 2.5 0 0 0 6.5 7H20"/></svg>
+        </span>
+        <span class="chapter-cta-text">Read the case study</span>
+        <span class="chapter-cta-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
   </article>
 
   <!-- CHAPTER BREAK -->
@@ -86,7 +94,7 @@ import Layout from "../../layouts/Layout.astro";
 
     <div class="chapter-metrics">
       <div class="metric metric-stat">
-        <span class="metric-val">Solo</span>
+        <span class="metric-val">Team of One</span>
         <span class="metric-lbl">Design · Engineering · Product</span>
         <span class="metric-context">One person, start to ship — the range was the point</span>
       </div>
@@ -102,12 +110,28 @@ import Layout from "../../layouts/Layout.astro";
       </div>
     </div>
 
-    <a class="chapter-read" href="/work/the-playground/">Read the case study &rarr;</a>
-
-    <div class="chapter-secondary-links">
-      <a href="https://playground-uxtg.netlify.app" target="_blank" rel="noopener">Visit the live demo &#8599;</a>
-      <span class="chapter-secondary-sep" aria-hidden="true">&middot;</span>
-      <a href="/posts/playground-part-1">Read how it was built &rarr;</a>
+    <div class="chapter-cta-list">
+      <a class="chapter-cta-item" href="/work/the-playground/">
+        <span class="chapter-cta-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22.5z"/><path d="M4 4.5A2.5 2.5 0 0 0 6.5 7H20"/></svg>
+        </span>
+        <span class="chapter-cta-text">Read the case study</span>
+        <span class="chapter-cta-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="chapter-cta-item" href="https://playground-uxtg.netlify.app" target="_blank" rel="noopener">
+        <span class="chapter-cta-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M10 14 21 3"/><path d="M20 14v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6"/></svg>
+        </span>
+        <span class="chapter-cta-text">Visit the live site</span>
+        <span class="chapter-cta-arrow" aria-hidden="true">&#8599;</span>
+      </a>
+      <a class="chapter-cta-item" href="/posts/playground-part-1">
+        <span class="chapter-cta-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h12"/></svg>
+        </span>
+        <span class="chapter-cta-text">Read the series on how it was built</span>
+        <span class="chapter-cta-arrow" aria-hidden="true">&rarr;</span>
+      </a>
     </div>
   </article>
 
@@ -216,11 +240,11 @@ import Layout from "../../layouts/Layout.astro";
   .hero-sub {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: clamp(17px, 2vw, 26px);
+    font-size: clamp(22px, 2.6vw, 32px);
     line-height: var(--leading-relaxed);
-    color: var(--text-muted);
+    color: var(--cream);
     margin-top: 36px;
-    max-width: 600px;
+    max-width: 700px;
     opacity: 0;
     animation: fadeUp 0.9s ease 0.5s forwards;
   }
@@ -334,7 +358,7 @@ import Layout from "../../layouts/Layout.astro";
 
   .metric:first-child { padding-left: 0; }
   .metric:last-child  { padding-right: 0; }
-  .metric + .metric   { border-left: 1px solid rgba(200, 164, 90, 0.18); }
+  .metric + .metric   { border-left: 1px solid rgba(200, 164, 90, 0.08); }
 
   .metric-stat {
     opacity: 0;
@@ -423,6 +447,82 @@ import Layout from "../../layouts/Layout.astro";
 
   .chapter-read:hover::after {
     width: 100%;
+  }
+
+  /* ─── CHAPTER CTA LIST (icon + text + arrow, stacked) ─── */
+  .chapter-cta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 8px;
+    border-top: 1px solid rgba(200, 164, 90, 0.18);
+    padding-top: 28px;
+  }
+
+  .chapter-cta-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    text-decoration: none;
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.3;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(200, 164, 90, 0.18);
+    transition: color 0.25s, border-color 0.25s, padding 0.25s;
+  }
+
+  .chapter-cta-item:last-child {
+    border-bottom: none;
+  }
+
+  .chapter-cta-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    transition: color 0.25s, transform 0.25s;
+  }
+
+  .chapter-cta-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .chapter-cta-text {
+    flex: 1;
+    color: var(--gold-light);
+  }
+
+  .chapter-cta-arrow {
+    color: var(--gold);
+    font-style: normal;
+    font-size: 22px;
+    line-height: 1;
+    transition: transform 0.3s ease, color 0.25s;
+  }
+
+  .chapter-cta-item:hover {
+    border-color: var(--gold-light);
+  }
+
+  .chapter-cta-item:hover .chapter-cta-text {
+    color: var(--cream);
+  }
+
+  .chapter-cta-item:hover .chapter-cta-icon {
+    color: var(--gold-light);
+    transform: scale(1.1);
+  }
+
+  .chapter-cta-item:hover .chapter-cta-arrow {
+    transform: translateX(6px);
+    color: var(--gold-light);
   }
 
   /* SKAI series tie-in inside chapter 02 */
@@ -644,7 +744,7 @@ import Layout from "../../layouts/Layout.astro";
       border-bottom: none;
     }
     .metric + .metric {
-      border-top: 1px solid rgba(200, 164, 90, 0.2);
+      border-top: 1px solid rgba(200, 164, 90, 0.08);
     }
     .metric:first-child { padding-top: 0; }
     .metric:last-child  { padding-bottom: 0; }

@@ -705,12 +705,11 @@ import Layout from "../layouts/Layout.astro";
       background: linear-gradient(to bottom, transparent, rgba(200,164,90,0.45) 6%, rgba(200,164,90,0.45) 94%, transparent);
     }
 
+    /* Block layout so year, title, desc stack vertically; dot floats on left */
     .timeline-item {
-      flex-direction: row;
-      align-items: flex-start;
+      display: block;
       text-align: left;
       padding: 0 0 0 32px;
-      gap: 0;
       width: 100%;
       position: relative;
     }
@@ -723,6 +722,14 @@ import Layout from "../layouts/Layout.astro";
       position: absolute;
       left: 0;
       top: 0;
+    }
+
+    .timeline-year {
+      margin-bottom: 6px;
+    }
+
+    .timeline-title {
+      margin-bottom: 6px;
     }
 
     .timeline-desc {
