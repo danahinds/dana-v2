@@ -5,6 +5,9 @@ import Footer from "../components/astro/Footer.astro";
 import "@fpkit/react/styles";
 const { pageTitle, pageDescription = "Product Manager & Entrepreneur" } = Astro.props;
 import "../styles/index.css";
+
+const CLARITY_ID = "whw99inlqk";
+const isProd = import.meta.env.PROD;
 ---
 
 <html lang="en">
@@ -17,6 +20,12 @@ import "../styles/index.css";
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <ViewTransitions />
+    {isProd && (
+      <script>
+        import Clarity from "@microsoft/clarity";
+        Clarity.init("whw99inlqk");
+      </script>
+    )}
   </head>
   <body>
     <Navigation />
