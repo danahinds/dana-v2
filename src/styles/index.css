@@ -137,6 +137,16 @@ a:hover {
   color: var(--gold);
 }
 
+/* Override fpkit's `main > div { text-align: center }` — prose stays left-aligned by default.
+   Blocks are still centered on the page via their own max-width + margin: 0 auto;
+   elements that explicitly want centered text (metric cells, hints) override this with text-align: center. */
+main > div,
+main > header,
+main > footer,
+main > section {
+  text-align: left;
+}
+
 /* Labels */
 .label {
   font-size: var(--text-sm);
