@@ -1930,6 +1930,15 @@
     .results-topline, .quotes-grid { grid-template-columns: 1fr; }
   }
 
+  /* Phone — content in steps cards needs full width to render the inline visuals without cut-off */
+  @media (max-width: 640px) {
+    .steps-grid { grid-template-columns: 1fr; }
+    .step-card { border-right: none; border-bottom: 1px solid var(--border); }
+    .step-card:last-child { border-bottom: none; }
+    .step-title { min-height: 0; }
+    .step-desc { min-height: 0; }
+  }
+
   /* ========== BRAND STRIP (Dana Sandy site identity) ========== */
   .brand-strip {
     background: #1a2214;
