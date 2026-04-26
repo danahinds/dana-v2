@@ -1,8 +1,12 @@
 <nav id="nav">
-  <a href="/" class="logo">
-    <svg class="logo-li" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-    <span class="logo-text">Dana Sandy</span>
-  </a>
+  <div class="logo-group">
+    <a class="logo-li-link" href="https://www.linkedin.com/in/dana-s-86aa92101/" target="_blank" rel="noopener" aria-label="Dana Sandy on LinkedIn">
+      <svg class="logo-li" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+    <a href="/" class="logo-name">
+      <span class="logo-text">Dana Sandy</span>
+    </a>
+  </div>
 
   <ul class="nav-center">
     <li><a href="/">Home</a></li>
@@ -73,18 +77,34 @@
     border-bottom: 1px solid rgba(200, 164, 90, 0.15);
   }
 
-  .logo {
+  .logo-group {
     display: flex;
     align-items: center;
-    gap: 10px;
-    text-decoration: none;
+    gap: 12px;
+  }
+
+  .logo-li-link {
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+    color: var(--gold);
+    transition: color 0.25s, transform 0.2s;
+  }
+
+  .logo-li-link:hover {
+    color: var(--gold-light);
+    transform: scale(1.08);
   }
 
   .logo-li {
-    width: 18px;
-    height: 18px;
-    fill: var(--gold);
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
     flex-shrink: 0;
+  }
+
+  .logo-name {
+    text-decoration: none;
   }
 
   .logo-text {
@@ -94,6 +114,11 @@
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--cream);
+    transition: color 0.25s;
+  }
+
+  .logo-name:hover .logo-text {
+    color: var(--gold);
   }
 
   .nav-center {
