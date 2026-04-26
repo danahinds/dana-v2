@@ -1102,12 +1102,19 @@ import Layout from "../../layouts/Layout.astro";
     color: var(--cream);
   }
 
-  /* ─── WHY BLOCK — flat finale ─── */
+  /* ─── WHY BLOCK — content block centered on page, but paragraphs read left-to-right ─── */
   .why-block {
     padding: 80px 0 100px;
     margin-top: 64px;
     border-top: 1px solid rgba(200, 164, 90, 0.18);
-    text-align: center;
+  }
+
+  /* Each piece of content has its own max-width and is centered horizontally as a block,
+     while the text inside stays left-aligned for natural reading */
+  .why-block .eyebrow {
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .why-headline {
@@ -1116,7 +1123,8 @@ import Layout from "../../layouts/Layout.astro";
     font-size: clamp(28px, 4.5vw, 44px);
     line-height: var(--leading-snug);
     color: var(--cream);
-    margin-bottom: 24px;
+    margin: 0 auto 24px;
+    max-width: 620px;
     letter-spacing: var(--tracking-tight);
   }
 
@@ -1130,16 +1138,17 @@ import Layout from "../../layouts/Layout.astro";
     font-style: italic;
     font-size: var(--text-lg);
     line-height: var(--leading-relaxed);
-    color: var(--text-muted);
-    max-width: 540px;
+    color: var(--cream);
+    max-width: 620px;
     margin: 0 auto 36px;
   }
 
   .why-cta-row {
     display: flex;
     gap: 28px;
-    justify-content: center;
     flex-wrap: wrap;
+    max-width: 620px;
+    margin: 0 auto;
   }
 
   .why-cta,
