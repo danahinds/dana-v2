@@ -99,7 +99,7 @@ import Layout from "../../layouts/Layout.astro";
         <span class="metric-context">One person, start to ship — the range was the point</span>
       </div>
       <div class="metric metric-stat">
-        <span class="metric-val">4 days</span>
+        <span class="metric-val"><span class="metric-num">4</span><span class="metric-unit">days</span></span>
         <span class="metric-lbl">Blank repo to live tool</span>
         <span class="metric-context">The short timeline shaped every decision</span>
       </div>
@@ -380,6 +380,24 @@ import Layout from "../../layouts/Layout.astro";
     line-height: 1;
     margin-bottom: 12px;
     font-variant-numeric: tabular-nums;
+  }
+
+  /* For metric values that are number + unit (e.g. "4 days"), the number reads as a hero */
+  .metric-num {
+    font-size: 1.6em;
+    font-weight: var(--weight-light);
+    line-height: 1;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .metric-unit {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.55em;
+    color: var(--gold-light);
+    margin-left: 8px;
+    letter-spacing: 0.04em;
+    vertical-align: baseline;
   }
 
   .metric-ba {
