@@ -639,12 +639,12 @@ import Layout from "../../layouts/Layout.astro";
 
     .chapter-metrics { grid-template-columns: 1fr; gap: 0; }
     .metric {
-      padding: 28px 0 28px 22px;
-      border-left: 2px solid rgba(200, 164, 90, 0.45) !important;
+      padding: 28px 0;
+      border-left: none !important;
       border-bottom: none;
     }
     .metric + .metric {
-      margin-top: 0;
+      border-top: 1px solid rgba(200, 164, 90, 0.2);
     }
     .metric:first-child { padding-top: 0; }
     .metric:last-child  { padding-bottom: 0; }

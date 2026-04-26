@@ -11,13 +11,13 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --bg: #2c3a22;
-    --bg-2: #111;
-    --bg-3: #161616;
-    --border: #222;
-    --border-2: #2a2a2a;
+    --bg-2: #1a2214;
+    --bg-3: #243018;
+    --border: #2f3d24;
+    --border-2: #3a4a2e;
     --fg: #ededed;
-    --fg-2: #a1a1a1;
-    --fg-3: #6b6b6b;
+    --fg-2: #a8b09e;
+    --fg-3: #7c8475;
     --accent: #00d26a;
     --accent-fg: #001a0d;
     --warn: #ff9f43;
@@ -138,8 +138,8 @@
   }
   h2.section-title .dim { color: var(--fg-3); }
   .section-lede {
-    color: var(--fg-2); font-size: 15px; max-width: 640px;
-    margin-bottom: 28px; line-height: 1.55;
+    color: var(--fg); font-size: 18px; max-width: 720px;
+    margin-bottom: 32px; line-height: 1.7;
   }
 
   /* ========== HERO ========== */
@@ -1533,10 +1533,10 @@
     font-weight: 600;
   }
   .tldr-body {
-    font-size: 15px; color: var(--fg); line-height: 1.55;
+    font-size: 20px; color: var(--fg); line-height: 1.65;
     font-family: var(--font-serif);
     font-style: italic;
-    max-width: 720px;
+    max-width: 760px;
   }
   .tldr-body strong {
     font-family: var(--font-sans);
@@ -1843,10 +1843,10 @@
 
   /* ========== WHAT'S NEXT ========== */
   .next-list {
-    display: grid; gap: 10px; max-width: 900px;
+    display: grid; gap: 12px;
   }
   .next-item {
-    display: flex; gap: 16px; padding: 14px 18px;
+    display: flex; gap: 18px; padding: 18px 22px;
     background: var(--bg-2); border: 1px solid var(--border);
     border-radius: 8px;
   }
@@ -1855,6 +1855,7 @@
     text-transform: uppercase; letter-spacing: 0.08em;
     padding: 3px 8px; border-radius: 4px;
     height: fit-content; flex-shrink: 0;
+    margin-top: 4px;
   }
   .next-status.soon {
     background: color-mix(in oklch, var(--accent) 14%, transparent);
@@ -1865,9 +1866,9 @@
     background: var(--bg-3); color: var(--fg-2);
     border: 1px solid var(--border);
   }
-  .next-title { font-size: 15px; font-weight: 500; margin-bottom: 2px; }
+  .next-title { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
   .next-body { flex: 1; }
-  .next-desc { font-size: 13px; color: var(--fg-2); line-height: 1.5; }
+  .next-desc { font-size: 15px; color: var(--fg-2); line-height: 1.65; }
 
   /* ========== CLOSE ========== */
   .close-box {
@@ -1891,8 +1892,8 @@
   }
   .close-box .italic { font-style: italic; font-weight: 400; font-family: var(--font-serif); }
   .close-box p {
-    color: var(--fg-2); font-size: 15px; max-width: 520px;
-    margin: 0 auto 22px; line-height: 1.55;
+    color: var(--fg); font-size: 17px; max-width: 580px;
+    margin: 0 auto 24px; line-height: 1.7;
   }
   .close-box .byline-big {
     font-family: var(--font-mono); font-size: 12px;

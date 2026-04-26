@@ -14,7 +14,10 @@ import Layout from "../layouts/Layout.astro";
         <h1 class="contact-title">Get <em>in touch</em></h1>
         <p class="contact-lede">Whether it's a product collaboration, an AI experiment, an update on the SKAI series, or just a hello — I'd love to hear from you.</p>
         <div class="contact-illu" aria-hidden="true">
-          <img src="/dana-contact.png" alt="" />
+          <picture>
+            <source srcset="/dana-contact.webp" type="image/webp" />
+            <img src="/dana-contact.png" alt="" loading="lazy" decoding="async" width="900" height="900" />
+          </picture>
         </div>
         <p class="form-aside">Prefer email? <a class="info-link" href="mailto:hello@danasandy.com">hello@danasandy.com</a></p>
       </div>
