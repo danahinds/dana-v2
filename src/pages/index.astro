@@ -70,6 +70,102 @@ import BotanicalLayer from "../components/astro/BotanicalLayer.astro";
     </div>
   </section>
 
+  <!-- ─── SELECTED WORK ─── -->
+  <section class="builds reveal" id="work">
+    <BotanicalLayer variant="series" />
+
+    <div class="work-inner">
+      <div class="work-header">
+        <div>
+          <div class="work-eyebrow"><span class="rule"></span> Selected Work</div>
+          <h2 class="work-title">Two projects.<br />One <em>becoming a platform</em>.<br />One shipped in <em>four days</em>.</h2>
+        </div>
+        <p class="work-sub">A long arc and a short loop — two ways to look at how I work.</p>
+      </div>
+
+      <!-- 01 · SERVE513 -->
+      <div class="case serve513">
+        <div class="case-meta">
+          <div class="case-num">01</div>
+          <div class="case-tags">
+            <div class="case-tag">Role <span class="val">Founder &amp; Product Lead</span></div>
+            <div class="case-tag">Active since <span class="val">2024 &middot; 24 events</span></div>
+            <div class="case-tag">Partnership <span class="val">SALT Tampa Outreach</span></div>
+          </div>
+        </div>
+        <div class="case-body">
+          <span class="status-chip gold">Becoming a platform</span>
+          <div class="case-kicker">
+            <span class="dot"></span>
+            <span>Case Study &middot; Community Tech &middot; HMIS Application</span>
+          </div>
+          <h3 class="case-name">SERVE<em>513</em></h3>
+          <p class="case-tagline">Volunteers were burning out. Clients were waiting hours. The systems meant to help were slowing everything down — so I <em>rebuilt the workflow from the ground up</em>.</p>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-value">90<span class="unit">%</span></div>
+              <div class="metric-label">Wait-time reduction</div>
+              <p class="metric-note">Most had no wait; <em>under 5 min</em> at peak — every minute saved matters.</p>
+            </div>
+            <div class="metric">
+              <div class="metric-value">95<span class="unit">%</span></div>
+              <div class="metric-label">Volunteer adoption</div>
+              <p class="metric-note">No training overhead — volunteers used it under real event pressure.</p>
+            </div>
+            <div class="metric">
+              <div class="metric-value">23<span class="arrow">&rarr;</span><em>27</em></div>
+              <div class="metric-label">Showers &middot; +17.4% capacity</div>
+              <p class="metric-note">Hygiene access is a direct barrier to employment &amp; housing stability.</p>
+            </div>
+          </div>
+          <div class="case-links">
+            <a href="/work/serve513" class="case-link">Read the case study <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 · The Playground -->
+      <div class="case playground">
+        <div class="case-meta">
+          <div class="case-num">02</div>
+          <div class="case-tags">
+            <div class="case-tag">build <span class="val">ai_supported</span></div>
+            <div class="case-tag">shipped <span class="val">2026</span></div>
+            <div class="case-tag">stack <span class="val">react &middot; netlify &middot; clarity</span></div>
+          </div>
+        </div>
+        <div class="case-body">
+          <span class="status-chip green">Live &middot; case study</span>
+          <div class="case-kicker">
+            <span class="dot"></span>
+            <span>Newly Shipped &middot; Design + Engineering + Product</span>
+          </div>
+          <h3 class="case-name">The <em>Playground</em></h3>
+          <p class="case-tagline">A simple way to get honest, documented user feedback. No new sign-ups. No friction. <em>Four days, blank repo to live tool</em> — because I needed it.</p>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-label">AI-Supported Development</div>
+              <p class="metric-note">AI accelerated design, engineering, and product — start to ship.</p>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Live in 4 days</div>
+              <p class="metric-note">The short timeline shaped every decision in the build.</p>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Newly shipped</div>
+              <p class="metric-note">Report section shows sample data — real tests pending.</p>
+            </div>
+          </div>
+          <div class="case-links">
+            <a href="/work/the-playground/" class="case-link">Read the case study <span class="arrow">&rarr;</span></a>
+            <a href="https://playground-uxtg.netlify.app" target="_blank" rel="noopener" class="case-link secondary">Visit the live site <span class="arrow">&#8599;</span></a>
+            <a href="/posts/playground-part-1" class="case-link secondary">Read the build series <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── FEATURED SERIES ─── -->
   <section class="series-section reveal">
     <BotanicalLayer variant="series" />
@@ -508,6 +604,408 @@ import BotanicalLayer from "../components/astro/BotanicalLayer.astro";
     transform: translateX(4px);
   }
 
+  /* ─── SELECTED WORK ─── */
+  .builds {
+    background: var(--olive);
+    position: relative;
+    padding: 100px 0;
+    overflow: hidden;
+  }
+
+  .builds > *:not(.botanical-layer) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .work-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 52px;
+  }
+
+  .work-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 40px;
+    margin-bottom: 80px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .work-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+
+  .work-eyebrow .rule {
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .work-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(40px, 5.5vw, 84px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--cream);
+  }
+
+  .work-title em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .work-sub {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    color: rgba(245, 240, 232, 0.78);
+    line-height: 1.45;
+    max-width: 380px;
+    margin: 0;
+  }
+
+  .case {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 80px;
+    padding: 72px 0;
+    border-top: 1px solid rgba(245, 240, 232, 0.08);
+  }
+
+  .case:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .case-meta {
+    position: relative;
+  }
+
+  .case-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 104px;
+    line-height: 0.85;
+    color: var(--gold);
+    letter-spacing: -0.04em;
+    margin-bottom: 36px;
+  }
+
+  .case-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .case-tag {
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.7);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .case-tag .val {
+    display: block;
+    margin-top: 6px;
+    color: var(--cream);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 15.5px;
+  }
+
+  .case-body {
+    min-width: 0;
+  }
+
+  .status-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .status-chip::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    animation: live-pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes live-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+  }
+
+  .status-chip.gold {
+    font-family: var(--font-body);
+    color: var(--gold);
+    border: 1px solid rgba(200, 164, 90, 0.4);
+    background: rgba(200, 164, 90, 0.06);
+  }
+
+  .status-chip.gold::before {
+    background: var(--gold);
+    box-shadow: 0 0 6px var(--gold);
+  }
+
+  .status-chip.green {
+    font-family: ui-monospace, SFMono-Regular, Menlo, "Liberation Mono", monospace;
+    letter-spacing: 0.12em;
+    color: #6fbf73;
+    border: 1px solid rgba(111, 191, 115, 0.35);
+    background: rgba(111, 191, 115, 0.06);
+  }
+
+  .status-chip.green::before {
+    background: #6fbf73;
+    box-shadow: 0 0 6px #6fbf73;
+  }
+
+  .case-kicker {
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.72);
+    font-weight: 500;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .case-kicker .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--gold);
+  }
+
+  .case-name {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(48px, 6vw, 84px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin: 0 0 28px;
+    color: var(--cream);
+  }
+
+  .case-name em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .case-tagline {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--cream);
+    margin: 0 0 44px;
+    max-width: 640px;
+  }
+
+  .case-tagline em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 0 40px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .metric {
+    padding: 28px 28px 28px 0;
+    border-right: 1px solid rgba(245, 240, 232, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .metric:last-child {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .metric:not(:first-child) {
+    padding-left: 28px;
+  }
+
+  .metric-value {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .metric-value em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 300;
+  }
+
+  .metric-value .arrow {
+    color: rgba(245, 240, 232, 0.55);
+    font-size: 32px;
+    margin: 0 6px;
+    font-style: normal;
+  }
+
+  .metric-value .unit {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: rgba(245, 240, 232, 0.55);
+    font-weight: 400;
+    margin-left: 2px;
+  }
+
+  .metric-label {
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  .metric-note {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(245, 240, 232, 0.72);
+    margin: 4px 0 0;
+  }
+
+  /* Playground card — restrained dev-tool register */
+  .case.playground .case-kicker {
+    color: #6fbf73;
+  }
+
+  .case.playground .case-kicker .dot {
+    background: #6fbf73;
+    box-shadow: 0 0 8px #6fbf73;
+  }
+
+  .case.playground .case-meta::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 28px;
+    height: 1px;
+    background: #6fbf73;
+    opacity: 0.6;
+  }
+
+  .case.playground .case-tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, "Liberation Mono", monospace;
+    letter-spacing: 0.04em;
+    font-size: 11.5px;
+    text-transform: lowercase;
+    color: rgba(245, 240, 232, 0.55);
+  }
+
+  .case.playground .case-tag .val {
+    font-family: ui-monospace, SFMono-Regular, Menlo, "Liberation Mono", monospace;
+    font-size: 14px;
+    letter-spacing: 0;
+    color: var(--cream);
+  }
+
+  .case-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px 36px;
+    align-items: center;
+    padding-top: 8px;
+  }
+
+  .case-link {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--cream);
+    transition: color 0.2s ease, border-color 0.2s ease, gap 0.2s ease;
+  }
+
+  .case-link .arrow {
+    color: var(--gold);
+    transition: transform 0.2s ease;
+    font-size: 14px;
+  }
+
+  .case-link:hover {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+    gap: 16px;
+  }
+
+  .case-link:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  .case-link.secondary {
+    color: rgba(245, 240, 232, 0.55);
+    border-bottom-color: var(--border);
+    font-weight: 400;
+  }
+
+  .case-link.secondary:hover {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
   /* ─── SERIES SECTION ─── */
   .series-section {
     background-color: var(--olive-dark);
@@ -658,6 +1156,64 @@ import BotanicalLayer from "../components/astro/BotanicalLayer.astro";
 
     .s-num {
       font-size: 48px;
+    }
+
+    .builds {
+      padding: 64px 0 80px;
+    }
+
+    .work-inner {
+      padding: 0 28px;
+    }
+
+    .work-header {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding-bottom: 24px;
+      margin-bottom: 56px;
+    }
+
+    .work-sub {
+      max-width: 100%;
+    }
+
+    .case {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 56px 0;
+    }
+
+    .case-num {
+      font-size: 84px;
+      margin-bottom: 20px;
+    }
+
+    .case-tags {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px 32px;
+    }
+
+    .metrics {
+      grid-template-columns: 1fr;
+    }
+
+    .metric {
+      border-right: none;
+      border-bottom: 1px solid rgba(245, 240, 232, 0.08);
+      padding: 22px 0;
+    }
+
+    .metric:not(:first-child) {
+      padding-left: 0;
+    }
+
+    .metric:last-child {
+      border-bottom: none;
+    }
+
+    .metric-value {
+      font-size: 44px;
     }
 
     .series-section {
