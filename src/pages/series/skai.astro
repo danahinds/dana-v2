@@ -4,59 +4,25 @@ import Layout from "../../layouts/Layout.astro";
 const episodes = [
   {
     part: 1,
-    eyebrow: "Episode · Published",
+    eyebrow: "Published",
     title: "The problem that led to The Playground",
     description: "A volunteer project took on a life of its own, and scaling it into SaaS required solving a UX testing problem that didn't have an off-the-shelf answer.",
     status: "published",
     href: "/posts/playground-part-1",
   },
-  {
-    part: 2,
-    eyebrow: "Episode · Coming soon",
-    title: null,
-    description: null,
-    status: "coming-soon",
-    href: null,
-  },
-  {
-    part: 3,
-    eyebrow: "Episode · Coming soon",
-    title: null,
-    description: null,
-    status: "coming-soon",
-    href: null,
-  },
-  {
-    part: 4,
-    eyebrow: "Episode · Coming soon",
-    title: null,
-    description: null,
-    status: "coming-soon",
-    href: null,
-  },
-  {
-    part: 5,
-    eyebrow: "Episode · Coming soon",
-    title: null,
-    description: null,
-    status: "coming-soon",
-    href: null,
-  },
 ];
 ---
 
-<Layout pageTitle="SKAI is the Limit? — A Series by Dana Sandy" pageDescription="We gave AI a development team and one mission — to build a real app from scratch. Does SKAI have a limit?">
+<Layout pageTitle="SKAI is the Limit? · A Series by Dana Sandy" pageDescription="We gave AI a development team and one mission: to build a real app from scratch. Does SKAI have a limit?">
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-ghost">Series</div>
-    <p class="hero-label">A Series · Five Parts</p>
     <h1 class="hero-name">SKAI is the <em>Limit?</em></h1>
     <div class="hero-intro">
       <p class="hero-lede">SKAI is my journey as a Product Manager, exploring what it means to build with AI in real situations.</p>
       <p class="hero-body">Through a series of experiments, I look at where AI fits and how it balances with human input to accelerate development.</p>
     </div>
-    <p class="hero-meta"><span class="hero-meta-num">5</span> episodes &middot; <span class="hero-meta-num">~5 min</span> each &middot; Launching soon</p>
   </section>
 
   <!-- GOLD DIVIDER -->
@@ -72,9 +38,8 @@ const episodes = [
 
   {episodes.map((ep, i) => (
     <>
-      <article class={`chapter reveal ${ep.status === "coming-soon" ? "chapter-soon" : ""}`} data-chapter={String(ep.part).padStart(2, "0")}>
+      <article class={`chapter reveal ${ep.status === "coming-soon" ? "chapter-soon" : ""}`}>
         <div class="chapter-head">
-          <span class="chapter-num">{String(ep.part).padStart(2, "0")}</span>
           <p class="chapter-eyebrow">{ep.eyebrow}</p>
         </div>
 
@@ -86,9 +51,6 @@ const episodes = [
             <hr class="chapter-cta-rule" />
             <div class="chapter-cta-list">
               <a class="chapter-cta-item" href={ep.href}>
-                <span class="chapter-cta-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22.5z"/><path d="M4 4.5A2.5 2.5 0 0 0 6.5 7H20"/></svg>
-                </span>
                 <span class="chapter-cta-text">Read the episode</span>
                 <span class="chapter-cta-arrow" aria-hidden="true">&rarr;</span>
               </a>
@@ -111,10 +73,10 @@ const episodes = [
   <section class="why-block reveal">
     <p class="eyebrow">Why this series</p>
     <h2 class="why-headline">A record of building with AI, <em>honestly.</em></h2>
-    <p class="why-text">Not a tutorial. Not a pitch. A closer look at where AI tools accelerate real work — and where they still need a human to notice what matters.</p>
+    <p class="why-text">Not a tutorial. Not a pitch. A closer look at where AI tools accelerate real work, and where they still need a human to notice what matters.</p>
     <div class="why-cta-row">
       <a href="/contact" class="why-cta">Get in touch &rarr;</a>
-      <a href="/work" class="why-cta-secondary">See my work &rarr;</a>
+      <a href="/#work" class="why-cta-secondary">See my work &rarr;</a>
     </div>
   </section>
 
