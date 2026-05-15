@@ -55,7 +55,7 @@ The outcomes were real.
   <div class="metric">
     <div class="metric-number">90%</div>
     <div class="metric-label">Wait time cut</div>
-    <div class="metric-caveat">45 min to under 10</div>
+    <div class="metric-caveat">Most: no wait · Peak: under 5 min</div>
   </div>
   <div class="metric">
     <div class="metric-number">95%</div>
