@@ -1,0 +1,13 @@
+---
+// The Playground case study is authored as a standalone HTML document
+// (its own design system, separate from the site's editorial theme).
+// We emit it verbatim through Astro routing so the URL resolves in both
+// `astro dev` and the production build — single source of truth, no public/ copy.
+export const prerender = true;
+import rawHtml from "./_the-playground.html?raw";
+// Astro auto-prepends its own <!DOCTYPE html>; strip the source's leading
+// one so the emitted document has exactly a single doctype (byte-identical
+// to the original standalone file).
+const html = rawHtml.replace(/^﻿?<!doctype html>/i, "");
+---
+<Fragment set:html={html} />
