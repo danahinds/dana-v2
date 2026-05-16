@@ -33,7 +33,11 @@
     -webkit-font-smoothing: antialiased;
     font-size: 15px;
     line-height: 1.5;
+    /* Mobile guard: never allow page-level horizontal scroll */
+    overflow-x: hidden;
+    max-width: 100%;
   }
+  img, svg, video, canvas { max-width: 100%; }
   a { color: inherit; text-decoration: none; }
   button { font: inherit; cursor: pointer; color: inherit; background: none; border: none; }
   .mono { font-family: var(--font-mono); font-feature-settings: "zero", "ss01"; }
@@ -126,6 +130,7 @@
   main > section {
     max-width: 1200px; margin: 0 auto;
     padding: 72px 32px;
+    width: 100%;
   }
   main > section.bordered { border-top: 1px solid var(--border); }
   .section-head {
@@ -835,7 +840,7 @@
   .walk-drop-text { font-size: 13px; color: #222; }
   .walk-drop-text strong { font-weight: 600; }
   .walk-drop-sub { font-size: 11.5px; color: #888; margin-top: 4px; }
-  .walk-link { color: #2563eb; text-decoration: underline; }
+  .walk-link { color: var(--accent); text-decoration: underline; }
   .walk-or {
     text-align: center; color: #999;
     font-size: 11px; margin: 12px 0;
@@ -948,7 +953,7 @@
     padding: 0 3px;
   }
   .walk-add-task {
-    color: #2563eb; font-size: 12px;
+    color: var(--accent); font-size: 12px;
     padding: 7px 0;
     margin-top: 3px;
   }
@@ -1939,67 +1944,100 @@
     .step-desc { min-height: 0; }
   }
 
-  /* ========== BRAND STRIP (Dana Sandy site identity) ========== */
-  .brand-strip {
-    background: #1a2214;
-    border-bottom: 1px solid rgba(200, 164, 90, 0.2);
-    padding: 14px 32px;
+  /* ========== SITE NAV (matches DanaSandy.com) ========== */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    height: 4.5rem;
+    padding: 0 52px;
+    background: rgba(26, 34, 20, 0.97);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(200, 164, 90, 0.15);
     font-family: 'Jost', sans-serif;
   }
-  .brand-strip-logo {
+  .site-nav-logo-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .site-nav-li {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: #f5f0e8;
+    line-height: 0;
+    color: #c8a45a;
+    transition: color 0.25s, transform 0.2s;
   }
-  .brand-strip-logo svg {
-    width: 16px; height: 16px; fill: #c8a45a; flex-shrink: 0;
-  }
-  .brand-strip-name {
+  .site-nav-li svg { width: 20px; height: 20px; fill: currentColor; }
+  .site-nav-li:hover { color: #e2c07a; transform: scale(1.08); }
+  .site-nav-name {
     font-weight: 300;
-    font-size: 13px;
+    font-size: 15px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-  }
-  .brand-strip-context {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 18px;
-    color: rgba(245, 240, 232, 0.6);
-    flex: 1;
-    text-align: center;
-  }
-  .brand-strip-context em {
-    color: #e2c07a;
-    font-style: italic;
-  }
-  .brand-strip-back {
-    font-weight: 400;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(245, 240, 232, 0.8);
+    color: #f5f0e8;
     text-decoration: none;
-    padding: 6px 14px;
-    border: 1px solid rgba(200, 164, 90, 0.35);
-    border-radius: 2px;
-    transition: color 0.25s, border-color 0.25s, background 0.25s;
+    transition: color 0.25s;
   }
-  .brand-strip-back:hover {
+  .site-nav-name:hover { color: #c8a45a; }
+  .site-nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 48px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .site-nav-center a {
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.92);
+    text-decoration: none;
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+    white-space: nowrap;
+  }
+  .site-nav-center a:hover {
+    color: #e2c07a;
+    border-bottom-color: #e2c07a;
+  }
+  .site-nav-cta {
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     color: #1a2214;
-    background: #c8a45a;
-    border-color: #c8a45a;
+    background: #f5f0e8;
+    text-decoration: none;
+    padding: 8px 24px;
+    transition: background 0.3s, letter-spacing 0.3s;
   }
-  @media (max-width: 700px) {
-    .brand-strip { padding: 12px 20px; flex-wrap: wrap; gap: 10px; }
-    .brand-strip-context { display: none; }
-    .brand-strip-name { font-size: 12px; letter-spacing: 0.24em; }
-    .brand-strip-back { font-size: 10px; padding: 5px 10px; }
+  .site-nav-cta:hover { background: #c8a45a; letter-spacing: 0.3em; }
+  @media (max-width: 760px) {
+    .site-nav {
+      height: auto;
+      flex-wrap: wrap;
+      padding: 12px 24px;
+      gap: 10px 20px;
+    }
+    .site-nav-center {
+      position: static;
+      transform: none;
+      order: 3;
+      width: 100%;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .site-nav-center a { font-size: 12px; letter-spacing: 0.14em; }
   }
 
   /* ========== BRAND FOOTER (Dana Sandy site footer) ========== */
@@ -2055,19 +2093,108 @@
     .brand-footer { padding: 44px 24px 32px; }
     .brand-footer-links { gap: 18px; }
   }
+
+  /* ==========================================================
+     MOBILE / TABLET — phone-ready pass
+     All rules below are inside max-width media queries so the
+     desktop layout is untouched. Goals: no page-level
+     horizontal scroll; single-column reading flow; embedded
+     desktop-app mockups contained (scroll inside their own
+     card, never widen the page); oversized type reduced.
+     ========================================================== */
+
+  /* ---------- Tablet (<= 768px) ---------- */
+  @media (max-width: 768px) {
+    main > section { padding: 52px 22px; }
+    h2.section-title { font-size: 30px; }
+    .section-lede { font-size: 16px; }
+
+    /* collapse any remaining page-level multi-column grids */
+    .hero { grid-template-columns: 1fr; gap: 32px; }
+    .glance { grid-template-columns: 1fr 1fr; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .modes-grid,
+    .decisions-wrap,
+    .walk-grid,
+    .try-panels,
+    .results-topline,
+    .quotes-grid,
+    .detail-grid { grid-template-columns: 1fr; }
+    .try-panel { border-right: none; border-bottom: 1px solid var(--border); min-height: 0; }
+    .detail-grid { gap: 16px; }
+
+    /* embedded desktop-app mockup frames: never widen the page.
+       The .walk-stage uses aspect-ratio so it scales with its
+       column; once the column is full width it fits. The session
+       table can have many columns — let it scroll inside its
+       own card instead of clipping. */
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table.sessions { min-width: 560px; }
+  }
+
+  /* ---------- Phone (<= 480px) ---------- */
+  @media (max-width: 480px) {
+    main > section { padding: 44px 16px; }
+
+    /* type that would clip on a ~360–414px screen */
+    .hero-left h1 { font-size: clamp(30px, 9vw, 40px); }
+    h2.section-title { font-size: 25px; }
+    .close-box { padding: 40px 22px; }
+    .close-box h2 { font-size: 25px; }
+    .close-box p { font-size: 15px; }
+    .section-lede { font-size: 15px; }
+
+    /* every page-level multi-column block to a single column */
+    .glance { grid-template-columns: 1fr; }
+    .glance-cell {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 18px 18px;
+    }
+    .glance-cell:last-child { border-bottom: none; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .step-card {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 22px 18px;
+    }
+    .step-card:last-child { border-bottom: none; }
+    .step-title { min-height: 0; }
+    .step-desc { min-height: 0; }
+    .mode-card { padding: 24px 18px; }
+
+    /* hero "flow" mini-UI panel: the fixed 160px chip must not
+       force the flow panel wider than the screen */
+    .flow-panel { flex-wrap: wrap; }
+    .flow-mini-ui { width: 100%; flex-shrink: 1; }
+
+    /* embedded prototype mockup: keep the desktop-shaped frame
+       but let it shrink with its container and never overflow */
+    .walk-stage { aspect-ratio: 3 / 4; }
+    .walk-frame-body { padding: 16px 16px; }
+
+    /* footers / wide flex rows wrap instead of overflow */
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+  }
 </style>
 </head>
 <body>
 
-<!-- ========== BRAND STRIP (Dana Sandy site identity) ========== -->
-<div class="brand-strip">
-  <a class="brand-strip-logo" href="/">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-    <span class="brand-strip-name">Dana Sandy</span>
-  </a>
-  <span class="brand-strip-context">Case Study · <em>The Playground</em></span>
-  <a class="brand-strip-back" href="/#work">← Back to work</a>
-</div>
+<!-- ========== SITE NAV (matches DanaSandy.com) ========== -->
+<nav class="site-nav">
+  <div class="site-nav-logo-group">
+    <a class="site-nav-li" href="https://www.linkedin.com/in/dana-s-86aa92101/" target="_blank" rel="noopener" aria-label="Dana Sandy on LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+    <a class="site-nav-name" href="/">Dana Sandy</a>
+  </div>
+  <ul class="site-nav-center">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/series/skai">SKAI Series</a></li>
+  </ul>
+  <a href="/contact" class="site-nav-cta">Work With Me</a>
+</nav>
 
 <!-- ========== HEADER ========== -->
 <header>
